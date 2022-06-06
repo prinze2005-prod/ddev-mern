@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import homepro from "../assets/homepro.jpg";
+import Home_Pro from "../assets/Home_Pro.jpg";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
@@ -16,7 +16,7 @@ const Nav = () => {
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={homepro} alt="home pro" />
+            <img src={Home_Pro} alt="home pro" />
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
@@ -58,9 +58,9 @@ const NavContainer = styled.nav`
     align-items: center;
     justify-content: space-between;
     img {
-      width: 300px;
-      height: 80px;
-      margin-left: -15px;
+      width: 320px;
+      height: 70px;
+      margin: 0 auto;
     }
   }
   .nav-toggle {

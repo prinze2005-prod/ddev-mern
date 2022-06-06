@@ -5,7 +5,13 @@ import styled from "styled-components";
 import Error from "./Error";
 import Loading from "./Loading";
 import Product from "./Product";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import icon1 from "../assets/icon1.jpg";
+import icon2 from "../assets/icon2.png";
+import icon3 from "../assets/icon3.jpg";
 const FeaturedProducts = () => {
   const {
     products_loading: loading,
@@ -24,14 +30,40 @@ const FeaturedProducts = () => {
         <h2>featured services</h2>
         <div className="underline"></div>
       </div>
-      <div className="section-center featured">
-        {featured.slice(0, 6).map((product) => {
-          return <Product key={product.img} {...product} />;
-        })}
-      </div>
-      <Link to="/products" className="btn">
-        services
-      </Link>
+<br></br>
+<div className="container">
+      <Row xs={1} md={3} className="g-4">
+      <Col>
+          <Card href="" style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+           <center><Card.Img variant="top" src={icon1} style={{ width:"35%", height:"100%"}} /></center>
+            <Card.Body>
+              <Card.Title>
+                <center>Plumbing</center>
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <center><Card.Img variant="top" src={icon2} style={{ width:"45%", height:"100%"}} /></center>
+            <Card.Body>
+              <Card.Title>
+                <center>Electrician</center>
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        </Col>  <Col>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <center><Card.Img variant="top" src={icon3} style={{ width:"40%", height:"100%"}} /></center>
+            <Card.Body>
+              <Card.Title>
+                <center>Painter</center>
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        </Col> 
+          </Row>
+</div>
     </Wrapper>
   );
 };

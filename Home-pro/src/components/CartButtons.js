@@ -73,17 +73,16 @@ const Wrapper = styled.div`
     padding: 12px;
   }
   .auth-btn {
-    display: flex;
+    
     align-items: center;
-    background: transparent;
+    background-color: #ffb347;
     border-color: transparent;
-    font-size: 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
     cursor: pointer;
     color: var(--clr-grey-1);
     letter-spacing: var(--spacing);
-    svg {
-      margin-left: 5px;
-    }
+    
   }
 `;
 export default CartButtons;

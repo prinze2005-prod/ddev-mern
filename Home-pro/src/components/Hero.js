@@ -19,12 +19,12 @@ const Hero = () => {
         <Link className="btn hero-btn">
           <form class="d-flex" role="search">
             <input
-              class="form-control me-2"
+              class="search"
               type="search"
-              placeholder="Search"
+              placeholder="Type a service..."
               aria-label="Search"
             />
-            <button class="btn btn-outline-success" type="submit">
+            <button class="btn-search" type="submit">
               Search
             </button>
           </form>
@@ -45,7 +45,26 @@ const Wrapper = styled.section`
   .img-container {
     display: none;
   }
-
+   .search{
+     position: relative;
+    width: 350px; 
+    height: 40px;
+    border-color: transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    font-weight: 100;
+   }
+   .btn-search{
+    font-size: 16px;
+     margin-left: 20px;
+     color: white;
+     border-color: transparent;
+     background-color: orangered;
+     width: 80px;
+     height: 35px;
+     border-radius: 5px;
+   }
   p {
     line-height: 2;
     max-width: 45em;

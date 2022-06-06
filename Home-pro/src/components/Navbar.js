@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
 import homepro from "../assets/homepro.jpg";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";

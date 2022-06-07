@@ -44,7 +44,7 @@ function ContactPage() {
                 <Form.Control as="textarea" rows={3} />
               </Form.Group>
             </Form>
-            <Button variant="primary">Submit</Button>{" "}
+            <Button variant="primary" style={{color: 'black'}}>Submit</Button>{" "}
           </Col>
           <Col className="text-center">
             <br></br>

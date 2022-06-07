@@ -18,6 +18,22 @@ function BookingPage() {
         <h6>* Required Field</h6>
            
         <Form>
+
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>* Enter your full name</Form.Label>
+            <Form.Control type="text" placeholder="John Smith" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>* Enter your email address</Form.Label>
+            <Form.Control type="text" placeholder="johnsmith@gmail.com" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="number">
+            <Form.Label>* Enter your phone number</Form.Label>
+            <Form.Control type="number" placeholder="(403)111-1111)" />
+          </Form.Group>
+
           <Form.Group className="mb-3" controlId="address">
             <Form.Label>* Enter the address where service is needed</Form.Label>
             <Form.Control type="text" placeholder="123 Sait Way NW T1T1T1" />

@@ -15,7 +15,9 @@ import {
 } from "./pages";
 import BookingPage from "./pages/BookingPage";
 import ContactPage from "./pages/ContactPage";
+import LoginPage from "./pages/LoginPage";
 import ServicePage from "./pages/ServicePage";
+import SignupPage from "./pages/SignupPage";
 function App() {
   return (
     <AuthWrapper>
@@ -40,6 +42,12 @@ function App() {
           </Route>
           <Route exact path="/booking">
             <BookingPage />
+          </Route>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact path="/signup">
+            <SignupPage />
           </Route>
           <Route exact path="/products/:id" children={<SingleProduct />} />
           <PrivateRoute exact path="/checkout">

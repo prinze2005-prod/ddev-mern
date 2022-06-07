@@ -62,7 +62,7 @@ export default function ServicesCard() {
             </Card.Body>
           </Card>
         </Col>  <Col>
-          <Card style={{bborderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "15px"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "15px"}}>
           <center><Card.Img variant="top" src={icon6} style={{ width:"35%", height:"100%"}}/></center>
             <Card.Body>
               <Card.Title>

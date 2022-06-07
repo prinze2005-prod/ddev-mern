@@ -16,7 +16,7 @@ export default function ServicesCard() {
       <br />
       <Row xs={1} md={3} className="g-4">
         <Col>
-          <Card href="" style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card href="" style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "50px"}}>
            <center><Card.Img variant="top" src={icon1} style={{ width:"35%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -26,7 +26,7 @@ export default function ServicesCard() {
           </Card>
         </Col>
         <Col>
-          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "35px"}}>
           <center><Card.Img variant="top" src={icon2} style={{ width:"45%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -35,7 +35,7 @@ export default function ServicesCard() {
             </Card.Body>
           </Card>
         </Col>  <Col>
-          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "15px"}}>
           <center><Card.Img variant="top" src={icon3} style={{ width:"40%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -44,7 +44,7 @@ export default function ServicesCard() {
             </Card.Body>
           </Card>
         </Col>  <Col>
-          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "50px"}}>
           <center><Card.Img variant="top" src={icon4} style={{ width:"60%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -53,7 +53,7 @@ export default function ServicesCard() {
             </Card.Body>
           </Card>
         </Col>  <Col>
-          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "35px"}}>
           <center><Card.Img variant="top" src={icon5} style={{ width:"55%", height:"100%"}}/></center>
             <Card.Body>
               <Card.Title>
@@ -62,7 +62,7 @@ export default function ServicesCard() {
             </Card.Body>
           </Card>
         </Col>  <Col>
-          <Card style={{bborderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{bborderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "15px"}}>
           <center><Card.Img variant="top" src={icon6} style={{ width:"35%", height:"100%"}}/></center>
             <Card.Body>
               <Card.Title>

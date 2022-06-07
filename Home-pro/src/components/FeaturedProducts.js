@@ -12,6 +12,8 @@ import Card from "react-bootstrap/Card";
 import icon1 from "../assets/icon1.jpg";
 import icon2 from "../assets/icon2.png";
 import icon3 from "../assets/icon3.jpg";
+import { Button, Form, Dropdown } from "react-bootstrap";
+
 const FeaturedProducts = () => {
   const {
     products_loading: loading,
@@ -34,7 +36,7 @@ const FeaturedProducts = () => {
 <div className="container">
       <Row xs={1} md={3} className="g-4">
       <Col>
-          <Card href="" style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card href="" style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "50px"}}>
            <center><Card.Img variant="top" src={icon1} style={{ width:"35%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -44,7 +46,7 @@ const FeaturedProducts = () => {
           </Card>
         </Col>
         <Col>
-          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "35px"}}>
           <center><Card.Img variant="top" src={icon2} style={{ width:"45%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -53,7 +55,7 @@ const FeaturedProducts = () => {
             </Card.Body>
           </Card>
         </Col>  <Col>
-          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%"}}>
+          <Card style={{borderRadius: 20 + 'px', width:"80%", height:"100%", marginLeft: "15px"}}>
           <center><Card.Img variant="top" src={icon3} style={{ width:"40%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
@@ -63,6 +65,12 @@ const FeaturedProducts = () => {
           </Card>
         </Col> 
           </Row>
+          <br/> <br/>
+          <Link to="/service">
+          <center><Button variant="primary" style={{ color: "black"}}>
+          All Services
+        </Button>{" "} </center>
+          </Link>
 </div>
     </Wrapper>
   );

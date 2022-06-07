@@ -13,6 +13,7 @@ import {
   PrivateRoute,
   AuthWrapper,
 } from "./pages";
+import BookingPage from "./pages/BookingPage";
 import ContactPage from "./pages/ContactPage";
 import ServicePage from "./pages/ServicePage";
 function App() {
@@ -31,14 +32,14 @@ function App() {
           <Route exact path="/cart">
             <Cart />
           </Route>
-          <Route exact path="/products">
-            <Products />
-          </Route>
           <Route exact path="/contact">
             <ContactPage />
           </Route>
           <Route exact path="/service">
             <ServicePage />
+          </Route>
+          <Route exact path="/booking">
+            <BookingPage />
           </Route>
           <Route exact path="/products/:id" children={<SingleProduct />} />
           <PrivateRoute exact path="/checkout">

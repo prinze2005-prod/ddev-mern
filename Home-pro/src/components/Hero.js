@@ -10,13 +10,10 @@ const Hero = () => {
     <Wrapper className="section-center">
       <article className="content">
         <h2>
-          The Quality you <strong>expect</strong>, <br />
-          the service you <strong>deserve!</strong>
+          The Quality you <strong style={{color: '#ffb347'}} >expect,</strong> <br />
+          the service you <strong style={{color: '#ffb347'}} >deserve!</strong>
         </h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti iure
-          quasi odit tenetur unde officiis repudiandae quod deserunt quia eum?
-        </p>
+       <br/><br/>
         <Link className="btn hero-btn">
           <form class="d-flex" role="search">
             <input

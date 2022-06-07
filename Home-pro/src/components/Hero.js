@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import heroBcg from "../assets/hero-bcg.jpeg";
 import heroBcg2 from "../assets/hero-bcg-2.jpeg";
+import landingPage from "../assets/landingPage.jpg";
 
 const Hero = () => {
   return (
     <Wrapper className="section-center">
       <article className="content">
-        <h1>
-          Home Service <br />
-          You can trust
-        </h1>
+        <h2>
+          The Quality you <strong>expect</strong>, <br />
+          the service you <strong>deserve!</strong>
+        </h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti iure
           quasi odit tenetur unde officiis repudiandae quod deserunt quia eum?
@@ -24,14 +25,14 @@ const Hero = () => {
               placeholder="Type a service..."
               aria-label="Search"
             />
-            <button class="btn-search" type="submit">
+            <button  class="btn-search" type="submit" style={{color: 'black'}}>
               Search
             </button>
           </form>
         </Link>
       </article>
       <article className="img-container">
-        <img src={heroBcg} alt="nice table" className="main-img" />
+        <img src={landingPage} alt="nice table" className="main-img" />
         <img src={heroBcg2} alt="person working" className="accent-img" />
       </article>
     </Wrapper>
@@ -60,7 +61,7 @@ const Wrapper = styled.section`
      margin-left: 20px;
      color: white;
      border-color: transparent;
-     background-color: orangered;
+     background-color: #FF6544;
      width: 80px;
      height: 35px;
      border-radius: 5px;

@@ -16,7 +16,7 @@ const PageHero = ({ title, product }) => {
 };
 
 const Wrapper = styled.section`
-  background: var(--clr-primary-10);
+  background: #ffb347;
   width: 100%;
   min-height: 20vh;
   display: flex;

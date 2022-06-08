@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import App from "./App";
 import { ProductsProvider } from "./context/products_context";
 import { FilterProvider } from "./context/filter_context";

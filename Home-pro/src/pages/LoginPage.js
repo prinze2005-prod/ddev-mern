@@ -1,48 +1,71 @@
 import React from "react";
-import { Button, Form, Dropdown, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBInput,
+  MDBCol,
+  MDBRow,
+  MDBBtn,
+} from "mdb-react-ui-kit";
 import Container from "react-bootstrap/Container";
+import { PageHero } from "../components";
 
 function LoginPage() {
   return (
     <main>
-      <header style={{ backgroundColor: "orange" }}>
-        {" "}
-        <br />{" "}
-        <center>
-          <h2>Welcome</h2>
-        </center>
-        <br />
-      </header>
+      <PageHero title="Login" />
       <Container>
         <br></br>
-        
-         
-        <Form>
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label style={{marginLeft:"358px"}}>Email</Form.Label>
-            <center>  <Form.Control type="text" placeholder="Joe@gmail.com" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-         
-          <Form.Group className="mb-3" controlId="password">
-            <Form.Label style={{marginLeft:"358px"}}>Password</Form.Label>
-            <center>  <Form.Control type="password" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-        </Form>
-        <Row>
-          <Col>
-          <Button variant="primary" style={{ color: "black", marginLeft:"358px" }}>
-          LogIn
-        </Button>{" "}
-          </Col>
-          <Col>
-          <a href="" style={{  marginLeft:"70px" }}>Fogot Password?</a>
-          </Col>
-        </Row>
-          
-        <br/><br/>
-        <center><h6>Don't have an account? <a href="/signup">Sign Up</a> </h6></center>
         <br></br>
-       
+        <center>
+          <MDBCard style={{ maxWidth: "30rem" }}>
+            <MDBCardBody>
+              <MDBCardTitle>Welcome Back</MDBCardTitle>
+              <br></br>
+
+              <center>
+                <form>
+                  <MDBInput
+                    className="mb-4"
+                    type="email"
+                    id="form2Example1"
+                    label="Email address"
+                  />
+                  <MDBInput
+                    className="mb-4"
+                    type="password"
+                    id="form2Example2"
+                    label="Password"
+                  />
+
+                  <MDBBtn
+                    type="submit"
+                    className="mb-4"
+                    color="warning"
+                    block
+                    style={{ color: "black" }}
+                  >
+                    Sign in
+                  </MDBBtn>
+                  <MDBRow className="mb-4">
+                    <MDBCol>
+                      <Link to="#">Forgot password?</Link>
+                    </MDBCol>
+                    <MDBCol>
+                      <p>
+                        Not a member? <Link to="/signup">Register</Link>
+                      </p>
+                    </MDBCol>
+                  </MDBRow>
+                </form>
+              </center>
+            </MDBCardBody>
+          </MDBCard>
+        </center>
+        <br></br>
+        <br></br>
       </Container>
     </main>
   );

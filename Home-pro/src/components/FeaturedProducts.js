@@ -67,7 +67,7 @@ const FeaturedProducts = () => {
           </Row>
           <br/> <br/>
           <Link to="/service">
-          <center><Button variant="primary" style={{ color: "black"}}>
+          <center><Button variant="warning" style={{ color: "black"}}>
           All Services
         </Button>{" "} </center>
           </Link>

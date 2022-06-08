@@ -1,11 +1,21 @@
 import React from "react";
-import { Button, Form, Dropdown, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBInput,
+  MDBCol,
+  MDBRow,
+  MDBBtn,
+} from "mdb-react-ui-kit";
 import Container from "react-bootstrap/Container";
 
 function SignupPage() {
   return (
-    <main>
-      <header style={{ backgroundColor: "orange" }}>
+    <main style={{ backgroundColor: "#EFEEED" }}>
+      <header style={{ backgroundColor: "#ffb347" }}>
         {" "}
         <br />{" "}
         <center>
@@ -15,39 +25,70 @@ function SignupPage() {
       </header>
       <Container>
         <br></br>
-        
-         
-        <Form>
-        <Form.Group className="mb-3" controlId="firstName">
-            <Form.Label style={{marginLeft:"358px"}}>First Name</Form.Label>
-            <center>  <Form.Control type="text" placeholder="Joe" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="lastName">
-            <Form.Label style={{marginLeft:"358px"}}>Last Name</Form.Label>
-            <center>  <Form.Control type="text" placeholder="Blow" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="address">
-            <Form.Label style={{marginLeft:"358px"}}>Address</Form.Label>
-            <center>  <Form.Control type="text" placeholder="123 SAIT Way NW T1T1T1" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label style={{marginLeft:"358px"}}>Email</Form.Label>
-            <center>  <Form.Control type="text" placeholder="Joe@gmail.com" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-         
-          <Form.Group className="mb-3" controlId="password">
-            <Form.Label style={{marginLeft:"358px"}}>Password</Form.Label>
-            <center>  <Form.Control type="password" style={{width: "400px"}}/> </center> 
-          </Form.Group>
-        </Form>
-         <center> <Button variant="primary" style={{ color: "black"}}>
-          SignUp
-        </Button>{" "} </center><br/>
-        <center> <Button variant="primary" style={{ color: "black" }}>
-          Back to Login
-        </Button>{" "} </center>
-        <br></br> <br/>
-       
+        <br></br>
+        <center>
+          <MDBCard style={{ maxWidth: "30rem" }}>
+            <MDBCardBody>
+              <MDBCardTitle>Register</MDBCardTitle>
+              <MDBCardText>
+                <center>
+                  <form>
+                    <br></br>
+                    <MDBRow className="mb-4">
+                      <MDBCol>
+                        <MDBInput id="form6Example1" label="First name" />
+                      </MDBCol>
+                      <MDBCol>
+                        <MDBInput id="form6Example2" label="Last name" />
+                      </MDBCol>
+                    </MDBRow>
+
+                    <MDBInput
+                      wrapperClass="mb-4"
+                      id="form6Example4"
+                      label="Address"
+                    />
+                    <MDBInput
+                      wrapperClass="mb-4"
+                      type="email"
+                      id="form6Example5"
+                      label="Email"
+                    />
+                    <MDBInput
+                      wrapperClass="mb-4"
+                      type="tel"
+                      id="form6Example6"
+                      label="Phone"
+                    />
+                    <MDBRow className="mb-4">
+                      <MDBCol>
+                        <MDBBtn
+                          className="mb-4"
+                          color="warning"
+                          type="submit"
+                          block
+                          style={{ color: "black" }}
+                        >
+                          Sign up
+                        </MDBBtn>
+                      </MDBCol>
+                      <MDBCol>
+                        <Link to="/">
+                          {" "}
+                          <MDBBtn className="mb-4" color="light" block>
+                            Cancel
+                          </MDBBtn>
+                        </Link>
+                      </MDBCol>
+                    </MDBRow>
+                  </form>
+                </center>
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        </center>
+        <br></br>
+        <br></br>
       </Container>
     </main>
   );

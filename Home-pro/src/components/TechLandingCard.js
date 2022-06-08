@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -9,7 +8,7 @@ import icon3 from "../assets/techicon3.png";
 import icon4 from "../assets/techicon4.png";
 import icon5 from "../assets/techicon5.png";
 import icon6 from "../assets/techicon6.png";
-import TechLandingPage from "../pages/TechLandingPage";
+
 function TechLandingCard() {
   return (
     <div className="container">

@@ -1,5 +1,5 @@
 import React from "react";
-import homepro from "../assets/homepro.jpg";
+import homepro from "../assets/Home_Pro.jpg";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";

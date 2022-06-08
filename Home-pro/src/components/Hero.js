@@ -83,6 +83,7 @@ const Wrapper = styled.section`
     .hero-btn {
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
+      background-color: #ffb347;
     }
     .img-container {
       display: block;

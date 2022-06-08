@@ -6,11 +6,11 @@ import ServicesCard from "../components/ServicesCard";
 
 function ServicePage() {
   return (
-    <main style={{ backgroundColor: "#EFEEED" }}>
+    <main>
       <PageHero title="Services" />
       <Container>
         <br></br>
-       <ServicesCard/>
+        <ServicesCard />
         <br></br>
         <br></br>
       </Container>

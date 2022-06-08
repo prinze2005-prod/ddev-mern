@@ -26,42 +26,45 @@ function App() {
       <Router>
         <Navbar />
         <Sidebar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/cart">
-            <Cart />
-          </Route>
-          <Route exact path="/contact">
-            <ContactPage />
-          </Route>
-          <Route exact path="/service">
-            <ServicePage />
-          </Route>
-          <Route exact path="/booking">
-            <BookingPage />
-          </Route>
-          <Route exact path="/login">
-            <LoginPage />
-          </Route>
-          <Route exact path="/signup">
-            <SignupPage />
-          </Route>
-          <Route exact path="/tech">
-            <TechLandingPage />
-          </Route>
-          <Route exact path="/products/:id" children={<SingleProduct />} />
-          <PrivateRoute exact path="/checkout">
-            <Checkout />
-          </PrivateRoute>
-          <Route path="*">
-            <Error />
-          </Route>
-        </Switch>
+        <div style={{ backgroundColor: "#FDFAF4" }}>
+          {" "}
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route exact path="/cart">
+              <Cart />
+            </Route>
+            <Route exact path="/contact">
+              <ContactPage />
+            </Route>
+            <Route exact path="/service">
+              <ServicePage />
+            </Route>
+            <Route exact path="/booking">
+              <BookingPage />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
+            <Route exact path="/signup">
+              <SignupPage />
+            </Route>
+            <Route exact path="/tech">
+              <TechLandingPage />
+            </Route>
+            <Route exact path="/products/:id" children={<SingleProduct />} />
+            <PrivateRoute exact path="/checkout">
+              <Checkout />
+            </PrivateRoute>
+            <Route path="*">
+              <Error />
+            </Route>
+          </Switch>
+        </div>
         <Footer />
       </Router>
     </AuthWrapper>

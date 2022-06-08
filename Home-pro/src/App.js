@@ -18,6 +18,8 @@ import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import ServicePage from "./pages/ServicePage";
 import SignupPage from "./pages/SignupPage";
+import TechLandingPage from "./pages/TechLandingPage";
+
 function App() {
   return (
     <AuthWrapper>
@@ -48,6 +50,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignupPage />
+          </Route>
+          <Route exact path="/tech">
+            <TechLandingPage />
           </Route>
           <Route exact path="/products/:id" children={<SingleProduct />} />
           <PrivateRoute exact path="/checkout">

@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const reviewsSchema = new Schema({
-    tech_email: { type: String, required: true},
-    cust_email: { type: String, required: true },
-    job_id: { type: Number, required: true },
-    rating: { type: Number },
+const servicesSchema = new Schema({
+    service_id: { type: Number, required: true },
+    serviceName: { type: String, required: true },
+    base_cost: {type: Number, required: true},
+    rate_per_hour: {type: Number, required: true},    
     description: {type: String}
 });
+module.exports = mongoose.model('Services', servicesSchema, 'Services');

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jobsSchema = new Schema({
     job_id: { type: Number },
+    service_id: { type: Number, required: true },
     tech_email: { type: String, required: true },
     cust_email: { type: String, required: true },
     status: { type: String, required: true },

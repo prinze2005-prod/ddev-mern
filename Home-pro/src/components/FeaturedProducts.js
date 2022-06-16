@@ -13,6 +13,7 @@ import icon1 from "../assets/icon1.jpg";
 import icon2 from "../assets/icon2.png";
 import icon3 from "../assets/icon3.jpg";
 import { Button, Form, Dropdown } from "react-bootstrap";
+import { NavLink } from 'react-router-dom';
 
 const FeaturedProducts = () => {
   const {
@@ -40,7 +41,9 @@ const FeaturedProducts = () => {
            <center><Card.Img variant="top" src={icon1} style={{ width:"35%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
-                <center>Plumbing</center>
+              <NavLink to= '/Plumbing' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Plumbing</center></NavLink>
               </Card.Title>
             </Card.Body>
           </Card>
@@ -50,7 +53,9 @@ const FeaturedProducts = () => {
           <center><Card.Img variant="top" src={icon2} style={{ width:"45%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
-                <center>Electrician</center>
+              <NavLink to= '/Electrician' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Electrician</center></NavLink>
               </Card.Title>
             </Card.Body>
           </Card>
@@ -59,7 +64,9 @@ const FeaturedProducts = () => {
           <center><Card.Img variant="top" src={icon3} style={{ width:"40%", height:"100%"}} /></center>
             <Card.Body>
               <Card.Title>
-                <center>Painter</center>
+              <NavLink to= '/PaintingPage' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Painter</center></NavLink>
               </Card.Title>
             </Card.Body>
           </Card>

@@ -19,7 +19,12 @@ import LoginPage from "./pages/LoginPage";
 import ServicePage from "./pages/ServicePage";
 import SignupPage from "./pages/SignupPage";
 import TechLandingPage from "./pages/TechLandingPage";
-
+import PaintingPage from './components/PaintingPage';
+import Plumbing from './components/Plumbing';
+import Electrician from './components/Electrician';
+import Heating from './components/Heating';
+import Handyman from './components/Handyman';
+import Appliances from './components/Appliances';
 function App() {
   return (
     <AuthWrapper>
@@ -56,6 +61,24 @@ function App() {
             <Route exact path="/tech">
               <TechLandingPage />
             </Route>
+            <Route exact path="/PaintingPage">
+						<PaintingPage />
+					</Route>
+					<Route exact path="/Plumbing">
+						<Plumbing />
+					</Route>
+					<Route exact path="/Electrician">
+						<Electrician />
+					</Route>
+					<Route exact path="/Heating">
+						<Heating />
+					</Route>
+					<Route exact path="/Handyman">
+						<Handyman />
+					</Route>
+					<Route exact path="/Appliances">
+						<Appliances />
+					</Route>
             <Route exact path="/products/:id" children={<SingleProduct />} />
             <PrivateRoute exact path="/checkout">
               <Checkout />

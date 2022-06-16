@@ -9,6 +9,7 @@ import icon3 from "../assets/icon3.jpg";
 import icon4 from "../assets/icon4.png";
 import icon5 from "../assets/icon5.jpg";
 import icon6 from "../assets/icon6.jpg";
+import { NavLink } from 'react-router-dom';
 export default function ServicesCard() {
   return (
     <div className="container">
@@ -16,6 +17,7 @@ export default function ServicesCard() {
       <center>
         <Row xs={1} md={3} className="g-4">
           <Col>
+      
             <Card
               href=""
               style={{
@@ -33,7 +35,10 @@ export default function ServicesCard() {
               </center>
               <Card.Body>
                 <Card.Title>
-                  <center>Plumbing</center>
+                <NavLink to= '/Plumbing' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Plumbing</center></NavLink>
+
                 </Card.Title>
               </Card.Body>
             </Card>
@@ -55,7 +60,9 @@ export default function ServicesCard() {
               </center>
               <Card.Body>
                 <Card.Title>
-                  <center>Electrician</center>
+                <NavLink to= '/Electrician' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Electrician</center></NavLink>
                 </Card.Title>
               </Card.Body>
             </Card>
@@ -77,7 +84,9 @@ export default function ServicesCard() {
               </center>
               <Card.Body>
                 <Card.Title>
-                  <center>Painter</center>
+                <NavLink to= '/PaintingPage' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Painting</center></NavLink>
                 </Card.Title>
               </Card.Body>
             </Card>
@@ -99,7 +108,9 @@ export default function ServicesCard() {
               </center>
               <Card.Body>
                 <Card.Title>
-                  <center>Heating and Cooling</center>
+                <NavLink to= '/Heating' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Heating and Cooling</center></NavLink>
                 </Card.Title>
               </Card.Body>
             </Card>
@@ -121,7 +132,9 @@ export default function ServicesCard() {
               </center>
               <Card.Body>
                 <Card.Title>
-                  <center>Handyman Services</center>
+                <NavLink to= '/Handyman' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Handyman Services</center></NavLink>
                 </Card.Title>
               </Card.Body>
             </Card>
@@ -143,7 +156,9 @@ export default function ServicesCard() {
               </center>
               <Card.Body>
                 <Card.Title>
-                  <center>Appliances Repair</center>
+                <NavLink to= '/Appliances' style={isActive => ({
+    color: isActive ? "#ffb347" : "black"
+  })}> <center>Appliances Repair</center></NavLink>
                 </Card.Title>
               </Card.Body>
             </Card>

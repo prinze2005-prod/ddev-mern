@@ -40,9 +40,7 @@ function App() {
             <Route exact path="/about">
               <About />
             </Route>
-            <Route exact path="/cart">
-              <Cart />
-            </Route>
+          
             <Route exact path="/contact">
               <ContactPage />
             </Route>
@@ -79,13 +77,7 @@ function App() {
 					<Route exact path="/Appliances">
 						<Appliances />
 					</Route>
-            <Route exact path="/products/:id" children={<SingleProduct />} />
-            <PrivateRoute exact path="/checkout">
-              <Checkout />
-            </PrivateRoute>
-            <Route path="*">
-              <Error />
-            </Route>
+           
           </Switch>
         </div>
         <Footer />

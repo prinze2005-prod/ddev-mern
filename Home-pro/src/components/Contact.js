@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../assets/hero-bcg.jpeg";
 import { PageHero } from "../components";
 import { useRef } from "react";
@@ -48,41 +49,52 @@ function Contact(props) {
         <Row>
           <Col>
             <h6>* Required Field</h6>
-            <Form onSubmit={submitHandler}>
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label>* Email</Form.Label>
+            <Form>
+              <Form.Floating className="mb-3">
                 <Form.Control
+                  id="floatingInputCustom"
                   type="email"
                   placeholder="name@example.com"
-                  required
-                  ref={emailInputRef}
                 />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="seriviceNumber">
-                <Form.Label>* Service Request Number</Form.Label>
+                <label htmlFor="floatingInputCustom">*Email address</label>
+              </Form.Floating>
+              <Form.Floating className="mb-3">
                 <Form.Control
+                  id="floatingPasswordCustom"
                   type="text"
-                  required
-                  ref={seriviceNumberInputRef}
+                  placeholder="Service Request Number"
                 />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="technician">
-                <Form.Label>Technician Name</Form.Label>
-                <Form.Control type="text" ref={technicianInputRef} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="serviceDate">
-                <Form.Label>Date</Form.Label>
-                <Form.Control type="date" ref={dateInputRef} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="inquiry">
-                <Form.Label>* Inquiry</Form.Label>
+                <label htmlFor="floatingPasswordCustom">
+                  *Service Request Number
+                </label>
+              </Form.Floating>
+              <Form.Floating className="mb-3">
+                <Form.Control
+                  id="floatingPasswordCustom"
+                  type="text"
+                  placeholder="Technician Name"
+                />
+                <label htmlFor="floatingPasswordCustom">*Technician Name</label>
+              </Form.Floating>
+              <Form.Floating className="mb-3">
+                <Form.Control
+                  id="floatingPasswordCustom"
+                  type="date"
+                  placeholder="Date"
+                />
+                <label htmlFor="floatingPasswordCustom">*Date</label>
+              </Form.Floating>
+              <FloatingLabel
+                controlId="floatingTextarea2"
+                label="*Inquiry"
+                className="mb-3"
+              >
                 <Form.Control
                   as="textarea"
-                  rows={3}
-                  required
-                  ref={inquiryInputRef}
+                  placeholder="Leave a comment here"
+                  style={{ height: "100px" }}
                 />
-              </Form.Group>
+              </FloatingLabel>
               <Button variant="warning" style={{ color: "black" }}>
                 Submit
               </Button>{" "}

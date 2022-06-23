@@ -41,14 +41,9 @@ function Contact(props) {
       <PageHero title="Contact Us" />
       <Container>
         <br></br>
-        <h4>
-          Please provide us with your valuable feedback about previous or
-          ongoing service.
-        </h4>
-        <br></br>
         <Row>
           <Col>
-            <h6>* Required Field</h6>
+            <h6>* All Fields are Required</h6>
             <Form>
               <Form.Floating className="mb-3">
                 <Form.Control

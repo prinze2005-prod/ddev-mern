@@ -29,6 +29,8 @@ const Electrician = () => {
 							to="/Booking"
 							style={(isActive) => ({
 								color: isActive ? '#ffb347' : 'black',
+								background:
+									'linear-gradient(45deg, rgba(29, 236, 197, 0.5), rgba(91, 14, 214, 0.5) 100%)',
 							})}
 						>
 							{' '}

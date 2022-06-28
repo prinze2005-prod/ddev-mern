@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../assets/hero-bcg.jpeg";
 import { PageHero } from "../components";
 import { useRef } from "react";
@@ -41,55 +40,49 @@ function Contact(props) {
       <PageHero title="Contact Us" />
       <Container>
         <br></br>
+        <h4>
+          Please provide us with your valuable feedback about previous or
+          ongoing service.
+        </h4>
+        <br></br>
         <Row>
           <Col>
-            <h6>* All Fields are Required</h6>
-            <Form>
-              <Form.Floating className="mb-3">
+            <h6>* Required Field</h6>
+            <Form onSubmit={submitHandler}>
+              <Form.Group className="mb-3" controlId="email">
+                <Form.Label>* Email</Form.Label>
                 <Form.Control
-                  id="floatingInputCustom"
                   type="email"
                   placeholder="name@example.com"
+                  required
+                  ref={emailInputRef}
                 />
-                <label htmlFor="floatingInputCustom">*Email address</label>
-              </Form.Floating>
-              <Form.Floating className="mb-3">
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="seriviceNumber">
+                <Form.Label>* Service Request Number</Form.Label>
                 <Form.Control
-                  id="floatingPasswordCustom"
                   type="text"
-                  placeholder="Service Request Number"
+                  required
+                  ref={seriviceNumberInputRef}
                 />
-                <label htmlFor="floatingPasswordCustom">
-                  *Service Request Number
-                </label>
-              </Form.Floating>
-              <Form.Floating className="mb-3">
-                <Form.Control
-                  id="floatingPasswordCustom"
-                  type="text"
-                  placeholder="Technician Name"
-                />
-                <label htmlFor="floatingPasswordCustom">*Technician Name</label>
-              </Form.Floating>
-              <Form.Floating className="mb-3">
-                <Form.Control
-                  id="floatingPasswordCustom"
-                  type="date"
-                  placeholder="Date"
-                />
-                <label htmlFor="floatingPasswordCustom">*Date</label>
-              </Form.Floating>
-              <FloatingLabel
-                controlId="floatingTextarea2"
-                label="*Inquiry"
-                className="mb-3"
-              >
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="technician">
+                <Form.Label>Technician Name</Form.Label>
+                <Form.Control type="text" ref={technicianInputRef} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="serviceDate">
+                <Form.Label>Date</Form.Label>
+                <Form.Control type="date" ref={dateInputRef} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="inquiry">
+                <Form.Label>* Inquiry</Form.Label>
                 <Form.Control
                   as="textarea"
-                  placeholder="Leave a comment here"
-                  style={{ height: "100px" }}
+                  rows={3}
+                  required
+                  ref={inquiryInputRef}
                 />
-              </FloatingLabel>
+              </Form.Group>
               <Button variant="warning" style={{ color: "black" }}>
                 Submit
               </Button>{" "}

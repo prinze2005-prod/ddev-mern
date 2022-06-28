@@ -1,22 +1,137 @@
-import React from "react";
-import { Button, Form, Dropdown } from "react-bootstrap";
+import React, {useState} from "react";
+import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { PageHero } from "../components";
 import { useRef } from "react";
+import Select from 'react-select';
+
 
 function BookingPage() {
+  const dropdownOptions = [
+    {
+      label: "The Color Red",
+      value: "red",
+    },
+    {
+      label: "The Color Green",
+      value: "green",
+    },
+    {
+      label: "The Color Blue",
+      value: "blue",
+    },
+  ];
+  const data = [
+    {
+      value: 1,
+      label: "AB"
+    },
+    {
+      value: 2,
+      label: "BC"
+    },
+    {
+      value: 3,
+      label: "MB"
+    },
+    {
+      value: 4,
+      label: "NB"
+    },
+    {
+      value: 5,
+      label: "NL"
+    },
+    {
+      value: 6,
+      label: "NS"
+    },
+    {
+      value: 7,
+      label: "NS"
+    },
+    {
+      value: 8,
+      label: "NT"
+    },
+    {
+      value: 9,
+      label: "NU"
+    },
+    {
+      value: 10,
+      label: "ON"
+    },
+    {
+      value: 11,
+      label: "PE"
+    },
+    {
+      value: 12,
+      label: "QC"
+    },
+    {
+      value: 13,
+      label: "SK"
+    },
+    {
+      value: 14,
+      label: "YT"
+    }
+  ];
+  const data2 = [
+    {
+      value: 1,
+      label: "Electrical"
+    },
+    {
+      value: 2,
+      label: "Plumbing"
+    },
+    {
+      value: 3,
+      label: "Heating & Cooling"
+    },
+    {
+      value: 4,
+      label: "Painting"
+    },
+    {
+      value: 5,
+      label: "Handyman"
+    },
+    {
+      value: 6,
+      label: "Appliance Service"
+    }
+  ];
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
+  // handle onChange event of the dropdown
+ 
+  const handleChange = e => {
+    setSelectedOption(e);
+   // const provinceInputRef = selectedOption.value;
+  }
+
+  const handleChangeService = e => {
+    setSelectedService(e);
+    serviceInputRef = e;
+    //const serviceInputRef = selectedService.value;
+  }
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
   const emailInputRef = useRef();
-  const ptypeInputRef = useRef();
+
   const pnumberInputRef = useRef();
   const streetInputRef = useRef();
   const postalCodeInputRef = useRef();
   const cityInputRef = useRef();
   const provinceInputRef = useRef();
+  const serviceInputRef = useRef();
   const dateInputRef = useRef();
   const timeInputRef = useRef();
   const descriptionInputRef = useRef();
@@ -27,12 +142,13 @@ function BookingPage() {
     const enteredFirstName = fnameInputRef.current.value;
     const enteredLastName = lnameInputRef.current.value;
     const enteredEmail = emailInputRef.current.value;
-    const enteredpType = ptypeInputRef.current.value;
+
     const enteredpNumber = pnumberInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
     const enteredProvince = provinceInputRef.current.value;
+    const enteredService = serviceInputRef.current.value;
     const enteredDate = dateInputRef.current.value;
     const enteredTime = timeInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
@@ -41,12 +157,13 @@ function BookingPage() {
       fname: enteredFirstName,
       lname: enteredLastName,
       email: enteredEmail,
-      ptype: enteredpType,
+
       pnumber: enteredpNumber,
       street: enteredStreet,
       postalCode: enteredPostalCode,
       city: enteredCity,
       province: enteredProvince,
+      service: enteredService,
       start_time: enteredDate + enteredTime,
       description: enteredDescription,
     };
@@ -61,12 +178,13 @@ function BookingPage() {
           fname: bookingData.fname,
           lname: bookingData.lname,
           email: bookingData.email,
-          ptype: bookingData.ptype,
+          ptype: "Home",
           pnumber: bookingData.pnumber,
           street: bookingData.street,
           postalCode: bookingData.postalCode,
           city: bookingData.city,
           province: bookingData.province,
+          service: bookingData.service,
           start_time: bookingData.start_time,
           description: bookingData.description,
         }),
@@ -88,12 +206,12 @@ function BookingPage() {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="First Name">
-                <Form.Control type="text" placeholder="First Name" />
+                <Form.Control type="text" placeholder="First Name" ref={fnameInputRef} />
               </FloatingLabel>
             </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Last Name">
-                <Form.Control type="text" placeholder="Last Name" />
+                <Form.Control type="text" placeholder="Last Name" ref={lnameInputRef}/>
               </FloatingLabel>
             </Col>
           </Row>
@@ -104,12 +222,12 @@ function BookingPage() {
                 controlId="floatingInputGrid"
                 label="Email Address"
               >
-                <Form.Control type="email" placeholder="Email Address" />
+                <Form.Control type="email" placeholder="Email Address" ref={emailInputRef} />
               </FloatingLabel>
             </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Phone Number">
-                <Form.Control type="text" placeholder="Phone Number" />
+                <Form.Control type="text" placeholder="Phone Number" ref={pnumberInputRef}/>
               </FloatingLabel>
             </Col>
           </Row>
@@ -117,12 +235,12 @@ function BookingPage() {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Street">
-                <Form.Control type="email" placeholder="Street" />
+                <Form.Control type="email" placeholder="Street" ref={streetInputRef}  />
               </FloatingLabel>
             </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Postal Code">
-                <Form.Control type="text" placeholder="Postal Code" />
+                <Form.Control type="text" placeholder="Postal Code" ref={postalCodeInputRef} />
               </FloatingLabel>
             </Col>
           </Row>
@@ -130,67 +248,31 @@ function BookingPage() {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="City">
-                <Form.Control type="email" placeholder="City" />
+                <Form.Control type="text" placeholder="City" ref={cityInputRef}/>
               </FloatingLabel>
             </Col>
             <Col md>
-              <FloatingLabel controlId="floatingSelectGrid" label="Province">
-                <Form.Select aria-label="Floating label select example">
-                  <option>--Select--</option>
-                  <option value="AB">AB</option>
-                  <option value="BC">BC</option>
-                  <option value="MB">MB</option>
-                  <option value="NB">NB</option>
-                  <option value="NL">NL</option>
-                  <option value="NS">NS</option>
-                  <option value="NT">NT</option>
-                  <option value="NU">NU</option>
-                  <option value="ON">ON</option>
-                  <option value="PE">PE</option>
-                  <option value="QC">QC</option>
-                  <option value="SK">SK</option>
-                  <option value="YT">YT</option>
-                </Form.Select>
+            <FloatingLabel controlId="floatingInputGrid" label="Province">
+                <Form.Control type="text" placeholder="Province" ref={provinceInputRef}/>
               </FloatingLabel>
             </Col>
           </Row>
           <br></br>
           <center>
-            <Dropdown>
-              <Dropdown.Toggle
-                variant="warning"
-                style={{ color: "black", width: "100%" }}
-                id="dropdown-basic"
-              >
-                --Select a service--
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu style={{ width: "100%" }}>
-                <Dropdown.Item href="#/action-1">Plumbing</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Electrician</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Painter</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">
-                  Heating and Cooling
-                </Dropdown.Item>
-                <Dropdown.Item href="#/action-5">
-                  Handyman Services
-                </Dropdown.Item>
-                <Dropdown.Item href="#/action-6">
-                  Appliances Repair
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+          <FloatingLabel controlId="floatingInputGrid" label="Service">
+                <Form.Control type="text" ref={serviceInputRef}/>
+              </FloatingLabel>
           </center>
           <br></br>
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Date">
-                <Form.Control type="date" placeholder="Date" />
+                <Form.Control type="date" placeholder="Date" ref={dateInputRef}/>
               </FloatingLabel>
             </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Time">
-                <Form.Control type="time" placeholder="Time" />
+                <Form.Control type="time" placeholder="Time" ref={timeInputRef} />
               </FloatingLabel>
             </Col>
           </Row>
@@ -203,16 +285,18 @@ function BookingPage() {
               as="textarea"
               placeholder="Leave a comment here"
               style={{ height: "100px" }}
+              ref={descriptionInputRef}
             />
           </FloatingLabel>
           <br></br>
           <center>
-            <Button variant="warning" style={{ color: "black" }}>
+            <Button variant="warning" style={{ color: "black" }} onClick={submitHandler}>
               Submit
             </Button>{" "}
           </center>
           <br></br>
           <br></br>
+          
         </Form>
       </Container>
     </main>

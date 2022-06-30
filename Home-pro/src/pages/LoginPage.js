@@ -9,15 +9,16 @@ import {
 } from "mdb-react-ui-kit";
 import Container from "react-bootstrap/Container";
 import { PageHero } from "../components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+var testmessage = "HEY";
+var message = "";
 
 function LoginPage() {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  let message = "";
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -41,11 +42,17 @@ function LoginPage() {
           password: loginData.password,
         }),
       });
-      message = await response.json();
-      console.log(message);
+      const responseData = await response.json();
+      console.log(responseData);
+
+      message = responseData.message;
     } catch (err) {
       console.log(err);
+      message = "Failed";
+
+      LoginPage();
     }
+    console.log(message);
   }
 
   return (
@@ -94,7 +101,7 @@ function LoginPage() {
                         Not a member? <Link to="/signup">Register</Link>
                       </p>
                     </MDBCol>
-                    <span>{message}</span>
+                    <span>{testmessage}</span>
                   </MDBRow>
                   <Button
                     variant="warning"

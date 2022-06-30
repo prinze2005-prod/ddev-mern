@@ -1,12 +1,12 @@
-const { validationResult } = require('express-validator');
+const { validationResult } = require("express-validator");
 
-const HttpError = require('../models/http-error');
-const Account = require('../models/account');
+const HttpError = require("../models/http-error");
+const Account = require("../models/account");
 
 const getAccounts = async (req, res, next) => {
   const accounts = await Account.find().exec();
   res.json(accounts);
-}
+};
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -14,26 +14,23 @@ const login = async (req, res, next) => {
   let existingUser;
 
   try {
-    existingUser = await Account.findOne({ email: email })
+    existingUser = await Account.findOne({ email: email });
     //existingUser = await Account.findById(email);
   } catch (err) {
-    const error = new HttpError(
-      'Logging in failed, please try again later.',500);
-    return next(error);
+    res.json({ message: "Failed" });
+    return;
   }
   //testing purposes
   console.log(existingUser);
   console.log(!existingUser);
-  
+
   if (!existingUser || existingUser.password !== password) {
-    const error = new HttpError('Invalid credentials, could not log you in.',401);
-    return next(error);
+    res.json({ message: "Failed" });
+    return;
   }
 
-  res.json({message: 'Logged in!'});
+  res.json({ message: "Logged in!" });
 };
-
-
 
 //to do
 /*

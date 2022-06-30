@@ -75,6 +75,7 @@ function LoginPage() {
                     <Form.Control
                       type="email"
                       placeholder="Email"
+                      required
                       ref={emailInputRef}
                     />
                   </FloatingLabel>
@@ -87,6 +88,7 @@ function LoginPage() {
                     <Form.Control
                       type="password"
                       placeholder="Password"
+                      required
                       ref={passwordInputRef}
                     />
                   </FloatingLabel>

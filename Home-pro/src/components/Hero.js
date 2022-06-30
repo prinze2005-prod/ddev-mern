@@ -14,19 +14,6 @@ const Hero = () => {
           the service you <strong style={{color: '#ffb347'}} >deserve!</strong>
         </h2>
        <br/><br/>
-        <Link className="btn hero-btn">
-          <form class="d-flex" role="search">
-            <input
-              class="search"
-              type="search"
-              placeholder="Type a service..."
-              aria-label="Search"
-            />
-            <button  class="btn-search" type="submit" style={{color: 'black'}}>
-              Search
-            </button>
-          </form>
-        </Link>
       </article>
       <article className="img-container">
         <img src={landingPage} alt="nice table" className="main-img" />

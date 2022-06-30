@@ -13,7 +13,7 @@ import { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-var testmessage = "HEY";
+var testmessage = "Error Message";
 var message = "";
 
 function LoginPage() {
@@ -103,17 +103,18 @@ function LoginPage() {
                         Not a member? <Link to="/signup">Register</Link>
                       </p>
                     </MDBCol>
-                    <span>{testmessage}</span>
                   </MDBRow>
                   <Button
                     variant="warning"
                     type="submit"
                     onClick={submitHandler}
-                    style={{ color: "black" }}
+                    style={{ color: "black", width: "100%" }}
                   >
                     Submit
                   </Button>
                 </form>
+                <br></br>
+                <span>{testmessage}</span>
               </center>
             </MDBCardBody>
           </MDBCard>

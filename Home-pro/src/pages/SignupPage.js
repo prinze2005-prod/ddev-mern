@@ -183,7 +183,7 @@ function SignupPage() {
                         variant="warning"
                         type="submit"
                         // onClick={submitHandler}
-                        style={{ color: "black" }}
+                        style={{ color: "black", width: "100%" }}
                       >
                         Sign up
                       </Button>
@@ -191,7 +191,10 @@ function SignupPage() {
                     <MDBCol>
                       <Link to="/">
                         {" "}
-                        <Button variant="light" style={{ color: "black" }}>
+                        <Button
+                          variant="light"
+                          style={{ color: "black", width: "100%" }}
+                        >
                           Cancel
                         </Button>
                       </Link>

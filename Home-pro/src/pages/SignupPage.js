@@ -4,16 +4,16 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
-  MDBInput,
   MDBCol,
   MDBRow,
-  MDBBtn,
 } from "mdb-react-ui-kit";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function SignupPage() {
   const emailInputRef = useRef();
@@ -92,30 +92,34 @@ function SignupPage() {
               <center>
                 <form>
                   <br></br>
-
-                  <FloatingLabel
-                    controlId="floatingFnameInputGrid"
-                    label="First Name"
-                  >
-                    <Form.Control
-                      type="text"
-                      placeholder="First Name"
-                      required
-                      ref={fnameInputRef}
-                    />
-                  </FloatingLabel>
-                  <br></br>
-                  <FloatingLabel
-                    controlId="floatingLnameInputGrid"
-                    label="Last Name"
-                  >
-                    <Form.Control
-                      type="text"
-                      placeholder="Last Name"
-                      required
-                      ref={lnameInputRef}
-                    />
-                  </FloatingLabel>
+                  <Row className="g-2">
+                    <Col md>
+                      <FloatingLabel
+                        controlId="floatingFnameInputGrid"
+                        label="First Name"
+                      >
+                        <Form.Control
+                          type="text"
+                          placeholder="First Name"
+                          required
+                          ref={fnameInputRef}
+                        />
+                      </FloatingLabel>
+                    </Col>
+                    <Col md>
+                      <FloatingLabel
+                        controlId="floatingLnameInputGrid"
+                        label="Last Name"
+                      >
+                        <Form.Control
+                          type="text"
+                          placeholder="Last Name"
+                          required
+                          ref={lnameInputRef}
+                        />
+                      </FloatingLabel>{" "}
+                    </Col>
+                  </Row>
                   <br></br>
                   <FloatingLabel
                     controlId="floatingEmailInputGrid"
@@ -153,29 +157,34 @@ function SignupPage() {
                     />
                   </FloatingLabel>
                   <br></br>
-                  <FloatingLabel
-                    controlId="floatingPostalInputGrid"
-                    label="Postal Code"
-                  >
-                    <Form.Control
-                      type="text"
-                      placeholder="Postal Code"
-                      required
-                      ref={postalCodeInputRef}
-                    />
-                  </FloatingLabel>
-                  <br></br>
-                  <FloatingLabel
-                    controlId="floatingPhoneInputGrid"
-                    label="Phone Number"
-                  >
-                    <Form.Control
-                      type="text"
-                      placeholder="Phone Number"
-                      required
-                      ref={pnumberInputRef}
-                    />
-                  </FloatingLabel>
+                  <Row className="g-2">
+                    <Col md>
+                      <FloatingLabel
+                        controlId="floatingPostalInputGrid"
+                        label="Postal Code"
+                      >
+                        <Form.Control
+                          type="text"
+                          placeholder="Postal Code"
+                          required
+                          ref={postalCodeInputRef}
+                        />
+                      </FloatingLabel>
+                    </Col>
+                    <Col md>
+                      <FloatingLabel
+                        controlId="floatingPhoneInputGrid"
+                        label="Phone Number"
+                      >
+                        <Form.Control
+                          type="text"
+                          placeholder="Phone Number"
+                          required
+                          ref={pnumberInputRef}
+                        />
+                      </FloatingLabel>
+                    </Col>
+                  </Row>
                   <br></br>
                   <MDBRow className="mb-4">
                     <MDBCol>

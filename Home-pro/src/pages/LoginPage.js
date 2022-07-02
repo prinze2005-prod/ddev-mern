@@ -8,7 +8,6 @@ import {
   MDBRow,
 } from "mdb-react-ui-kit";
 import Container from "react-bootstrap/Container";
-import { PageHero } from "../components";
 import { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -79,7 +78,6 @@ function LoginPage() {
                       ref={emailInputRef}
                     />
                   </FloatingLabel>
-
                   <br></br>
                   <FloatingLabel
                     controlId="floatingPasswordInputGrid"
@@ -93,7 +91,16 @@ function LoginPage() {
                     />
                   </FloatingLabel>
                   <br></br>
-
+                  <Button
+                    variant="warning"
+                    type="submit"
+                    onClick={submitHandler}
+                    style={{ color: "black", width: "100%" }}
+                  >
+                    Submit
+                  </Button>{" "}
+                  <br></br>
+                  <br></br>
                   <MDBRow className="mb-4">
                     <MDBCol>
                       <Link to="#">Forgot password?</Link>
@@ -104,16 +111,7 @@ function LoginPage() {
                       </p>
                     </MDBCol>
                   </MDBRow>
-                  <Button
-                    variant="warning"
-                    type="submit"
-                    onClick={submitHandler}
-                    style={{ color: "black", width: "100%" }}
-                  >
-                    Submit
-                  </Button>
                 </form>
-                <br></br>
                 <span>{testmessage}</span>
               </center>
             </MDBCardBody>

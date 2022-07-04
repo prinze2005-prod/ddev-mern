@@ -8,7 +8,7 @@ import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
 import { useUserContext } from "../context/user_context";
 
-const Nav = () => {
+const Nav = ({ user, handleLogout }) => {
   const { openSidebar } = useProductsContext();
   const { myUser } = useUserContext();
   //add conidtional logic here. Each conditional statement should return a different navbar based on the user type ie: Customer, Technicain, Admin
@@ -36,9 +36,13 @@ const Nav = () => {
               </li>
             );
           })}
-          
+          {user && (
+            <li key="User Center">
+              <Link to="usercenter">User Center</Link>
+            </li>
+          )}
         </ul>
-        <CartButtons />
+        <CartButtons user={user} handleLogout={handleLogout} />
       </div>
     </NavContainer>
   );

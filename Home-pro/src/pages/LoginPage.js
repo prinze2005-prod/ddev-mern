@@ -14,11 +14,12 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 var message = "";
 
-function LoginPage() {
+function LoginPage({ setUser }) {
   let history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   let responseData;
+
   async function submitHandler(event) {
     event.preventDefault();
 
@@ -31,6 +32,8 @@ function LoginPage() {
     };
     //will not throw error if server sends back error code (404, etc...)
     try {
+      //setUser(null);
+
       const response = await fetch("http://localhost:5000/account/login", {
         method: "POST",
         headers: {
@@ -47,6 +50,9 @@ function LoginPage() {
 
       if (message == "success" || message == "Account in use") {
         //do redirect to home page
+        const userData = { username: loginData.email };
+        //localStorage.setItem('user', userData);
+        setUser(userData);
         history.push("/");
       } else {
         //have alert or error message

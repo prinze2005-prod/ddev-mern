@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const accountSchema = new Schema({
-    id: { type: Number },
     email: { type: String, required: true,  unique: true },
     password: { type: String, required: true, minlength: 4  },
+    authorization: {type: String, required: true},
     resetpassword: { type: String }
     
 });

@@ -19,35 +19,33 @@ const createJob = async (req,res,next) => {
   console.log(req.body.email);
   try{
   const newJob = new Job({
-    //fname: req.body.fname,
-    //lname: req.body.lname,
+    first_name: req.body.fname,
+    last_name: req.body.lname,
     tech_email: "unassigned",
     cust_email: req.body.email,
-    //start_time: req.body.date,
     status: "unassigned",
     description: req.body.description,
-    //service_id: req.body.service,
     service_id: 2,
     address:{
       street: req.body.street,
-      city: req.body.city,
-      province: req.body.province,
+      city: "Calgary",
+      province: "Alberta",
       postalCode: req.body.postalCode
     },
-    phoneNumbers: {
-      type: req.body.ptype,
-      number: req.body.pnumber
-    }
+    phoneNumber: req.body.pnumber
   })
+  let error =  newJob.validateSync();
+  console.log(error);
+  if(error !== undefined){
+    throw 'failed validation';
+  }
   console.log("I was ran!");
   const result = await newJob.save();
   console.log("I was ran too!");
-  res.json(result);
+  res.json({message: 'success'});
   }catch(err){
-    console.log()
+    res.json({message: 'Unable to save to database'});
   }
-
-  
 };
 
 const getReceipts = async (req, res, next) => {

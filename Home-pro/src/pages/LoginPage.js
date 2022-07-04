@@ -12,17 +12,16 @@ import { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-var testmessage = "Error Message";
 var message = "";
 
 function LoginPage() {
-  const history = useHistory();
+  let history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   let responseData;
   async function submitHandler(event) {
     event.preventDefault();
-    
+
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
@@ -44,8 +43,15 @@ function LoginPage() {
       });
       responseData = await response.json();
       console.log(responseData);
-
       message = responseData.message;
+
+      if (message == "success" || message == "Account in use") {
+        //do redirect to home page
+        history.push("/");
+      } else {
+        //have alert or error message
+        history.push("/login");
+      }
     } catch (err) {
       console.log(err);
       message = "Failed";
@@ -53,8 +59,9 @@ function LoginPage() {
       LoginPage();
     }
     console.log(message);
-  } 
-  console.log(!(!responseData));
+  }
+
+  // console.log(!!responseData);
   //somewhere here is to implement redirection
 
   return (
@@ -115,7 +122,6 @@ function LoginPage() {
                     </MDBCol>
                   </MDBRow>
                 </form>
-                <span>{testmessage}</span>
               </center>
             </MDBCardBody>
           </MDBCard>

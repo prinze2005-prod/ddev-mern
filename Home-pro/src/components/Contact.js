@@ -51,7 +51,7 @@ function Contact(props) {
                   type="email"
                   placeholder="name@example.com"
                 />
-                <label htmlFor="floatingInputCustom">*Email address</label>
+                <label htmlFor="floatingInputCustom">Email address</label>
               </Form.Floating>
               <Form.Floating className="mb-3">
                 <Form.Control
@@ -60,7 +60,7 @@ function Contact(props) {
                   placeholder="Service Request Number"
                 />
                 <label htmlFor="floatingPasswordCustom">
-                  *Service Request Number
+                  Service Request Number
                 </label>
               </Form.Floating>
               <Form.Floating className="mb-3">
@@ -69,7 +69,7 @@ function Contact(props) {
                   type="text"
                   placeholder="Technician Name"
                 />
-                <label htmlFor="floatingPasswordCustom">*Technician Name</label>
+                <label htmlFor="floatingPasswordCustom">Technician Name</label>
               </Form.Floating>
               <Form.Floating className="mb-3">
                 <Form.Control
@@ -77,11 +77,11 @@ function Contact(props) {
                   type="date"
                   placeholder="Date"
                 />
-                <label htmlFor="floatingPasswordCustom">*Date</label>
+                <label htmlFor="floatingPasswordCustom">Date</label>
               </Form.Floating>
               <FloatingLabel
                 controlId="floatingTextarea2"
-                label="*Inquiry"
+                label="Inquiry"
                 className="mb-3"
               >
                 <Form.Control

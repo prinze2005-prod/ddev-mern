@@ -11,6 +11,11 @@ import { useUserContext } from "../context/user_context";
 const Nav = () => {
   const { openSidebar } = useProductsContext();
   const { myUser } = useUserContext();
+  //add conidtional logic here. Each conditional statement should return a different navbar based on the user type ie: Customer, Technicain, Admin
+
+  //add code here
+
+  //if none of the above, return the navbar below
   return (
     <NavContainer>
       <div className="nav-center">

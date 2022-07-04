@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   MDBCard,
   MDBCardBody,
@@ -16,12 +16,13 @@ var testmessage = "Error Message";
 var message = "";
 
 function LoginPage() {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
+  let responseData;
   async function submitHandler(event) {
     event.preventDefault();
-
+    
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
@@ -41,7 +42,7 @@ function LoginPage() {
           password: loginData.password,
         }),
       });
-      const responseData = await response.json();
+      responseData = await response.json();
       console.log(responseData);
 
       message = responseData.message;
@@ -52,7 +53,9 @@ function LoginPage() {
       LoginPage();
     }
     console.log(message);
-  }
+  } 
+  console.log(!(!responseData));
+  //somewhere here is to implement redirection
 
   return (
     <main>

@@ -20,8 +20,11 @@ function LoginPage({ setUser }) {
   const passwordInputRef = useRef();
   let responseData;
 
+  const [result, setResult] = React.useState(null);
+
   async function submitHandler(event) {
     event.preventDefault();
+    setResult(null);
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
@@ -56,6 +59,8 @@ function LoginPage({ setUser }) {
         history.push("/");
       } else {
         //have alert or error message
+        setResult(message);
+
         history.push("/login");
       }
     } catch (err) {
@@ -66,9 +71,6 @@ function LoginPage({ setUser }) {
     }
     console.log(message);
   }
-
-  // console.log(!!responseData);
-  //somewhere here is to implement redirection
 
   return (
     <main>
@@ -115,6 +117,7 @@ function LoginPage({ setUser }) {
                   >
                     Submit
                   </Button>{" "}
+                  {result && <div>{result}</div>}
                   <br></br>
                   <br></br>
                   <MDBRow className="mb-4">

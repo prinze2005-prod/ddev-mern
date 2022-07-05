@@ -8,7 +8,7 @@ import styled from "styled-components";
 import CartButtons from "./CartButtons";
 import { useUserContext } from "../context/user_context";
 
-const Sidebar = () => {
+const Sidebar = ({ user, handleLogout }) => {
   const { isSidebarOpen, closeSidebar } = useProductsContext();
   const { myUser } = useUserContext();
 
@@ -33,15 +33,13 @@ const Sidebar = () => {
               </li>
             );
           })}
-          {myUser && (
-            <li>
-              <Link to="/checkout" onClick={closeSidebar}>
-                checkout
-              </Link>
+          {user && (
+            <li key="Profile">
+              <Link to="/profile">Profile</Link>
             </li>
           )}
         </ul>
-        <CartButtons />
+        <CartButtons user={user} handleLogout={handleLogout} />
       </aside>
     </SidebarContainer>
   );

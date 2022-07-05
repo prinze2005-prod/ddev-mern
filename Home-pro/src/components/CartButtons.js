@@ -25,7 +25,7 @@ const CartButtons = ({ user, handleLogout }) => {
 					Logout <FaUserMinus />
 				</button>
 			) : ( */}
-
+      {/* if user is not logged in then there is login button */}
       {!user && (
         <a href="/login">
           <button type="button" className="auth-btn">
@@ -33,12 +33,12 @@ const CartButtons = ({ user, handleLogout }) => {
           </button>
         </a>
       )}
+      {/* else there are username and logout button */}
       {user && (
         <>
-          {user.username}
-
+          <span>{user.username}</span>&nbsp;
           <button type="button" className="auth-btn" onClick={handleLogout}>
-            Logout
+            Logout <FaUserMinus />
           </button>
         </>
       )}

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../components";
-import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 
 function BookPlumber() {
   let history = useHistory();
+
+  const [modalShow, setModalShow] = React.useState(false);
+  const [bookingData, setBookdingData] = React.useState(null);
 
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
@@ -34,7 +37,7 @@ function BookPlumber() {
     const enteredTime = timeInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
-    const bookingData = {
+    setBookdingData({
       fname: enteredFirstName,
       lname: enteredLastName,
       email: enteredEmail,
@@ -43,7 +46,11 @@ function BookPlumber() {
       postalCode: enteredPostalCode,
       start_time: enteredDate + enteredTime,
       description: enteredDescription,
-    };
+    });
+
+    setModalShow(true);
+    return;
+
     //will not throw error if server sends back error code (404, etc...)
     try {
       const response = await fetch("http://localhost:5000/admin/createjob", {
@@ -76,6 +83,76 @@ function BookPlumber() {
     }
   }
 
+  const handlerSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/admin/createjob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fname: bookingData.fname,
+          lname: bookingData.lname,
+          email: bookingData.email,
+          ptype: "Home",
+          pnumber: bookingData.pnumber,
+          street: bookingData.street,
+          postalCode: bookingData.postalCode,
+          city: "Calgary",
+          province: "Alberta",
+          service: "Plumbing",
+          start_time: bookingData.start_time,
+          description: bookingData.description,
+        }),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!!responseData) {
+        history.push("/BookingConfirmPage");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Proceed Your Booking
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <span>
+            {bookingData.fname}
+            <br /> Are you ready to submit your booking?
+          </span>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="light"
+            style={{ color: "black" }}
+            onClick={props.onHide}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="warning"
+            style={{ color: "black" }}
+            onClick={handlerSubmit}
+          >
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
   return (
     <main>
       <PageHero title="Booking" />
@@ -85,13 +162,14 @@ function BookPlumber() {
           <h3>Book a Plumber</h3>
         </center>
         <h6>* All Fields are required</h6>
-        <Form>
+        <Form onSubmit={submitHandler}>
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="First Name">
                 <Form.Control
                   type="text"
                   placeholder="First Name"
+                  required
                   ref={fnameInputRef}
                 />
               </FloatingLabel>
@@ -101,6 +179,7 @@ function BookPlumber() {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
+                  required
                   ref={lnameInputRef}
                 />
               </FloatingLabel>
@@ -116,6 +195,7 @@ function BookPlumber() {
                 <Form.Control
                   type="email"
                   placeholder="Email Address"
+                  required
                   ref={emailInputRef}
                 />
               </FloatingLabel>
@@ -125,6 +205,7 @@ function BookPlumber() {
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
+                  required
                   ref={pnumberInputRef}
                 />
               </FloatingLabel>
@@ -137,6 +218,7 @@ function BookPlumber() {
                 <Form.Control
                   type="email"
                   placeholder="Street"
+                  required
                   ref={streetInputRef}
                 />
               </FloatingLabel>
@@ -146,6 +228,7 @@ function BookPlumber() {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code"
+                  required
                   ref={postalCodeInputRef}
                 />
               </FloatingLabel>
@@ -172,6 +255,7 @@ function BookPlumber() {
                 <Form.Control
                   type="date"
                   placeholder="Date"
+                  required
                   ref={dateInputRef}
                 />
               </FloatingLabel>
@@ -181,6 +265,7 @@ function BookPlumber() {
                 <Form.Control
                   type="time"
                   placeholder="Time"
+                  required
                   ref={timeInputRef}
                 />
               </FloatingLabel>
@@ -194,6 +279,7 @@ function BookPlumber() {
             <Form.Control
               as="textarea"
               placeholder="Leave a comment here"
+              required
               style={{ height: "100px" }}
               ref={descriptionInputRef}
             />
@@ -201,13 +287,20 @@ function BookPlumber() {
           <br></br>
           <center>
             <Button
+              type="submit"
               variant="warning"
               style={{ color: "black" }}
-              onClick={submitHandler}
+              //onClick={() => setModalShow(true)}
             >
               Submit
-            </Button>{" "}
+            </Button>
           </center>
+          {bookingData && (
+            <MyVerticallyCenteredModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
+          )}
           <br></br>
           <br></br>
         </Form>

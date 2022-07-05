@@ -44,7 +44,7 @@ function App() {
     <AuthWrapper>
       <Router>
         <Navbar user={user} handleLogout={handleLogout} />
-        <Sidebar />
+        <Sidebar user={user} handleLogout={handleLogout} />
         <div style={{ backgroundColor: "#FDFAF4" }}>
           {" "}
           <Switch>

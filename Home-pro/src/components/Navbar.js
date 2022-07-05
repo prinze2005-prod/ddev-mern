@@ -37,8 +37,8 @@ const Nav = ({ user, handleLogout }) => {
             );
           })}
           {user && (
-            <li key="User Center">
-              <Link to="usercenter">User Center</Link>
+            <li key="Profile">
+              <Link to="/profile">Profile</Link>
             </li>
           )}
         </ul>

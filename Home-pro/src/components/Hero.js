@@ -3,35 +3,20 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import heroBcg from "../assets/hero-bcg.jpeg";
 import heroBcg2 from "../assets/hero-bcg-2.jpeg";
+import landingPage from "../assets/landingPage.jpg";
 
 const Hero = () => {
   return (
     <Wrapper className="section-center">
       <article className="content">
-        <h1>
-          Home Service <br />
-          You can trust
-        </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti iure
-          quasi odit tenetur unde officiis repudiandae quod deserunt quia eum?
-        </p>
-        <Link className="btn hero-btn">
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </Link>
+        <h2>
+          The Quality you <strong style={{color: '#ffb347'}} >expect,</strong> <br />
+          the service you <strong style={{color: '#ffb347'}} >deserve!</strong>
+        </h2>
+       <br/><br/>
       </article>
       <article className="img-container">
-        <img src={heroBcg} alt="nice table" className="main-img" />
+        <img src={landingPage} alt="nice table" className="main-img" />
         <img src={heroBcg2} alt="person working" className="accent-img" />
       </article>
     </Wrapper>
@@ -45,7 +30,26 @@ const Wrapper = styled.section`
   .img-container {
     display: none;
   }
-
+   .search{
+     position: relative;
+    width: 350px; 
+    height: 40px;
+    border-color: transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    font-weight: 100;
+   }
+   .btn-search{
+    font-size: 16px;
+     margin-left: 20px;
+     color: white;
+     border-color: transparent;
+     background-color: #FF6544;
+     width: 80px;
+     height: 35px;
+     border-radius: 5px;
+   }
   p {
     line-height: 2;
     max-width: 45em;
@@ -66,6 +70,7 @@ const Wrapper = styled.section`
     .hero-btn {
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
+      background-color: #ffb347;
     }
     .img-container {
       display: block;

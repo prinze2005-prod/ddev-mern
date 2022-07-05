@@ -6,29 +6,43 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
 
-const CartButtons = () => {
+const CartButtons = ({ user, handleLogout }) => {
   const { closeSidebar } = useProductsContext();
   const { total_items, clearCart } = useCartContext();
   const { loginWithRedirect, myUser, logout } = useUserContext();
   return (
     <Wrapper className="cart-btn-wrapper">
-      {myUser ? (
-        <button
-          type="button"
-          className="auth-btn"
-          onClick={() => {
-            clearCart();
-            localStorage.removeItem("user");
-            logout({ returnTo: window.location.origin });
-          }}
-        >
-          Logout <FaUserMinus />
-        </button>
-      ) : (
-        <button type="button" className="auth-btn" onClick={loginWithRedirect}>
-          Login <FaUserPlus />
-        </button>
+      {/* {myUser ? (
+				<button
+					type="button"
+					className="auth-btn"
+					onClick={() => {
+						clearCart();
+						localStorage.removeItem('user');
+						logout({ returnTo: window.location.origin });
+					}}
+				>
+					Logout <FaUserMinus />
+				</button>
+			) : ( */}
+      {/* if user is not logged in then there is login button */}
+      {!user && (
+        <a href="/login">
+          <button type="button" className="auth-btn">
+            Login <FaUserPlus />
+          </button>
+        </a>
       )}
+      {/* else there are username and logout button */}
+      {user && (
+        <>
+          <span>{user.username}</span>&nbsp;
+          <button type="button" className="auth-btn" onClick={handleLogout}>
+            Logout <FaUserMinus />
+          </button>
+        </>
+      )}
+      {/* )}  */}
     </Wrapper>
   );
 };
@@ -73,17 +87,15 @@ const Wrapper = styled.div`
     padding: 12px;
   }
   .auth-btn {
-    display: flex;
     align-items: center;
-    background: transparent;
+    background-color: #ffb347;
     border-color: transparent;
-    font-size: 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    width: 120px;
     cursor: pointer;
     color: var(--clr-grey-1);
     letter-spacing: var(--spacing);
-    svg {
-      margin-left: 5px;
-    }
   }
 `;
 export default CartButtons;

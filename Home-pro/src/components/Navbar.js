@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
+import Home_ProNew from "../assets/Home_ProNew.jpg";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
@@ -8,15 +8,20 @@ import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
 import { useUserContext } from "../context/user_context";
 
-const Nav = () => {
+const Nav = ({ user, handleLogout }) => {
   const { openSidebar } = useProductsContext();
   const { myUser } = useUserContext();
+  //add conidtional logic here. Each conditional statement should return a different navbar based on the user type ie: Customer, Technicain, Admin
+
+  //add code here
+
+  //if none of the above, return the navbar below
   return (
     <NavContainer>
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={logo} alt="home pro" />
+            <img src={Home_ProNew} alt="home pro" />
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
@@ -31,13 +36,13 @@ const Nav = () => {
               </li>
             );
           })}
-          {myUser && (
-            <li>
-              <Link to="/checkout">checkout</Link>
+          {user && (
+            <li key="Profile">
+              <Link to="/profile">Profile</Link>
             </li>
           )}
         </ul>
-        <CartButtons />
+        <CartButtons user={user} handleLogout={handleLogout} />
       </div>
     </NavContainer>
   );
@@ -48,7 +53,6 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-
   .nav-center {
     width: 90vw;
     margin: 0 auto;
@@ -59,8 +63,9 @@ const NavContainer = styled.nav`
     align-items: center;
     justify-content: space-between;
     img {
-      width: 175px;
-      margin-left: -15px;
+      width: 320px;
+      height: 70px;
+      margin: 0 auto;
     }
   }
   .nav-toggle {

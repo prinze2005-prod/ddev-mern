@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   MDBCard,
   MDBCardBody,
@@ -14,8 +14,11 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
+var message = "";
 
 function SignupPage() {
+  let history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const fnameInputRef = useRef();
@@ -24,11 +27,13 @@ function SignupPage() {
   const streetInputRef = useRef();
   const postalCodeInputRef = useRef();
 
-  /* need work on this after backend finish for sign up
+  const [result, setResult] = React.useState(null);
 
+  //need work on this after backend finish for sign up
 
   async function submitHandler(event) {
     event.preventDefault();
+    setResult(null);
 
     const enteredPassword = passwordInputRef.current.value;
     const enteredFirstName = fnameInputRef.current.value;
@@ -37,9 +42,8 @@ function SignupPage() {
     const enteredpNumber = pnumberInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
-   
 
-    const bookingData = {
+    const signupData = {
       fname: enteredFirstName,
       lname: enteredLastName,
       email: enteredEmail,
@@ -50,34 +54,40 @@ function SignupPage() {
     };
     //will not throw error if server sends back error code (404, etc...)
     try {
-      const response = await fetch("http://localhost:5000/admin/createjob", {
+      const response = await fetch("http://localhost:5000/account/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fname: bookingData.fname,
-          lname: bookingData.lname,
-          email: bookingData.email,
-          ptype: "Home",
-          pnumber: bookingData.pnumber,
-          street: bookingData.street,
-          postalCode: bookingData.postalCode,
-          city: "Calgary",
-          province: "Alberta",
-          service: "Plumbing",
-          start_time: bookingData.start_time,
-          description: bookingData.description,
+          fName: signupData.fname,
+          lName: signupData.lname,
+          email: signupData.email,
+          number: signupData.pnumber,
+          street: signupData.street,
+          postalCode: signupData.postalCode,
+          password: signupData.password,
         }),
       });
       const responseData = await response.json();
       console.log(responseData);
+      message = responseData.message;
+
+      if (message == "success") {
+        //do redirect to home page
+        //localStorage.setItem('user', userData);
+        // setUser(userData);
+        history.push("/login");
+      } else {
+        //have alert or error message
+        setResult(message);
+
+        history.push("/signup");
+      }
     } catch (err) {
       console.log(err);
     }
   }
-
-  */
 
   return (
     <main>
@@ -191,7 +201,7 @@ function SignupPage() {
                       <Button
                         variant="warning"
                         type="submit"
-                        // onClick={submitHandler}
+                        onClick={submitHandler}
                         style={{ color: "black", width: "100%" }}
                       >
                         Sign up
@@ -209,6 +219,12 @@ function SignupPage() {
                       </Link>
                     </MDBCol>
                   </MDBRow>
+                  {result && (
+                    <div>
+                      <br></br>
+                      <Alert variant="danger">{result}</Alert>
+                    </div>
+                  )}
                 </form>
               </center>
             </MDBCardBody>

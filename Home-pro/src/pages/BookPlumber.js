@@ -94,7 +94,6 @@ function BookPlumber() {
           fname: bookingData.fname,
           lname: bookingData.lname,
           email: bookingData.email,
-          ptype: "Home",
           pnumber: bookingData.pnumber,
           street: bookingData.street,
           postalCode: bookingData.postalCode,

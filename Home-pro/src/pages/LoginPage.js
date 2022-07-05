@@ -85,7 +85,7 @@ function LoginPage({ setUser }) {
               <br></br>
 
               <center>
-                <form>
+                <form onSubmit={submitHandler}>
                   <FloatingLabel
                     controlId="floatingEmailInputGrid"
                     label="Email"
@@ -113,7 +113,7 @@ function LoginPage({ setUser }) {
                   <Button
                     variant="warning"
                     type="submit"
-                    onClick={submitHandler}
+                    //onClick={submitHandler}
                     style={{ color: "black", width: "100%" }}
                   >
                     Submit
@@ -124,6 +124,8 @@ function LoginPage({ setUser }) {
                       <Alert variant="danger">{result}</Alert>
                     </div>
                   )}
+                  <br></br>
+                  <br></br>
                   <MDBRow className="mb-4">
                     <MDBCol>
                       <Link to="#">Forgot password?</Link>

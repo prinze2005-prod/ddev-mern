@@ -100,7 +100,7 @@ function SignupPage() {
               <MDBCardTitle>Welcome</MDBCardTitle>
 
               <center>
-                <form>
+                <form onSubmit={submitHandler}>
                   <br></br>
                   <Row className="g-2">
                     <Col md>
@@ -201,7 +201,6 @@ function SignupPage() {
                       <Button
                         variant="warning"
                         type="submit"
-                        onClick={submitHandler}
                         style={{ color: "black", width: "100%" }}
                       >
                         Sign up

@@ -12,6 +12,7 @@ import { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Alert from "react-bootstrap/Alert";
 var message = "";
 
 function LoginPage({ setUser }) {
@@ -117,9 +118,12 @@ function LoginPage({ setUser }) {
                   >
                     Submit
                   </Button>{" "}
-                  {result && <div>{result}</div>}
-                  <br></br>
-                  <br></br>
+                  {result && (
+                    <div>
+                      <br></br>
+                      <Alert variant="danger">{result}</Alert>
+                    </div>
+                  )}
                   <MDBRow className="mb-4">
                     <MDBCol>
                       <Link to="#">Forgot password?</Link>

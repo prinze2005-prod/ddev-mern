@@ -129,10 +129,28 @@ function BookPlumber() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <span>
-            {bookingData.fname}
-            <br /> Are you ready to submit your booking?
-          </span>
+          <div>
+            <h5>You Information</h5>
+            First Name: {bookingData.fname} <br></br>
+            Last Name: {bookingData.lname} <br></br>
+            Email: {bookingData.email} <br></br>
+            Phone Number: {bookingData.pnumber} <br></br>
+            Street: {bookingData.street} <br></br>
+            Postal Code: {bookingData.postalCode} <br></br>
+            City: Calgary <br></br>
+            Province: Alberta <br></br>
+            Service: Plumbing <br></br>
+            Service Time: {bookingData.start_time} <br></br>
+            Description: {bookingData.description}
+            <br />
+            <br></br>
+            <h5 style={{ color: "darkred" }}>
+              Please ensure above information is correct
+            </h5>
+            <h5 style={{ color: "darkred" }}>
+              Click "Submit" to proceed your booking
+            </h5>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -216,7 +234,7 @@ function BookPlumber() {
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Street">
                 <Form.Control
-                  type="email"
+                  type="text"
                   placeholder="Street"
                   required
                   ref={streetInputRef}

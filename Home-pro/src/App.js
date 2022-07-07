@@ -90,7 +90,7 @@ function App() {
             <Appliances />
           </Route>
           <Route exact path="/bookPlumber">
-            <BookPlumber />
+            <BookPlumber user={user} />
           </Route>
           <Route exact path="/bookElectrician">
             <BookElectrician />

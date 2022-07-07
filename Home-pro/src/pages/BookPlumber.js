@@ -8,7 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../components";
 import { useHistory } from "react-router-dom";
 
-function BookPlumber() {
+const BookPlumber = ({ user }) => {
   let history = useHistory();
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -173,12 +173,18 @@ function BookPlumber() {
   return (
     <main>
       <PageHero title="Booking" />
+
       <Container>
         <br></br>
         <center>
           <h3>Book a Plumber</h3>
         </center>
         <h6>* All Fields are required</h6>
+        {user && (
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Use my default information" />
+          </Form.Group>
+        )}
         <Form onSubmit={submitHandler}>
           <Row className="g-2">
             <Col md>
@@ -324,6 +330,6 @@ function BookPlumber() {
       </Container>
     </main>
   );
-}
+};
 
 export default BookPlumber;

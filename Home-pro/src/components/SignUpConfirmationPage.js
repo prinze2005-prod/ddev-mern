@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from '../assets/login-confirmation.jpg';
 
-const LoginConfirmPage = () => {
+const SignUpConfirmPage = () => {
 	return (
 		<Wrapper className="page-100">
 			<section>
-				<h1>
+				<h3>
 					Thanks for joining Us, you have signed up successfully!{' '}
-					<img src={Image} alt="confirmation-png" />
-				</h1>
+				</h3>
+				<img src={Image} alt="confirmation-png" />
 			</section>
 		</Wrapper>
 	);
@@ -35,4 +35,4 @@ const Wrapper = styled.main`
 	}
 `;
 
-export default LoginConfirmPage;
+export default SignUpConfirmPage;

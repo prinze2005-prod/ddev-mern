@@ -6,10 +6,11 @@ const BookingConfirmPage = () => {
 	return (
 		<Wrapper className="page-100">
 			<section>
-				<h1>
+				<h3>
 					Thanks for booking a service, we will get back to you shortly!{' '}
-					<img src={Image} alt="confirmation-png" />
-				</h1>
+					
+				</h3>
+				<img src={Image} alt="confirmation-png" />
 			</section>
 		</Wrapper>
 	);

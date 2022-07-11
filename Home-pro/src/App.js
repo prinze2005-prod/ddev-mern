@@ -24,6 +24,7 @@ import BookAppliance from "./pages/BookAppliance";
 import BookingConfirmPage from "./components/BookingConfirmPage";
 import ErrorPage from "./pages/ErrorPage";
 import ContactUs from "./pages/ContactUs";
+import Profile from "./pages/Profile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -48,7 +49,7 @@ function App() {
         {" "}
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home user={user}/>
           </Route>
           <Route exact path="/about">
             <About />
@@ -113,6 +114,9 @@ function App() {
           </Route>
           <Route exact path="/ContactUs">
             <ContactUs/>
+          </Route>
+          <Route exact path="/Profile">
+            <Profile user={user}/>
           </Route>
           <Route exact path="*">
             <ErrorPage />

@@ -19,7 +19,7 @@ export const links = [
   {
     id: 4,
     text: "Contact us",
-    url: "/contact",
+    url: "/contactUs",
   },
   
 

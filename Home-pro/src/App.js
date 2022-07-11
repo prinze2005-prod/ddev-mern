@@ -23,6 +23,7 @@ import BookHandyman from "./pages/BookHandyman";
 import BookAppliance from "./pages/BookAppliance";
 import BookingConfirmPage from "./components/BookingConfirmPage";
 import ErrorPage from "./pages/ErrorPage";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -109,6 +110,9 @@ function App() {
           </Route>
           <Route exact path="/BookingConfirmPage">
             <BookingConfirmPage />
+          </Route>
+          <Route exact path="/ContactUs">
+            <ContactUs/>
           </Route>
           <Route exact path="*">
             <ErrorPage />

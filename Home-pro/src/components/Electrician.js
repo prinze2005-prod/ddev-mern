@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from '../assets/electrician.jpg';
+import Image from '../assets/electricianNew.jpg';
 import { NavLink } from 'react-router-dom';
 
 const Electrician = () => {
@@ -10,7 +10,7 @@ const Electrician = () => {
 				<h2>Electrician</h2>
 			</PaintTitle>
 			<Wrapper className="page section section-center">
-				<img src={Image} alt="painting" />
+				<img src={Image} alt="electrician" />
 				<article>
 					<div className="title">
 						<h2>Electrician Content</h2>

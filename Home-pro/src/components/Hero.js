@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import heroBcg from "../assets/hero-bcg.jpeg";
 import heroBcg2 from "../assets/hero-bcg-2.jpeg";
-import landingPage from "../assets/landingPage.jpg";
+import HomeProService from "../assets/HomeProPeeps.png";
 
 const Hero = () => {
   return (
@@ -16,8 +16,8 @@ const Hero = () => {
        <br/><br/>
       </article>
       <article className="img-container">
-        <img src={landingPage} alt="nice table" className="main-img" />
-        <img src={heroBcg2} alt="person working" className="accent-img" />
+        <img src={HomeProService} alt="HPService" className="main-img" />
+        <img src={heroBcg2} style={{marginBottom: "20px"}} alt="person working" className="accent-img" />
       </article>
     </Wrapper>
   );

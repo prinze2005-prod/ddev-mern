@@ -12,7 +12,7 @@ import icon6 from '../assets/icon6.jpg';
 import { NavLink } from 'react-router-dom';
 export default function ServicesCard() {
 	return (
-		<div className="container">
+		<div className="container" style={{marginTop: "15px"}}>
 			<br />
 			<center>
 				<Row xs={1} md={3} className="g-4">

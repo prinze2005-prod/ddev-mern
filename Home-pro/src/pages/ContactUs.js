@@ -15,8 +15,6 @@ function ContactUs() {
 
   const emailInputRef = useRef();
   const serviceNumberInputRef = useRef();
-  const technicianInputRef = useRef();
-  const dateInputRef = useRef();
   const inquiryInputRef = useRef();
 
   async function submitHandler(event) {
@@ -24,15 +22,11 @@ function ContactUs() {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredServiceNumber = serviceNumberInputRef.current.value;
-    const enteredTechnician = technicianInputRef.current.value;
-    const enteredDate = dateInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
 
     const inquiryData = {
       email: enteredEmail,
       seriviceNumber: enteredServiceNumber,
-      technician: enteredTechnician,
-      date: enteredDate,
       inquiry: enteredInquiry,
     };
     try {
@@ -44,8 +38,6 @@ function ContactUs() {
        body: JSON.stringify({
           email: inquiryData.email,
           serviceNumber: inquiryData.serviceNumber,
-          technician: inquiryData.technician,
-          date: inquiryData.date,
           inquiry: inquiryData.inquiry,
           }),
         });
@@ -68,14 +60,14 @@ function ContactUs() {
         <br></br>
         <Row>
           <Col>
-            <h6>* All Fields are Required</h6>
-            <Form>
+            <Form style={{marginTop: "100px"}}>
               <Form.Floating className="mb-3">
                 <Form.Control
                   id="floatingInputCustom"
                   type="email"
                   placeholder="name@example.com"
                   ref={emailInputRef}
+                  required
                 />
                 <label htmlFor="floatingInputCustom">Email address</label>
               </Form.Floating>
@@ -90,24 +82,6 @@ function ContactUs() {
                   Service Request Number
                 </label>
               </Form.Floating>
-              <Form.Floating className="mb-3">
-                <Form.Control
-                  id="floatingPasswordCustom"
-                  type="text"
-                  placeholder="Technician Name"
-                  ref={technicianInputRef}
-                />
-                <label htmlFor="floatingPasswordCustom">Technician Name</label>
-              </Form.Floating>
-              <Form.Floating className="mb-3">
-                <Form.Control
-                  id="floatingPasswordCustom"
-                  type="date"
-                  placeholder="Date"
-                  ref={dateInputRef}
-                />
-                <label htmlFor="floatingPasswordCustom">Date</label>
-              </Form.Floating>
               <FloatingLabel
                 controlId="floatingTextarea2"
                 label="Inquiry"
@@ -118,6 +92,7 @@ function ContactUs() {
                   placeholder="Leave a comment here"
                   style={{ height: "100px" }}
                   ref={inquiryInputRef}
+                  required
                 />
               </FloatingLabel>
               <Button variant="warning" style={{ color: "black" }} onClick={submitHandler}>

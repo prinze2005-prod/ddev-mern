@@ -163,11 +163,6 @@ const Profile = ({ user }) => {
           <h3>Manage your profile</h3>
         </center>
         <h6>* All Fields are required</h6>
-        {user && (
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Use my default information" />
-          </Form.Group>
-        )}
         <Form onSubmit={submitHandler}>
           <Row className="g-2">
             <Col md>
@@ -194,16 +189,8 @@ const Profile = ({ user }) => {
           <br></br>
           <Row className="g-2">
             <Col md>
-              <FloatingLabel
-                controlId="floatingInputGrid"
-                label="Email Address"
-              >
-                <Form.Control
-                  type="email"
-                  placeholder="Email Address"
-                  required
-                  ref={emailInputRef}
-                />
+            <FloatingLabel controlId="floatingInputGrid" label="Password">
+                <Form.Control type="password" placeholder="Password" required  />
               </FloatingLabel>
             </Col>
             <Col md>
@@ -237,19 +224,6 @@ const Profile = ({ user }) => {
                   required
                   ref={postalCodeInputRef}
                 />
-              </FloatingLabel>
-            </Col>
-          </Row>
-          <br></br>
-          <Row className="g-2">
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Password">
-                <Form.Control type="password" placeholder="Password" required  />
-              </FloatingLabel>
-            </Col>
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Re-enter Password">
-                <Form.Control type="password" placeholder="Re-enter your Password" required ref={passwordInputRef} />
               </FloatingLabel>
             </Col>
           </Row>

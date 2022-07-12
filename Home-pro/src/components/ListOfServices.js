@@ -68,11 +68,7 @@ const Wrapper = styled.section`
 		}
 	}
 
-	.section:hover {
-		transition: all 0.3s ease-in-out;
-		background: red;
-		color: white;
-	}
+
 
 	.btn {
 		display: block;
@@ -80,6 +76,20 @@ const Wrapper = styled.section`
 		margin: 0 auto;
 		text-align: center;
 	}
+	tr:hover {
+
+        background-color: var(--clr-primary-5);
+
+        
+
+    }
+	td:hover {
+
+        background-color: var(--clr-primary-5);
+
+      
+
+    }
 
 	@media (min-width: 576px) {
 		.featured {

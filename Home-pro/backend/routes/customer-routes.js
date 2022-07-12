@@ -13,12 +13,7 @@ const router = express.Router();
 
 //to add validation
 
-router.get('/getaccs', accountController.getAccounts);
-router.get('/getinquirys', inquiryController.getInquirys)
-router.get('/getjobs', jobController.getJobs);
-router.get('/getcustomers', customerController.getCustomers);
-router.get('/gettechnicians',technicianController.getTechnicians); 
-router.post('/getjobsbycust', jobController.getJobsByCust);
-router.post('/getjobsbytech', jobController.getJobsByTech);
+router.patch('/editprofile',customerController.updateProfile);
+router.patch('/updatepassword',accountController.updatePassword);
 
 module.exports = router;

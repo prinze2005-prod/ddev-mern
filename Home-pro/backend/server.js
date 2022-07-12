@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
-const accountRoutes = require('./routes/account-routes');
+const generalRoutes = require('./routes/general-routes');
+const customerRoutes = require('./routes/customer-routes');
 const adminRoutes = require('./routes/admin-routes');
 
 const HttpError = require('./models/http-error');
@@ -19,8 +20,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
   next();
 });
-app.use('/account', accountRoutes);
-app.use('/admin', adminRoutes);
+
+app.use('/api/general', generalRoutes);
+app.use('/api/customer', customerRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

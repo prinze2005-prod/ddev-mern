@@ -119,6 +119,11 @@ const login = async (req, res, next) => {
 };
 
 const signUp = async (req,res,next) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    res.json("Invalid Validation");
+    return;
+  }
   let existingUser;
   try{
     existingUser = await Account.findOne({email: req.body.email})
@@ -176,6 +181,38 @@ const signUp = async (req,res,next) => {
   return;
 };
 
+const updatePassword = async (req,res,next) => {
+  let existingAccount;
+  try{
+    //change to read password from token
+    existingAccount = await Account.findOne({email: req.body.email});
+  }catch(err){
+    res.json({message: err});
+    return;
+  }
+  if(existingAccount == null){
+    res.json({message: "Account does not exist"});
+    return
+  }
+  try{
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    existingAccount.password=hashedPassword;
+    let error = existingAccount.validateSync();
+    if(error !== undefined){
+      console.log(error);
+      throw 'failed validation';
+    }
+    console.log("I was ran!");
+    await existingAccount.save();
+    console.log("I was ran too");
+    res.json({message: "Success!"});
+  }catch(err){
+    res.json({message: "Error has occured"});
+  }
+};
+
+
+exports.updatePassword = updatePassword;
 exports.login = login;
 exports.signUp = signUp;
 exports.getAccounts = getAccounts;

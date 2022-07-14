@@ -5,13 +5,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import picture from "../assets/hero-bcg.jpeg";
-import { PageHero } from "../components";
+import picture from "../../../assets/hero-bcg.jpeg";
+import { PageHero } from "../../../components";
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 
 function ContactUs() {
-    let history = useHistory();
+  let history = useHistory();
 
   const emailInputRef = useRef();
   const serviceNumberInputRef = useRef();
@@ -30,27 +30,25 @@ function ContactUs() {
       inquiry: enteredInquiry,
     };
     try {
-        const response = await fetch("http://localhost:5000/admin/createjob", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-       body: JSON.stringify({
+      const response = await fetch("http://localhost:5000/admin/createjob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           email: inquiryData.email,
           serviceNumber: inquiryData.serviceNumber,
           inquiry: inquiryData.inquiry,
-          }),
-        });
-        const responseData = await response.json();
-        console.log(responseData);
-        if (!!responseData) {
-            history.push("/");
-          }
-      } catch (err) {
-        console.log(err);
+        }),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!!responseData) {
+        history.push("/");
       }
-    
-    
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -60,7 +58,7 @@ function ContactUs() {
         <br></br>
         <Row>
           <Col>
-            <Form style={{marginTop: "100px"}}>
+            <Form style={{ marginTop: "100px" }}>
               <Form.Floating className="mb-3">
                 <Form.Control
                   id="floatingInputCustom"
@@ -95,7 +93,11 @@ function ContactUs() {
                   required
                 />
               </FloatingLabel>
-              <Button variant="warning" style={{ color: "black" }} onClick={submitHandler}>
+              <Button
+                variant="warning"
+                style={{ color: "black" }}
+                onClick={submitHandler}
+              >
                 Submit
               </Button>{" "}
             </Form>

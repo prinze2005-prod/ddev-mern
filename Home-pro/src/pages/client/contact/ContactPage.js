@@ -1,4 +1,4 @@
-import { Contact } from "../components";
+import { Contact } from "../../../components";
 import { useHistory } from "react-router-dom";
 
 function ContactPage() {

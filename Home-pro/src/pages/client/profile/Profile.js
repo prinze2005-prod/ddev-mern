@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import { PageHero } from "../components";
+import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
 
 const Profile = ({ user }) => {
@@ -32,7 +32,6 @@ const Profile = ({ user }) => {
     const enteredpNumber = pnumberInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
-    
 
     setProfileData({
       fname: enteredFirstName,
@@ -49,29 +48,29 @@ const Profile = ({ user }) => {
 
     //will not throw error if server sends back error code (404, etc...)
     try {
-        const response = await fetch("http://localhost:5000/admin/createjob", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fname: profileData.fname,
-            lname: profileData.lname,
-            email: profileData.email,
-            password: profileData.password,
-            pnumber: profileData.pnumber,
-            street: profileData.street,
-            postalCode: profileData.postalCode,
-          }),
-        });
-        const responseData = await response.json();
-        console.log(responseData);
-        if (!!responseData) {
-          history.push("/");
-        }
-      } catch (err) {
-        console.log(err);
+      const response = await fetch("http://localhost:5000/admin/createjob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fname: profileData.fname,
+          lname: profileData.lname,
+          email: profileData.email,
+          password: profileData.password,
+          pnumber: profileData.pnumber,
+          street: profileData.street,
+          postalCode: profileData.postalCode,
+        }),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!!responseData) {
+        history.push("/");
       }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handlerSubmit = async () => {
@@ -123,7 +122,7 @@ const Profile = ({ user }) => {
             Password: {profileData.password} <br></br>
             Phone Number: {profileData.pnumber} <br></br>
             Street: {profileData.street} <br></br>
-            Postal Code: {profileData.postalCode} 
+            Postal Code: {profileData.postalCode}
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
@@ -189,8 +188,8 @@ const Profile = ({ user }) => {
           <br></br>
           <Row className="g-2">
             <Col md>
-            <FloatingLabel controlId="floatingInputGrid" label="Password">
-                <Form.Control type="password" placeholder="Password" required  />
+              <FloatingLabel controlId="floatingInputGrid" label="Password">
+                <Form.Control type="password" placeholder="Password" required />
               </FloatingLabel>
             </Col>
             <Col md>

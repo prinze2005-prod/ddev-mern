@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import { PageHero } from "../components";
+import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
 
 const BookPlumber = ({ user }) => {

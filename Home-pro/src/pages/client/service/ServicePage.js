@@ -1,8 +1,8 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 
-import { PageHero } from "../components";
-import ServicesCard from "../components/ServicesCard";
+import { PageHero } from "../../../components";
+import ServicesCard from "../../../components/ServicesCard";
 
 function ServicePage() {
   return (

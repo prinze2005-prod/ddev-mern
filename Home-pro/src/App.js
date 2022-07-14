@@ -8,7 +8,7 @@ import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import ServicePage from "./pages/ServicePage";
 import SignupPage from "./pages/SignupPage";
-import TechLandingPage from "./pages/TechLandingPage";
+import TechLandingPage from "./pages/tech/TechLandingPage";
 import PaintingPage from "./components/PaintingPage";
 import Plumbing from "./components/Plumbing";
 import Electrician from "./components/Electrician";
@@ -25,8 +25,8 @@ import BookingConfirmPage from "./components/BookingConfirmPage";
 import ErrorPage from "./pages/ErrorPage";
 import ContactUs from "./pages/ContactUs";
 import Profile from "./pages/Profile";
-import TechPerformance from "./pages/TechPerformance";
-import TechTaskInProgress from "./pages/TechTaskInProgress";
+import TechPerformance from "./pages/tech/TechPerformance";
+import TechTaskInProgress from "./pages/tech/TechTaskInProgress";
 
 function App() {
   const [user, setUser] = useState(null);

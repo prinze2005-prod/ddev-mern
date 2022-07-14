@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { PageHero } from "../components";
-import TechLandingCard from "../components/TechLandingCard";
+import { PageHero } from "../../components";
+import TechLandingCard from "../../components/TechLandingCard";
 
 function TechLandingPage() {
   return (

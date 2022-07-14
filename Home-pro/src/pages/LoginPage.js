@@ -38,7 +38,7 @@ function LoginPage({ setUser }) {
     try {
       //setUser(null);
 
-      const response = await fetch("http://localhost:5000/account/login", {
+      const response = await fetch("http://localhost:5000/api/general/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

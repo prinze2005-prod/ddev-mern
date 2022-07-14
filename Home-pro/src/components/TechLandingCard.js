@@ -8,6 +8,7 @@ import icon3 from "../assets/techicon3.png";
 import icon4 from "../assets/techicon4.png";
 import icon5 from "../assets/techicon5.png";
 import icon6 from "../assets/techicon6.png";
+import { NavLink } from "react-router-dom";
 
 function TechLandingCard() {
   return (
@@ -46,49 +47,71 @@ function TechLandingCard() {
       <center>
         <Row xs={1} md={3} className="g-4">
           <Col>
-            <Card
-              href=""
-              style={{
-                borderRadius: 20 + "px",
-                width: "80%",
-                height: "100%",
-              }}
+            <NavLink
+              to="/techPerformance"
+              style={(isActive) => ({
+                color: isActive ? "#ffb347" : "black",
+              })}
             >
-              <center>
-                <Card.Img
-                  variant="top"
-                  src={icon1}
-                  style={{ width: "100px", height: "100px", marginTop: "20px" }}
-                />
-              </center>
-              <Card.Body>
-                <Card.Title>
-                  <center>Get Performance Data</center>
-                </Card.Title>
-              </Card.Body>
-            </Card>
+              <Card
+                href=""
+                style={{
+                  borderRadius: 20 + "px",
+                  width: "80%",
+                  height: "100%",
+                }}
+              >
+                <center>
+                  <Card.Img
+                    variant="top"
+                    src={icon1}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      marginTop: "20px",
+                    }}
+                  />
+                </center>
+                <Card.Body>
+                  <Card.Title>
+                    <center>Get Performance Data</center>
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </NavLink>
           </Col>
           <Col>
-            <Card
-              style={{
-                borderRadius: 20 + "px",
-                width: "80%",
-                height: "100%",
-              }}
+            <NavLink
+              to="/techPendingTask"
+              style={(isActive) => ({
+                color: isActive ? "#ffb347" : "black",
+              })}
             >
-              <center>
-                <Card.Img
-                  variant="top"
-                  src={icon2}
-                  style={{ width: "100px", height: "100px", marginTop: "20px" }}
-                />
-              </center>
-              <Card.Body>
-                <Card.Title>
-                  <center>Tasks in Progress</center>
-                </Card.Title>
-              </Card.Body>
-            </Card>
+              <Card
+                style={{
+                  borderRadius: 20 + "px",
+                  width: "80%",
+                  height: "100%",
+                }}
+              >
+                <center>
+                  <Card.Img
+                    variant="top"
+                    src={icon2}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      marginTop: "20px",
+                    }}
+                  />
+                </center>
+                <Card.Body>
+                  <Card.Title>
+                    <center>Tasks in Progress</center>
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </NavLink>
           </Col>{" "}
           <Col>
             <Card

@@ -6,7 +6,7 @@ import TechLandingCard from "../components/TechLandingCard";
 function TechLandingPage() {
   return (
     <main style={{ backgroundColor: "#EFEEED" }}>
-      <PageHero title="Welcome Back Tech1" />
+      <PageHero />
       <Container>
         <br />
         <TechLandingCard />

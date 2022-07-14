@@ -25,6 +25,8 @@ import BookingConfirmPage from "./components/BookingConfirmPage";
 import ErrorPage from "./pages/ErrorPage";
 import ContactUs from "./pages/ContactUs";
 import Profile from "./pages/Profile";
+import TechPerformance from "./pages/TechPerformance";
+import TechPendingTask from "./pages/TechPendingTask";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -49,7 +51,7 @@ function App() {
         {" "}
         <Switch>
           <Route exact path="/">
-            <Home user={user}/>
+            <Home user={user} />
           </Route>
           <Route exact path="/about">
             <About />
@@ -113,10 +115,16 @@ function App() {
             <BookingConfirmPage />
           </Route>
           <Route exact path="/ContactUs">
-            <ContactUs/>
+            <ContactUs />
           </Route>
           <Route exact path="/Profile">
-            <Profile user={user}/>
+            <Profile user={user} />
+          </Route>
+          <Route exact path="/techPerformance">
+            <TechPerformance />
+          </Route>
+          <Route exact path="/techPendingTask">
+            <TechPendingTask />
           </Route>
           <Route exact path="*">
             <ErrorPage />

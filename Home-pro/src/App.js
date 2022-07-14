@@ -27,8 +27,8 @@ import ContactUs from "./pages/client/contact/ContactUs";
 import Profile from "./pages/client/profile/Profile";
 import TechPerformance from "./pages/tech/TechPerformance";
 import TechTaskInProgress from "./pages/tech/TechTaskInProgress";
-import CompletedTask from "./components/CompletedTask";
-import PendingTasks from "./components/PendingTasks";
+import CompletedTask from "./pages/tech/CompletedTask";
+import PendingTasks from "./pages/tech/PendingTasks";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -131,7 +131,7 @@ return (
 		  <Route exact path="/CompletedTask">
             <CompletedTask/>
           </Route>
-		  <Route exact path="/PendingTask">
+		  <Route exact path="/PendingTasks">
             <PendingTasks/>
           </Route>
 		  <Route exact path="/">

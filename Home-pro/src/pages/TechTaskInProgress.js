@@ -8,7 +8,7 @@ function TechTaskInProgress() {
   return (
     <main>
       <TechHeader title="Tasks in Progress" />
-      <Container>
+      <Container style={{ minHeight: "500px" }}>
         <br></br>
         <h2>Tasks in Progress</h2>
         <br></br>
@@ -42,8 +42,6 @@ function TechTaskInProgress() {
             </tr>
           </tbody>
         </Table>
-        <br></br>
-        <br></br>
       </Container>
     </main>
   );

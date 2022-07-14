@@ -26,7 +26,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ContactUs from "./pages/ContactUs";
 import Profile from "./pages/Profile";
 import TechPerformance from "./pages/TechPerformance";
-import TechPendingTask from "./pages/TechPendingTask";
+import TechTaskInProgress from "./pages/TechTaskInProgress";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -123,8 +123,8 @@ function App() {
           <Route exact path="/techPerformance">
             <TechPerformance />
           </Route>
-          <Route exact path="/techPendingTask">
-            <TechPendingTask />
+          <Route exact path="/techTaskInProgress">
+            <TechTaskInProgress />
           </Route>
           <Route exact path="*">
             <ErrorPage />

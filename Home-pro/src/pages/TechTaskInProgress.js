@@ -4,7 +4,7 @@ import TechHeader from "../components/TechHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 
-function TechPendingTask() {
+function TechTaskInProgress() {
   return (
     <main>
       <TechHeader title="Tasks in Progress" />
@@ -49,4 +49,4 @@ function TechPendingTask() {
   );
 }
 
-export default TechPendingTask;
+export default TechTaskInProgress;

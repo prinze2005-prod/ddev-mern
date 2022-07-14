@@ -82,7 +82,7 @@ function TechLandingCard() {
           </Col>
           <Col>
             <NavLink
-              to="/techPendingTask"
+              to="/techTaskInProgress"
               style={(isActive) => ({
                 color: isActive ? "#ffb347" : "black",
               })}

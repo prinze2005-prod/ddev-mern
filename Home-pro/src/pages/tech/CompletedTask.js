@@ -37,7 +37,7 @@ const CompletedTask = () => {
 						</tr>
 					</table>
 					<br />
-					<Link to="/TechLandingPage" className="btn">
+					<Link to="/Tech" className="btn">
 						back to Tech page
 					</Link>
 				</section>

@@ -182,6 +182,12 @@ function TechLandingCard() {
 						</NavLink>
 					</Col>{' '}
 					<Col>
+					<NavLink
+							to="/contactAdmin"
+							style={(isActive) => ({
+								color: isActive ? '#ffb347' : 'black',
+							})}
+						>
 						<Card
 							style={{
 								borderRadius: 20 + 'px',
@@ -202,7 +208,8 @@ function TechLandingCard() {
 								</Card.Title>
 							</Card.Body>
 						</Card>
-					</Col>
+						</NavLink>
+					</Col>{' '}
 				</Row>
 			</center>
 		</div>

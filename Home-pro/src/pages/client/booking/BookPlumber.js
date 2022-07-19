@@ -51,41 +51,12 @@ const BookPlumber = ({ user }) => {
     setModalShow(true);
     return;
 
-    //will not throw error if server sends back error code (404, etc...)
-    try {
-      const response = await fetch("http://localhost:5000/admin/createjob", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname: bookingData.fname,
-          lname: bookingData.lname,
-          email: bookingData.email,
-          ptype: "Home",
-          pnumber: bookingData.pnumber,
-          street: bookingData.street,
-          postalCode: bookingData.postalCode,
-          city: "Calgary",
-          province: "Alberta",
-          service: "Plumbing",
-          start_time: bookingData.start_time,
-          description: bookingData.description,
-        }),
-      });
-      const responseData = await response.json();
-      console.log(responseData);
-      if (!!responseData) {
-        history.push("/BookingConfirmPage");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    
   }
 
   const handlerSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/admin/createjob", {
+      const response = await fetch("http://localhost:5000/api/general/createjob", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

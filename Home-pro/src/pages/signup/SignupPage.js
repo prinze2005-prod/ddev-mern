@@ -150,11 +150,18 @@ function SignupPage() {
                     <Form.Control
                       type="password"
                       placeholder="Password"
+                      pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                       required
                       ref={passwordInputRef}
                     />
                   </FloatingLabel>
-                  <br></br>
+
+                  <p style={{ color: "red", textAlign: "left" }}>
+                    Password must contain:<br></br> at least 1 UpperCase{" "}
+                    <br></br>at least 1 LowerCase <br></br>at least 1
+                    Number/SpecialChar<br></br>
+                    length: 8-24
+                  </p>
                   <FloatingLabel
                     controlId="floatingAddressInputGrid"
                     label="Street Address"
@@ -171,12 +178,13 @@ function SignupPage() {
                     <Col md>
                       <FloatingLabel
                         controlId="floatingPostalInputGrid"
-                        label="Postal Code"
+                        label="Postal Code (A1A 1A1)"
                       >
                         <Form.Control
                           type="text"
-                          placeholder="Postal Code"
+                          placeholder="Postal Code(A1A 1A1)"
                           required
+                          pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]"
                           ref={postalCodeInputRef}
                         />
                       </FloatingLabel>
@@ -184,12 +192,13 @@ function SignupPage() {
                     <Col md>
                       <FloatingLabel
                         controlId="floatingPhoneInputGrid"
-                        label="Phone Number"
+                        label="Phone(0001112222)"
                       >
                         <Form.Control
                           type="text"
-                          placeholder="Phone Number"
+                          placeholder="Phone(0001112222)"
                           required
+                          pattern="\d{10}"
                           ref={pnumberInputRef}
                         />
                       </FloatingLabel>

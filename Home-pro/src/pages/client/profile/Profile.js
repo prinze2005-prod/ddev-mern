@@ -17,7 +17,6 @@ const Profile = ({ user }) => {
 
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
-  const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const pnumberInputRef = useRef();
   const streetInputRef = useRef();
@@ -28,7 +27,6 @@ const Profile = ({ user }) => {
 
     const enteredFirstName = fnameInputRef.current.value;
     const enteredLastName = lnameInputRef.current.value;
-    const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredpNumber = pnumberInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
@@ -37,7 +35,6 @@ const Profile = ({ user }) => {
     setProfileData({
       fname: enteredFirstName,
       lname: enteredLastName,
-      email: enteredEmail,
       password: enteredPassword,
       pnumber: enteredpNumber,
       street: enteredStreet,
@@ -46,8 +43,9 @@ const Profile = ({ user }) => {
 
     setModalShow(true);
     return;
+  }
 
-    //will not throw error if server sends back error code (404, etc...)
+  const handlerSubmit = async () => {
     try {
       const response = await fetch(
         "http://localhost:5000/api/customer/editprofile",
@@ -59,7 +57,6 @@ const Profile = ({ user }) => {
           body: JSON.stringify({
             fname: profileData.fname,
             lname: profileData.lname,
-            email: profileData.email,
             password: profileData.password,
             pnumber: profileData.pnumber,
             street: profileData.street,
@@ -70,33 +67,7 @@ const Profile = ({ user }) => {
       const responseData = await response.json();
       console.log(responseData);
       if (!!responseData) {
-        history.push("/");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  const handlerSubmit = async () => {
-    try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname: profileData.fname,
-          lname: profileData.lname,
-          email: profileData.email,
-          password: profileData.password,
-          pnumber: profileData.pnumber,
-          street: profileData.street,
-          postalCode: profileData.postalCode,
-        }),
-      });
-      const responseData = await response.json();
-      console.log(responseData);
-      if (!!responseData) {
+        console.log("updated!");
         history.push("/");
       }
     } catch (err) {
@@ -122,7 +93,6 @@ const Profile = ({ user }) => {
             <h5>You Information</h5>
             First Name: {profileData.fname} <br></br>
             Last Name: {profileData.lname} <br></br>
-            Email: {profileData.email} <br></br>
             Password: {profileData.password} <br></br>
             Phone Number: {profileData.pnumber} <br></br>
             Street: {profileData.street} <br></br>
@@ -193,7 +163,12 @@ const Profile = ({ user }) => {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Password">
-                <Form.Control type="password" placeholder="Password" required />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  required
+                  ref={passwordInputRef}
+                />
               </FloatingLabel>
             </Col>
             <Col md>

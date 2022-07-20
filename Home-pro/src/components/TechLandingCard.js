@@ -49,71 +49,104 @@ function TechLandingCard() {
 			<center>
 				<Row xs={1} md={3} className="g-4">
 					<Col>
-						<Card
-							href=""
-							style={{
-								borderRadius: 20 + 'px',
-								width: '80%',
-								height: '100%',
-							}}
+						<NavLink
+							to="/TechPerformance"
+							style={(isActive) => ({
+								color: isActive ? '#ffb347' : 'black',
+							})}
 						>
-							<center>
-								<Card.Img
-									variant="top"
-									src={icon1}
-									style={{ width: '100px', height: '100px', marginTop: '20px' }}
-								/>
-							</center>
-							<Card.Body>
-								<Card.Title>
-									<center>Get Performance Data</center>
-								</Card.Title>
-							</Card.Body>
-						</Card>
+							<Card
+								href=""
+								style={{
+									borderRadius: 20 + 'px',
+									width: '80%',
+									height: '100%',
+								}}
+							>
+								<center>
+									<Card.Img
+										variant="top"
+										src={icon1}
+										style={{
+											width: '100px',
+											height: '100px',
+											marginTop: '20px',
+										}}
+									/>
+								</center>
+								<Card.Body>
+									<Card.Title>
+										<center>Get Performance Data</center>
+									</Card.Title>
+								</Card.Body>
+							</Card>
+						</NavLink>
 					</Col>
 					<Col>
-						<Card
-							style={{
-								borderRadius: 20 + 'px',
-								width: '80%',
-								height: '100%',
-							}}
+						<NavLink
+							to="/TechTaskInProgress"
+							style={(isActive) => ({
+								color: isActive ? '#ffb347' : 'black',
+							})}
 						>
-							<center>
-								<Card.Img
-									variant="top"
-									src={icon2}
-									style={{ width: '100px', height: '100px', marginTop: '20px' }}
-								/>
-							</center>
-							<Card.Body>
-								<Card.Title>
-									<center>Tasks in Progress</center>
-								</Card.Title>
-							</Card.Body>
-						</Card>
+							<Card
+								style={{
+									borderRadius: 20 + 'px',
+									width: '80%',
+									height: '100%',
+								}}
+							>
+								<center>
+									<Card.Img
+										variant="top"
+										src={icon2}
+										style={{
+											width: '100px',
+											height: '100px',
+											marginTop: '20px',
+										}}
+									/>
+								</center>
+								<Card.Body>
+									<Card.Title>
+										<center>Tasks in Progress</center>
+									</Card.Title>
+								</Card.Body>
+							</Card>
+						</NavLink>
 					</Col>{' '}
 					<Col>
-						<Card
-							style={{
-								borderRadius: 20 + 'px',
-								width: '80%',
-								height: '100%',
-							}}
+						<NavLink
+							to="/TechSchedule"
+							style={(isActive) => ({
+								color: isActive ? '#ffb347' : 'black',
+							})}
 						>
-							<center>
-								<Card.Img
-									variant="top"
-									src={icon3}
-									style={{ width: '100px', height: '100px', marginTop: '20px' }}
-								/>
-							</center>
-							<Card.Body>
-								<Card.Title>
-									<center>Look up Schedule</center>
-								</Card.Title>
-							</Card.Body>
-						</Card>
+							<Card
+								style={{
+									borderRadius: 20 + 'px',
+									width: '80%',
+									height: '100%',
+								}}
+							>
+								<center>
+									<Card.Img
+										variant="top"
+										src={icon3}
+										style={{
+											width: '100px',
+											height: '100px',
+											marginTop: '20px',
+										}}
+									/>
+								</center>
+								<Card.Body>
+									<Card.Title>
+										<center>Look up Schedule</center>
+									</Card.Title>
+								</Card.Body>
+							</Card>
+						</NavLink>
 					</Col>{' '}
 					<Col>
 						<NavLink
@@ -182,26 +215,37 @@ function TechLandingCard() {
 						</NavLink>
 					</Col>{' '}
 					<Col>
-						<Card
-							style={{
-								borderRadius: 20 + 'px',
-								width: '80%',
-								height: '100%',
-							}}
+						<NavLink
+							to="/ContactAdmin"
+							style={(isActive) => ({
+								color: isActive ? '#ffb347' : 'black',
+							})}
 						>
-							<center>
-								<Card.Img
-									variant="top"
-									src={icon6}
-									style={{ width: '100px', height: '100px', marginTop: '20px' }}
-								/>
-							</center>
-							<Card.Body>
-								<Card.Title>
-									<center>Contact Admin</center>
-								</Card.Title>
-							</Card.Body>
-						</Card>
+							<Card
+								style={{
+									borderRadius: 20 + 'px',
+									width: '80%',
+									height: '100%',
+								}}
+							>
+								<center>
+									<Card.Img
+										variant="top"
+										src={icon6}
+										style={{
+											width: '100px',
+											height: '100px',
+											marginTop: '20px',
+										}}
+									/>
+								</center>
+								<Card.Body>
+									<Card.Title>
+										<center>Contact Admin</center>
+									</Card.Title>
+								</Card.Body>
+							</Card>
+						</NavLink>
 					</Col>
 				</Row>
 			</center>

@@ -48,7 +48,7 @@ const Profile = ({ user }) => {
 
     //will not throw error if server sends back error code (404, etc...)
     try {
-      const response = await fetch("http://localhost:5000/admin/createjob", {
+      const response = await fetch("http://localhost:5000/api/customer/editprofile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

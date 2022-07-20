@@ -6,7 +6,8 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
 const Profile = ({ user }) => {
   let history = useHistory();
@@ -48,21 +49,24 @@ const Profile = ({ user }) => {
 
     //will not throw error if server sends back error code (404, etc...)
     try {
-      const response = await fetch("http://localhost:5000/api/customer/editprofile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname: profileData.fname,
-          lname: profileData.lname,
-          email: profileData.email,
-          password: profileData.password,
-          pnumber: profileData.pnumber,
-          street: profileData.street,
-          postalCode: profileData.postalCode,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/customer/editprofile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname: profileData.fname,
+            lname: profileData.lname,
+            email: profileData.email,
+            password: profileData.password,
+            pnumber: profileData.pnumber,
+            street: profileData.street,
+            postalCode: profileData.postalCode,
+          }),
+        }
+      );
       const responseData = await response.json();
       console.log(responseData);
       if (!!responseData) {
@@ -228,14 +232,28 @@ const Profile = ({ user }) => {
           </Row>
           <br></br>
           <center>
-            <Button
-              type="submit"
-              variant="warning"
-              style={{ color: "black" }}
-              //onClick={() => setModalShow(true)}
-            >
-              Submit
-            </Button>
+            <MDBRow className="mb-4">
+              <MDBCol>
+                <Button
+                  variant="warning"
+                  type="submit"
+                  style={{ color: "black", width: "50%" }}
+                >
+                  Save Changes
+                </Button>
+              </MDBCol>
+              <MDBCol>
+                <Link to="/">
+                  {" "}
+                  <Button
+                    variant="light"
+                    style={{ color: "black", width: "50%" }}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+              </MDBCol>
+            </MDBRow>
           </center>
           {profileData && (
             <MyVerticallyCenteredModal

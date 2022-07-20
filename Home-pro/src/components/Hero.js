@@ -10,14 +10,21 @@ const Hero = () => {
     <Wrapper className="section-center">
       <article className="content">
         <h2>
-          The Quality you <strong style={{color: '#ffb347'}} >expect,</strong> <br />
-          the service you <strong style={{color: '#ffb347'}} >deserve!</strong>
+          The Quality you <strong style={{ color: "#ffb347" }}>expect,</strong>{" "}
+          <br />
+          the service you <strong style={{ color: "#ffb347" }}>deserve!</strong>
         </h2>
-       <br/><br/>
+        <br />
+        <br />
       </article>
       <article className="img-container">
         <img src={HomeProService} alt="HPService" className="main-img" />
-        <img src={heroBcg2} style={{marginBottom: "20px"}} alt="person working" className="accent-img" />
+        <img
+          src={heroBcg2}
+          style={{ marginBottom: "20px" }}
+          alt="person working"
+          className="accent-img"
+        />
       </article>
     </Wrapper>
   );
@@ -30,26 +37,26 @@ const Wrapper = styled.section`
   .img-container {
     display: none;
   }
-   .search{
-     position: relative;
-    width: 350px; 
+  .search {
+    position: relative;
+    width: 350px;
     height: 40px;
     border-color: transparent;
     border-radius: 5px;
     font-size: 18px;
     letter-spacing: 0.5px;
     font-weight: 100;
-   }
-   .btn-search{
+  }
+  .btn-search {
     font-size: 16px;
-     margin-left: 20px;
-     color: white;
-     border-color: transparent;
-     background-color: #FF6544;
-     width: 80px;
-     height: 35px;
-     border-radius: 5px;
-   }
+    margin-left: 20px;
+    color: white;
+    border-color: transparent;
+    background-color: #ff6544;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+  }
   p {
     line-height: 2;
     max-width: 45em;

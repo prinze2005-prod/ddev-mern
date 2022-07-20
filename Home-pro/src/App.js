@@ -30,6 +30,8 @@ import TechTaskInProgress from "./pages/tech/TechTaskInProgress";
 import CompletedTask from "./pages/tech/CompletedTask";
 import PendingTasks from "./pages/tech/PendingTasks";
 import ContactAdmin from "./pages/tech/ContactAdmin";
+import TechProfile from "./pages/tech/TechProfile";
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -44,7 +46,7 @@ function App() {
     window.location = "/";
   }
 
-return (
+  return (
     <Router>
       <Navbar user={user} handleLogout={handleLogout} />
       <Sidebar user={user} handleLogout={handleLogout} />
@@ -57,7 +59,7 @@ return (
           <Route exact path="/about">
             <About />
           </Route>
-<Route exact path="/contact">
+          <Route exact path="/contact">
             <ContactPage />
           </Route>
           <Route exact path="/service">
@@ -129,49 +131,23 @@ return (
           <Route exact path="/CompletedTask">
             <CompletedTask />
           </Route>
-		  <Route exact path="/PendingTasks">
+          <Route exact path="/PendingTasks">
             <PendingTasks />
           </Route>
           <Route exact path="/contactAdmin">
             <ContactAdmin />
           </Route>
+          <Route exact path="/techProfile">
+            <TechProfile />
+          </Route>
           <Route exact path="*">
             <ErrorPage />
           </Route>
-		  <Route exact path="/">
-            <ErrorPage />
-          </Route>
-
         </Switch>
       </div>
       <Footer />
     </Router>
   );
-
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

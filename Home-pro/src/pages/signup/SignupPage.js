@@ -28,7 +28,8 @@ function SignupPage() {
   const postalCodeInputRef = useRef();
 
   const [result, setResult] = React.useState(null);
-
+  const [showHint, setShowHint] = React.useState(false);
+  const onClick = () => setShowHint(true);
   //need work on this after backend finish for sign up
 
   async function submitHandler(event) {
@@ -87,6 +88,16 @@ function SignupPage() {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  function Hint() {
+    return (
+      <p style={{ color: "red", textAlign: "left" }}>
+        Password must contain:<br></br> at least 1 UpperCase <br></br>at least 1
+        LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
+        length: 8-24
+      </p>
+    );
   }
 
   return (
@@ -153,15 +164,12 @@ function SignupPage() {
                       pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                       required
                       ref={passwordInputRef}
+                      onClick={onClick}
                     />
                   </FloatingLabel>
 
-                  <p style={{ color: "red", textAlign: "left" }}>
-                    Password must contain:<br></br> at least 1 UpperCase{" "}
-                    <br></br>at least 1 LowerCase <br></br>at least 1
-                    Number/SpecialChar<br></br>
-                    length: 8-24
-                  </p>
+                  {showHint ? <Hint /> : null}
+                  <br></br>
                   <FloatingLabel
                     controlId="floatingAddressInputGrid"
                     label="Street Address"

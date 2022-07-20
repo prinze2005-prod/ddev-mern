@@ -59,6 +59,7 @@ function ContactUs() {
         <Row>
           <Col>
             <Form style={{ marginTop: "100px" }}>
+              <h6>* All Fields are required</h6>
               <Form.Floating className="mb-3">
                 <Form.Control
                   id="floatingInputCustom"

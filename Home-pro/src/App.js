@@ -31,6 +31,7 @@ import CompletedTask from "./pages/tech/CompletedTask";
 import PendingTasks from "./pages/tech/PendingTasks";
 import ContactAdmin from "./pages/tech/ContactAdmin";
 import TechProfile from "./pages/tech/TechProfile";
+import AdminLandingPage from "./pages/admin/AdminLandingPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -139,6 +140,9 @@ function App() {
           </Route>
           <Route exact path="/techProfile">
             <TechProfile />
+          </Route>
+          <Route exact path="/admin">
+            <AdminLandingPage />
           </Route>
           <Route exact path="*">
             <ErrorPage />

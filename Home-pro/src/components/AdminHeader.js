@@ -7,7 +7,7 @@ const AdminHeader = ({ title, product }) => {
     <Wrapper>
       <div className="section-center">
         <h3>
-          <Link to="/tech">Home</Link>
+          <Link to="/admin">Home</Link>
           {product && <Link to="/products">/ Service</Link>}/ {title}
         </h3>
       </div>

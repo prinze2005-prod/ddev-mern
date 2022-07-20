@@ -1,12 +1,12 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { PageHero } from "../../components";
+import TechHeader from "../../components/TechHeader";
 import TechLandingCard from "../../components/TechLandingCard";
 
 function TechLandingPage() {
   return (
     <main style={{ backgroundColor: "#EFEEED" }}>
-      <PageHero />
+      <TechHeader />
       <Container>
         <br />
         <TechLandingCard />

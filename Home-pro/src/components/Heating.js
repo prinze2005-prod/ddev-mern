@@ -17,12 +17,7 @@ const Heating = () => {
 						<div className="underline"></div>
 					</div>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-						quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-						voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-						tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-						doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-						Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+					Calgary air conditioning companies can help keep your home cool and comfortable in the hot summer months. If you already have central air conditioning, it’s important to have it maintained regularly to keep it running at maximum efficiency and to help prevent the need for air conditioner repair. Hot Water Heater Installation & Replacement companies in Calgary. There are many reasons you may want to install a new water heater. New models are up to 20% more efficient and you can save on energy costs. Whether you’re looking for a new cooling system, maintenance or AC repair services, or want to replace your existing hot water tank heater with a tankless hot water heater or solar hot water heater you’ll find trusted and experienced experts for air conditioning in Calgary listed with HomePro
 					</p>
 					<DefaultButton style={{ color: 'black', background: '#ffb347' }}>
 						<NavLink

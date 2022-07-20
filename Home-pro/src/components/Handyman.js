@@ -17,12 +17,7 @@ const Handyman = () => {
 						<div className="underline"></div>
 					</div>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-						quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-						voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-						tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-						doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-						Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+					Calgary handyman services include home repair, maintenance and minor home renovations. These jacks-of-all-trades can assist with a wide range of projects and repairs from installing flooring, patching drywall and bathroom remodels to fixing sticky doors or a leaky faucet. To hire a handyman in Calgary, browse the trustworthy companies/individuals contracted with HomePro. Whether the job is big or small, they will get your home improvement jobs done properly, with quality workmanship and will deliver an exceptional customer experience.
 					</p>
 					<DefaultButton style={{ color: 'black', background: '#ffb347' }}>
 						<NavLink

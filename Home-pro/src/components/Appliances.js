@@ -17,12 +17,7 @@ const Appliances = () => {
 						<div className="underline"></div>
 					</div>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-						quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-						voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-						tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-						doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-						Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+					Regular maintenance and appliance repair is more cost effective than replacing your appliances, and better for the environment too. If you have an appliance in need of repair, contact a professional appliance repair company from our trusted contractors. They’ll have it back in working order for you in no time!
 					</p>
 					<DefaultButton style={{ color: 'black', background: '#ffb347' }}>
 						<NavLink

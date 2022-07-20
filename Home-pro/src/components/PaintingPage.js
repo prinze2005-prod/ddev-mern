@@ -17,12 +17,7 @@ const PaintingPage = () => {
 						<div className="underline"></div>
 					</div>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-						quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-						voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-						tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-						doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-						Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+					Painters in Calgary have the experience and skills to produce beautiful, seamless results on your home renovation. Painting your home’s interior or exterior is actually the easiest and most affordable way to completely upgrade the look of your home. These house painters in Calgary are professional and knowledgeable, have the right tools and use high quality products that will give you a flawless finished product. If you’re looking for painting contractors in Calgary, contact one of the trustworthy companies listed with HomePro.
 					</p>
 					<DefaultButton style={{ color: 'black', background: '#ffb347' }}>
 						<NavLink

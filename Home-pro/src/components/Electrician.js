@@ -17,12 +17,7 @@ const Electrician = () => {
 						<div className="underline"></div>
 					</div>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-						quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-						voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-						tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-						doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-						Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+					An electrician in Calgary has the experience and skills to properly and safely complete electrical jobs. DIY electrical work can be very dangerous and is not recommended. Certified Calgary electricians can plan, install and repair wiring in your home or business, ensuring all work is done to code and safely. The credible electrical companies in Calgary that are listed with HomePro have proven reputations for quality workmanship, competitive pricing and exceptional customer service.
 					</p>
 					<DefaultButton style={{ color: 'black', background: '#ffb347' }}>
 						<NavLink

@@ -17,12 +17,7 @@ const Plumbing = () => {
 						<div className="underline"></div>
 					</div>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-						quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-						voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-						tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-						doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-						Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+					Plumbers in Calgary can rough in plumbing for new construction or major home renovations, ensuring your plumbing system is working properly, efficiently and to code. You can also hire a Calgary plumber for plumbing emergencies. They’ll fix the problem before it turns into costly water damage and ensure your plumbing system is in good working order. The list below contains the best plumbers in Calgary. They have a proven reputation for exceptional customer service and quality workmanship.
 					</p>
 					<DefaultButton style={{ color: 'black', background: '#ffb347' }}>
 						<NavLink

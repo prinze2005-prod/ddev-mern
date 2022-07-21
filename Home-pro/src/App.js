@@ -33,6 +33,7 @@ import ContactAdmin from "./pages/tech/ContactAdmin";
 import TechProfile from "./pages/tech/TechProfile";
 import AdminLandingPage from "./pages/admin/AdminLandingPage";
 import AdminProfile from "./pages/admin/AdminProfile";
+import AdminJobEdit from "./pages/admin/JobManager/AdminJobEdit";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -51,110 +52,113 @@ function App() {
   return (
     <Router>
       <div style={{ minHeight: "600px" }}>
-      <Navbar user={user} handleLogout={handleLogout} />
-      <Sidebar user={user} handleLogout={handleLogout} />
-      <div style={{ backgroundColor: "#FDFAF4" }}>
-        {" "}
-        <Switch>
-          <Route exact path="/">
-            <Home user={user} />
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/contact">
-            <ContactPage />
-          </Route>
-          <Route exact path="/service">
-            <ServicePage />
-          </Route>
-          <Route exact path="/booking">
-            <BookingPage />
-          </Route>
-          <Route exact path="/login">
-            <LoginPage setUser={setUser} />
-          </Route>
-          <Route exact path="/signup">
-            <SignupPage />
-          </Route>
-          <Route exact path="/tech">
-            <TechLandingPage />
-          </Route>
-          <Route exact path="/PaintingPage">
-            <PaintingPage />
-          </Route>
-          <Route exact path="/Plumbing">
-            <Plumbing />
-          </Route>
-          <Route exact path="/Electrician">
-            <Electrician />
-          </Route>
-          <Route exact path="/Heating">
-            <Heating />
-          </Route>
-          <Route exact path="/Handyman">
-            <Handyman />
-          </Route>
-          <Route exact path="/Appliances">
-            <Appliances />
-          </Route>
-          <Route exact path="/bookPlumber">
-            <BookPlumber user={user} />
-          </Route>
-          <Route exact path="/bookElectrician">
-            <BookElectrician />
-          </Route>
-          <Route exact path="/bookPainter">
-            <BookPainter />
-          </Route>
-          <Route exact path="/bookHeatCool">
-            <BookHeatCool />
-          </Route>
-          <Route exact path="/bookHandyman">
-            <BookHandyman />
-          </Route>
-          <Route exact path="/bookAppliance">
-            <BookAppliance />
-          </Route>
-          <Route exact path="/BookingConfirmPage">
-            <BookingConfirmPage />
-          </Route>
-          <Route exact path="/ContactUs">
-            <ContactUs />
-          </Route>
-          <Route exact path="/Profile">
-            <Profile user={user} />
-          </Route>
-          <Route exact path="/techPerformance">
-            <TechPerformance />
-          </Route>
-          <Route exact path="/techTaskInProgress">
-            <TechTaskInProgress />
-          </Route>
-          <Route exact path="/CompletedTask">
-            <CompletedTask />
-          </Route>
-          <Route exact path="/PendingTasks">
-            <PendingTasks />
-          </Route>
-          <Route exact path="/contactAdmin">
-            <ContactAdmin />
-          </Route>
-          <Route exact path="/techProfile">
-            <TechProfile />
-          </Route>
-          <Route exact path="/admin">
-            <AdminLandingPage />
-          </Route>
-          <Route exact path="/adminProfile">
-            <AdminProfile></AdminProfile>
-          </Route>
-          <Route exact path="*">
-            <ErrorPage />
-          </Route>
-        </Switch>
-      </div>
-      <Footer />
+        <Navbar user={user} handleLogout={handleLogout} />
+        <Sidebar user={user} handleLogout={handleLogout} />
+        <div style={{ backgroundColor: "#FDFAF4" }}>
+          {" "}
+          <Switch>
+            <Route exact path="/">
+              <Home user={user} />
+            </Route>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route exact path="/contact">
+              <ContactPage />
+            </Route>
+            <Route exact path="/service">
+              <ServicePage />
+            </Route>
+            <Route exact path="/booking">
+              <BookingPage />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage setUser={setUser} />
+            </Route>
+            <Route exact path="/signup">
+              <SignupPage />
+            </Route>
+            <Route exact path="/tech">
+              <TechLandingPage />
+            </Route>
+            <Route exact path="/PaintingPage">
+              <PaintingPage />
+            </Route>
+            <Route exact path="/Plumbing">
+              <Plumbing />
+            </Route>
+            <Route exact path="/Electrician">
+              <Electrician />
+            </Route>
+            <Route exact path="/Heating">
+              <Heating />
+            </Route>
+            <Route exact path="/Handyman">
+              <Handyman />
+            </Route>
+            <Route exact path="/Appliances">
+              <Appliances />
+            </Route>
+            <Route exact path="/bookPlumber">
+              <BookPlumber user={user} />
+            </Route>
+            <Route exact path="/bookElectrician">
+              <BookElectrician />
+            </Route>
+            <Route exact path="/bookPainter">
+              <BookPainter />
+            </Route>
+            <Route exact path="/bookHeatCool">
+              <BookHeatCool />
+            </Route>
+            <Route exact path="/bookHandyman">
+              <BookHandyman />
+            </Route>
+            <Route exact path="/bookAppliance">
+              <BookAppliance />
+            </Route>
+            <Route exact path="/BookingConfirmPage">
+              <BookingConfirmPage />
+            </Route>
+            <Route exact path="/ContactUs">
+              <ContactUs />
+            </Route>
+            <Route exact path="/Profile">
+              <Profile user={user} />
+            </Route>
+            <Route exact path="/techPerformance">
+              <TechPerformance />
+            </Route>
+            <Route exact path="/techTaskInProgress">
+              <TechTaskInProgress />
+            </Route>
+            <Route exact path="/CompletedTask">
+              <CompletedTask />
+            </Route>
+            <Route exact path="/PendingTasks">
+              <PendingTasks />
+            </Route>
+            <Route exact path="/contactAdmin">
+              <ContactAdmin />
+            </Route>
+            <Route exact path="/techProfile">
+              <TechProfile />
+            </Route>
+            <Route exact path="/admin">
+              <AdminLandingPage />
+            </Route>
+            <Route exact path="/adminProfile">
+              <AdminProfile></AdminProfile>
+            </Route>
+            <Route exact path="/adminJobDetail">
+              <AdminJobEdit></AdminJobEdit>
+            </Route>
+            <Route exact path="*">
+              <ErrorPage />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
       </div>
     </Router>
   );

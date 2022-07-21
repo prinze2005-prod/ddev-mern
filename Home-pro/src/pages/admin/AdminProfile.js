@@ -214,7 +214,7 @@ const AdminProfile = ({ user }) => {
                 </Button>
               </MDBCol>
               <MDBCol>
-                <Link to="/tech">
+                <Link to="/admin">
                   {" "}
                   <Button
                     variant="light"

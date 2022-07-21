@@ -75,7 +75,7 @@ function LoginPage({ setUser }) {
 
   return (
     <main>
-      <Container>
+      <Container style={{ minHeight: "600px" }}>
         <br></br>
         <br></br>
         <center>

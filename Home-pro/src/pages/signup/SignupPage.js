@@ -92,11 +92,14 @@ function SignupPage() {
 
   function Hint() {
     return (
+      <div>
+      <br></br>
       <p style={{ color: "red", textAlign: "left" }}>
         Password must contain:<br></br> at least 1 UpperCase <br></br>at least 1
         LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
         length: 8-24
       </p>
+      </div>
     );
   }
 

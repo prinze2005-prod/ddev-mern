@@ -50,6 +50,7 @@ function App() {
 
   return (
     <Router>
+      <div style={{ minHeight: "600px" }}>
       <Navbar user={user} handleLogout={handleLogout} />
       <Sidebar user={user} handleLogout={handleLogout} />
       <div style={{ backgroundColor: "#FDFAF4" }}>
@@ -154,6 +155,7 @@ function App() {
         </Switch>
       </div>
       <Footer />
+      </div>
     </Router>
   );
 }

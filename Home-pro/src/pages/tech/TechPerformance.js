@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import TechHeader from "../../components/TechHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+import { Link } from "react-router-dom";
 
 function TechPerformance() {
   return (
@@ -83,6 +84,16 @@ function TechPerformance() {
             </tr>
           </tbody>
         </Table>
+
+        <center>
+          <Link
+            to="/Tech"
+            className="btn"
+            style={{ backgroundColor: "#ffb347" }}
+          >
+            back to Tech page
+          </Link>
+        </center>
         <br></br>
       </Container>
     </main>

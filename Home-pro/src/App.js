@@ -32,6 +32,7 @@ import PendingTasks from "./pages/tech/PendingTasks";
 import ContactAdmin from "./pages/tech/ContactAdmin";
 import TechProfile from "./pages/tech/TechProfile";
 import AdminLandingPage from "./pages/admin/AdminLandingPage";
+import AdminProfile from "./pages/admin/AdminProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -143,6 +144,9 @@ function App() {
           </Route>
           <Route exact path="/admin">
             <AdminLandingPage />
+          </Route>
+          <Route exact path="/adminProfile">
+            <AdminProfile></AdminProfile>
           </Route>
           <Route exact path="*">
             <ErrorPage />

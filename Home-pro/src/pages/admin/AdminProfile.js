@@ -5,11 +5,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import TechHeader from "../../components/TechHeader";
+import AdminHeader from "../../components/AdminHeader";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
-const TechProfile = ({ user }) => {
+const AdminProfile = ({ user }) => {
   let history = useHistory();
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -129,7 +129,7 @@ const TechProfile = ({ user }) => {
   }
   return (
     <main>
-      <TechHeader title="Profile" />
+      <AdminHeader title="Profile" />
 
       <Container>
         <br></br>
@@ -240,4 +240,4 @@ const TechProfile = ({ user }) => {
   );
 };
 
-export default TechProfile;
+export default AdminProfile;

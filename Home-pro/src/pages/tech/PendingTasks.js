@@ -2,15 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
+import TechHeader from "../../components/TechHeader";
 
 export default function App() {
-  const TaskTitle = styled.div`
-    background: var(--clr-primary-5);
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  `;
-
   const Wrapper = styled.main`
     background: var(--clr-grey-10);
     display: flex;
@@ -123,9 +117,7 @@ export default function App() {
   `;
   return (
     <main>
-      <TaskTitle style={{ padding: "0.25rem" }}>
-        <h2>Pending Tasks</h2>
-      </TaskTitle>
+      <TechHeader title="Pending Tasks" />
       <Wrapper className="page-100">
         <section>
           <MDBTable responsive>

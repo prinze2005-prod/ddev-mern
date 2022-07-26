@@ -47,10 +47,22 @@ const Profile = ({ user }) => {
 
   const handlerSubmit = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/customer/editprofile",
+      var cookies = document.cookie.split(';');
+      let HP_refreshToken;
+      let HP_accessToken;
+      for(var i = 0; i<cookies.length; i++){
+        var cook = cookies[i].split("=");
+        if(cook[0].includes("HP_refreshToken")){
+          HP_refreshToken = cook[1];
+        }
+        if(cook[0].includes("HP_accessToken")){
+          HP_accessToken = cook[1];
+        }
+      }
+      const response = await fetch("http://localhost:5000/api/customer/editprofile",
         {
-          method: "POST",
+          method: "PATCH",
+          credentials: "include", //TWO THINGS: Cookies and this header
           headers: {
             "Content-Type": "application/json",
           },
@@ -61,6 +73,8 @@ const Profile = ({ user }) => {
             pnumber: profileData.pnumber,
             street: profileData.street,
             postalCode: profileData.postalCode,
+            refreshToken : HP_refreshToken,
+            accessToken : HP_accessToken
           }),
         }
       );

@@ -35,6 +35,8 @@ import AdminLandingPage from "./pages/admin/AdminLandingPage";
 import AdminProfile from "./pages/admin/AdminProfile";
 import AdminJobEdit from "./pages/admin/JobManager/AdminJobEdit";
 
+import TestPage from "./pages/TestPage";
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -153,6 +155,11 @@ function App() {
             <Route exact path="/adminJobDetail">
               <AdminJobEdit></AdminJobEdit>
             </Route>
+
+            <Route exact path="/TestPage">
+              <TestPage></TestPage>
+            </Route>
+
             <Route exact path="*">
               <ErrorPage />
             </Route>

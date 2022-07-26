@@ -197,27 +197,46 @@ const signUp = async (req,res,next) => {
   return;
 };
 
-const updatePassword = async (req,res,next) => {
+const updateCustomerAccount = async (req,res,next) => {
   let existingAccount;
+  let existingCustomer;
   try{
-    //change to read password from token
-    existingAccount = await Account.findOne({email: req.body.email});
+    existingAccount = await Account.findOne({email: res.locals.email});
   }catch(err){
     res.json({message: err});
     return;
   }
-  if(existingAccount == null){
-    res.json({message: "Account does not exist"});
+  try{
+    existingCustomer = await Customer.findOne({cust_email: res.locals.email});
+  }catch(err){
+    res.json({message: err});
+    return
+  }
+
+  if(existingAccount == null || existingCustomer == null){
+    res.json({message: "Error in request, please re-login"});
     return
   }
   try{
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     existingAccount.password=hashedPassword;
-    let error = existingAccount.validateSync();
-    if(error !== undefined){
-      console.log(error);
+    let error1 = existingAccount.validateSync();
+    if(error1 !== undefined){
+      console.log(error1);
       throw 'failed validation';
     }
+    existingCustomer.fName = req.body.fname;
+    existingCustomer.lName = req.body.lname;
+    existingCustomer.street = req.body.street;
+    existingCustomer.postalCode = req.body.postalCode;
+    existingCustomer.phoneNumber = req.body.pnumber;
+    let error2 = existingCustomer.validateSync();
+    if(error2 !== undefined){
+      console.log(error2);
+      throw 'failed validation';
+    }
+    console.log("I run!");
+    await existingCustomer.save();
     console.log("I was ran!");
     await existingAccount.save();
     console.log("I was ran too");
@@ -228,7 +247,7 @@ const updatePassword = async (req,res,next) => {
 };
 
 
-exports.updatePassword = updatePassword;
+exports.updateCustomerAccount = updateCustomerAccount;
 exports.login = login;
 exports.signUp = signUp;
 exports.getAccounts = getAccounts;

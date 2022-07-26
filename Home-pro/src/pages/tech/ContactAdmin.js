@@ -26,11 +26,11 @@ function ContactAdmin() {
 
     const inquiryData = {
       email: enteredEmail,
-      seriviceNumber: enteredServiceNumber,
+      serviceNumber: enteredServiceNumber,
       inquiry: enteredInquiry,
     };
     try {
-      const response = await fetch("http://localhost:5000/admin/createjob", {
+      const response = await fetch("http://localhost:5000/api/general/createinquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function ContactAdmin() {
         body: JSON.stringify({
           email: inquiryData.email,
           serviceNumber: inquiryData.serviceNumber,
-          inquiry: inquiryData.inquiry,
+          description: inquiryData.inquiry,
         }),
       });
       const responseData = await response.json();

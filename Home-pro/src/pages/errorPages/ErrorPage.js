@@ -5,7 +5,7 @@ const ErrorPage = () => {
 	return (
 		<Wrapper className="page-100">
 			<section>
-				<iframe src="https://giphy.com/embed/F7yLXA5fJ5sLC" width="480" height="264" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-it-crowd-chris-odowd-F7yLXA5fJ5sLC">d</a></p>
+				<iframe src="https://giphy.com/embed/F7yLXA5fJ5sLC" width="480" height="264" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-it-crowd-chris-odowd-F7yLXA5fJ5sLC"></a></p>
 			
 				<Link to="/" className="btn">
 					back home

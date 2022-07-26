@@ -21,16 +21,22 @@ function ContactUs() {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
+    
     const enteredServiceNumber = serviceNumberInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
 
+  //  if(enteredServiceNumber === null){
+  //    enteredServiceNumber = 'No service number'
+  //  }
+
     const inquiryData = {
       email: enteredEmail,
-      seriviceNumber: enteredServiceNumber,
+      serviceNumber: enteredServiceNumber,
       inquiry: enteredInquiry,
     };
+    console.log(inquiryData);
     try {
-      const response = await fetch("http://localhost:5000/admin/createjob", {
+      const response = await fetch("http://localhost:5000/api/general/createinquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +44,7 @@ function ContactUs() {
         body: JSON.stringify({
           email: inquiryData.email,
           serviceNumber: inquiryData.serviceNumber,
-          inquiry: inquiryData.inquiry,
+          description: inquiryData.inquiry
         }),
       });
       const responseData = await response.json();
@@ -74,7 +80,7 @@ function ContactUs() {
                 <Form.Control
                   id="floatingPasswordCustom"
                   type="text"
-                  placeholder="Service Request Number"
+                  //placeholder="Service Request Number"
                   ref={serviceNumberInputRef}
                 />
                 <label htmlFor="floatingPasswordCustom">

@@ -15,8 +15,8 @@ const AboutPage = () => {
             <div className="underline"></div>
           </div>
           <p>
-          All our products and services are curated with the same care we would expect in our own homes. 
-          We offer everything you need to keep your home in tip-top shape. From general repairs to new 
+          We provide all our services are curated with the same care we would expect to have in our own homes. 
+          We offer wide variety of services you need to keep your home in tip-top shape. From general repairs to new 
           installations to ongoing maintenance, your home can be your sanctuary with a little extra love. 
           </p>
         </article>

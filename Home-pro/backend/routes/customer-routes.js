@@ -113,11 +113,14 @@ router.use(async (req, res, next) => {
     }
 });
 
+
+
 router.post('/test', async (req, res, next) => {
     console.log("I was Ran!")
     res.json({"message":"Hello "+res.locals.email+"!"})
 })
 
+router.post('/getJobs',jobController.customerGetJobs);
 router.patch('/editprofile',accountController.updateCustomerAccount);
 
 module.exports = router;

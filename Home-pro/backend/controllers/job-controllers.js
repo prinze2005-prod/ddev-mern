@@ -10,7 +10,7 @@ const getJobs = async (req, res, next) => {
   res.json(jobs);
 }
 
-const getJobsByCust = async(req,res,next) => {
+const getJobsByCust= async(req,res,next) => {
   //to modify to use token job for customer
   const jobs = await Job.find({cust_email:req.body.email}).exec()
   res.json(jobs);
@@ -19,6 +19,11 @@ const getJobsByCust = async(req,res,next) => {
 const getJobsByTech = async(req,res,next) => {
   //to modify to use token job for tech
   const jobs = await Job.find({tech_email:req.body.email}).exec()
+  res.json(jobs);
+}
+
+const customerGetJobs = async(req,res,next) => {
+  const jobs = await Job.find({cust_email:res.locals.email}).exec()
   res.json(jobs);
 }
 
@@ -71,3 +76,4 @@ exports.getJobsByCust = getJobsByCust;
 exports.createJob = createJob;
 exports.getJobs = getJobs;
 exports.getReceipts = getReceipts;
+exports.customerGetJobs = customerGetJobs;

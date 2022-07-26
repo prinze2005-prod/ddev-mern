@@ -29,7 +29,7 @@ function TestPage() {
     }
     //console.log(HP_refreshToken);
     //console.log(HP_accessToken);
-    const response = await fetch("http://localhost:5000/api/customer/test", {
+    const response = await fetch("http://localhost:5000/api/customer/getJobs", {
       method: "POST",
       credentials: "include",
       headers: {

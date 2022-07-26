@@ -38,7 +38,7 @@ const createJob = async (req,res,next) => {
     cust_email: req.body.email,
     status: "unassigned",
     description: req.body.description,
-    service_id: 2,
+    service_id: req.body.service,
     address:{
       street: req.body.street,
       city: "Calgary",

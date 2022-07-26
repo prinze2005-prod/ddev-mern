@@ -24,10 +24,9 @@ router.post('/signup',
     validator.check('number').not().isEmpty()],
     accountController.signUp);
 
-//to add validation
+//to add validation through email
 
 router.post('/createinquiry', inquiryController.createInquiry);
-router.patch('/editprofile',customerController.updateProfile);
 router.post('/createjob',jobController.createJob);
 
 module.exports = router;

@@ -12,6 +12,17 @@ const techSchema = new Schema({
             postalCode: {type: String, required: true}
         
     },
+    reviews: {
+            cust_id: {type: Number, required: true},
+            description: {type: String},
+            rating: {type: Number, required: true}
+       
+    },
+    services: { type:String },
+    phoneNumbers:  {
+                type: {type: String, required: true},
+                number: { type: Number, required: true }                   
+    },
     location: {
         type: {
           type: String, 

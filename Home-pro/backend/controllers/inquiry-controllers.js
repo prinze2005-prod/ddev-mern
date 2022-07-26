@@ -11,7 +11,6 @@ const getInquirys = async (req, res, next) => {
 
 const createInquiry = async (req,res,next) => {
   console.log(req.body);
-  console.log(req.body.email);
   try{
     let newServiceNumber;
     if(req.body.serviceNumber == null){
@@ -26,7 +25,6 @@ const createInquiry = async (req,res,next) => {
         description: req.body.description
     })
   let error =  newInquiry.validateSync();
-  console.log(error);
   if(error !== undefined){
     throw 'failed validation';
   }

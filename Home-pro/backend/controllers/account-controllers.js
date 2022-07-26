@@ -92,8 +92,11 @@ const login = async (req, res, next) => {
     }).save();
   }
   else{
-    res.json({message: "Account in use"});
-    return;
+    existingToken.remove();
+    refreshToken = await new Token({
+      userId: existingUser._id,
+      token: crypto.randomBytes(32).toString("hex"),
+    }).save();
   }
   
 
@@ -112,10 +115,23 @@ const login = async (req, res, next) => {
   const unencryptedRefreshToken = jwt.verify(encryptedRefreshToken, process.env.REFRESH_TOKEN_SECRET);
   const unencryptedAccessToken = jwt.verify(encryptedAccessToken, process.env.ACCESS_TOKEN_SECRET);
   console.log(unencryptedRefreshToken);
+  console.log(encryptedRefreshToken);
   console.log(unencryptedAccessToken);
+  console.log(encryptedAccessToken);
 
   //response
-  res.json({accessToken : encryptedAccessToken, refreshToken : encryptedRefreshToken, message: 'success'});
+  res.cookie("HP_refreshToken", encryptedRefreshToken);
+  res.cookie("HP_accessToken", encryptedAccessToken);
+
+  if(existingUser.authorization == "Customer"){
+    const existingCustomer = await Customer.findOne({cust_email: existingUser.email})
+    res.cookie("HP_userEmail", existingCustomer.cust_email)
+    res.cookie("HP_userFName", existingCustomer.fName)
+    res.cookie("HP_userLName", existingCustomer.lName)
+  }
+  // more else if for other account types
+  res.json({message: 'success'});
+
 };
 
 const signUp = async (req,res,next) => {

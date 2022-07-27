@@ -32,6 +32,11 @@ const techGetJobs = async(req,res,next) => {
   res.json(jobs);
 }
 
+const getUnassignedJobs = async(req,res,next) => {
+  const jobs = await Job.find({tech_email:"unassigned"}).exec()
+  res.json(jobs);
+}
+
 const getJobById = async(req,res,next) => {
   const job = await Job.findOne({job_id : req.body.job_id})
   res.json(job);
@@ -76,6 +81,8 @@ const getReceipts = async (req, res, next) => {
   res.json(receipts);
 }
 
+
+exports.getUnassignedJobs = getUnassignedJobs;
 exports.getJobsByTech = getJobsByTech;
 exports.getJobsByCust = getJobsByCust;
 exports.createJob = createJob;

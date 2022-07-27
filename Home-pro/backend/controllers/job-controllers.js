@@ -27,6 +27,11 @@ const customerGetJobs = async(req,res,next) => {
   res.json(jobs);
 }
 
+const techGetJobs = async(req,res,next) => {
+  const jobs = await Job.find({tech_email:res.locals.email}).exec()
+  res.json(jobs);
+}
+
 const getJobById = async(req,res,next) => {
   const job = await Job.findOne({job_id : req.body.job_id})
   res.json(job);
@@ -77,3 +82,4 @@ exports.createJob = createJob;
 exports.getJobs = getJobs;
 exports.getReceipts = getReceipts;
 exports.customerGetJobs = customerGetJobs;
+exports.techGetJobs = techGetJobs;

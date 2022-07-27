@@ -8,6 +8,8 @@ const getCustomers = async (req, res, next) => {
   res.json(customers);
 }
 
+
+//unused
 const updateProfile = async (req,res,next) => {
   let existingCustomer;
   try{

@@ -70,7 +70,7 @@ const BookElectrician= ({ user }) => {
           postalCode: bookingData.postalCode,
           city: "Calgary",
           province: "Alberta",
-          service: "Electrician",
+          service: 1,
           start_time: bookingData.start_time,
           description: bookingData.description,
         }),

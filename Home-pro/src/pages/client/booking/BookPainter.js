@@ -70,7 +70,7 @@ const BookPainter= ({ user }) => {
           postalCode: bookingData.postalCode,
           city: "Calgary",
           province: "Alberta",
-          service: "Painter",
+          service: 4,
           start_time: bookingData.start_time,
           description: bookingData.description,
         }),

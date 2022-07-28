@@ -22,6 +22,9 @@ router.post('/getjobsbycust', jobController.getJobsByCust);
 router.post('/getjobsbytech', jobController.getJobsByTech);
 router.post('/addservicetotech', technicianController.addProfession);
 router.post('/removeservicefromtech',technicianController.removeProfession);
+router.post('/adminaddtech',technicianController.addTechAccount);
+router.patch('/adminupdatecustomer',customerController.adminUpdateProfile);
+
 
 
 module.exports = router;

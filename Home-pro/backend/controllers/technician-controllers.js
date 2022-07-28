@@ -36,8 +36,8 @@ const updateTechAccount = async (req,res,next) => {
         throw 'failed validation';
       }
       existingTech.name = req.body.name;
-      existingTech.street = req.body.street;
-      existingTech.postalCode = req.body.postalCode;
+      existingTech.address.street = req.body.street;
+      existingTech.address.postalCode = req.body.postalCode;
       existingTech.phoneNumber = req.body.pnumber;
       let error2 = existingTech.validateSync();
       if(error2 !== undefined){
@@ -55,13 +55,124 @@ const updateTechAccount = async (req,res,next) => {
     }
   };
 
+  const adminUpdateTechAccount = async (req,res,next) => {
+    let existingAccount;
+    let existingTech;
+    try{
+      existingAccount = await Account.findOne({email: req.body.email});
+    }catch(err){
+      res.json({message: err});
+      return;
+    }
+    try{
+      existingTech = await Technician.findOne({tech_email: req.body.email});
+    }catch(err){
+      res.json({message: err});
+      return
+    }
+  
+    if(existingAccount == null || existingTech == null){
+      res.json({message: "Error in request, please re-login"});
+      return
+    }
+    try{
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      existingAccount.password=hashedPassword;
+      let error1 = existingAccount.validateSync();
+      if(error1 !== undefined){
+        console.log(error1);
+        throw 'failed validation';
+      }
+      existingTech.name = req.body.name;
+      existingTech.address.street = req.body.street;
+      existingTech.address.postalCode = req.body.postalCode;
+      existingTech.phoneNumber = req.body.number;
+      existingTech.services = req.body.services;
+      let error2 = existingTech.validateSync();
+      if(error2 !== undefined){
+        console.log(error2);
+        throw 'failed validation';
+      }
+      console.log("I run!");
+      await existingTech.save();
+      console.log("I was ran!");
+      await existingAccount.save();
+      console.log("I was ran too");
+      res.json({message: "Success!"});
+    }catch(err){
+      res.json({message: "Error has occured"});
+    }
+  };
+
+
+const addTechAccount = async (req,res,next) => {
+  try{
+    let existingUser;
+    try{
+      existingUser = await Account.findOne({email: req.body.email})
+    }catch(err){
+      res.json({message: err});
+      return;
+    }
+    if (!(!existingUser)){
+      res.json({message: "User already exists"});
+      return;
+    }
+    try{
+      //implement bcrypt hashed passowrd here
+      //
+      //
+      //
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  
+      const newAccount= new Account({
+        email: req.body.email,
+        password: hashedPassword,
+        authorization: "Technician"
+      })
+
+      const newTech=  Technician({
+        tech_email: req.body.email,
+        name: req.body.name,
+        address: {
+          street: req.body.street,
+          city: "Calgary",
+          province: "Alberta",
+          postalCode: req.body.postalCode
+        },
+        services: req.body.services,
+        phoneNumber: req.body.number
+      })
+
+      let errorA = newAccount.validateSync();
+      let errorT = newTech.validateSync();
+      if(errorA !== undefined || errorT !== undefined){
+        console.log(errorA);
+        console.log(errorT);
+        throw 'failed validation';
+      }
+      console.log("I was ran!");
+      await newAccount.save();
+      console.log("I was ran too!");
+      await newTech.save();
+      console.log("I was ran three");
+      res.json({"message": 'success'});
+    }catch(err){
+      res.json({"message":err})
+    }
+  }catch(err){
+    res.json({"message":"error has occured"});
+  }
+}
+
+
 const getTechnicians = async (req,res,next) =>{
     const technicians = await Technician.find().exec();
     res.json(technicians);
 }
 
-//maybe rewrite into array
 
+//un-used
 const addProfession = async(req,res,next) =>{
   const technician = await Technician.findOne({tech_email:req.body.email}).exec();
   technician.services.push(req.body.serviceNumber);
@@ -151,3 +262,5 @@ exports.addProfession = addProfession;
 exports.removeProfession = removeProfession;
 exports.getTechnicians = getTechnicians;
 exports.updateTechAccount = updateTechAccount;
+exports.adminUpdateTechAccount = adminUpdateTechAccount;
+exports.addTechAccount = addTechAccount;

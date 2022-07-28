@@ -197,9 +197,9 @@ const signUp = async (req,res,next) => {
     console.log("I was ran too!");
     await newCustomer.save();
     console.log("I was ran three");
-    res.json({message: 'success'});
+    res.json({"message": 'success'});
   }catch(err){
-    res.json({message: err});
+    res.json({"message": err});
     return;
   }
   return;

@@ -60,6 +60,7 @@ const createJob = async (req,res,next) => {
     status: "unassigned",
     description: req.body.description,
     service_id: req.body.service,
+    start_time: req.body.start_time,
     address:{
       street: req.body.street,
       city: "Calgary",

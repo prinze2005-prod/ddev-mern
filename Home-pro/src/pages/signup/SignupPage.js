@@ -93,12 +93,12 @@ function SignupPage() {
   function Hint() {
     return (
       <div>
-      <br></br>
-      <p style={{ color: "red", textAlign: "left" }}>
-        Password must contain:<br></br> at least 1 UpperCase <br></br>at least 1
-        LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
-        length: 8-24
-      </p>
+        <br></br>
+        <p style={{ color: "red", textAlign: "left" }}>
+          Password must contain:<br></br> at least 1 UpperCase <br></br>at least
+          1 LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
+          length: 8-24
+        </p>
       </div>
     );
   }
@@ -152,7 +152,6 @@ function SignupPage() {
                     <Form.Control
                       type="email"
                       placeholder="Email"
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                       required
                       ref={emailInputRef}
                     />
@@ -194,9 +193,9 @@ function SignupPage() {
                       >
                         <Form.Control
                           type="text"
-                          placeholder="Postal Code(A1A 1A1)"
+                          placeholder="Postal Code(A1A1A1)"
                           required
-                          pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]"
+                          pattern="[A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9]"
                           ref={postalCodeInputRef}
                         />
                       </FloatingLabel>

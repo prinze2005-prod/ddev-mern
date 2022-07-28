@@ -42,35 +42,35 @@ const AdminAddClient = ({ user }) => {
       password: enteredPassword,
       phoneNumber: enteredPhoneNumber,
       street: enteredStreet,
-      postalCode: enteredPostalCode
+      postalCode: enteredPostalCode,
     });
     setModalShow(true);
     return;
   }
 
   const handlerSubmit = async () => {
-  try {
-    const response = await fetch("http://localhost:5000/api/general/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fName: clientData.fname,
-        lName: clientData.lname,
-        email: clientData.email,
-        number: clientData.phoneNumber,
-        street: clientData.street,
-        postalCode: clientData.postalCode,
-        password: clientData.password
-      }),
-    });
-    const responseData = await response.json();
-    console.log(responseData);
-  } catch (err) {
-    console.log(err);
-  }
-};
+    try {
+      const response = await fetch("http://localhost:5000/api/general/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fName: clientData.fname,
+          lName: clientData.lname,
+          email: clientData.email,
+          number: clientData.phoneNumber,
+          street: clientData.street,
+          postalCode: clientData.postalCode,
+          password: clientData.password,
+        }),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -132,12 +132,12 @@ const AdminAddClient = ({ user }) => {
   function Hint() {
     return (
       <div>
-      <br></br>
-      <p style={{ color: "red", textAlign: "left" }}>
-        Password must contain:<br></br> at least 1 UpperCase <br></br>at least 1
-        LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
-        length: 8-24
-      </p>
+        <br></br>
+        <p style={{ color: "red", textAlign: "left" }}>
+          Password must contain:<br></br> at least 1 UpperCase <br></br>at least
+          1 LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
+          length: 8-24
+        </p>
       </div>
     );
   }
@@ -181,31 +181,31 @@ const AdminAddClient = ({ user }) => {
               <FloatingLabel controlId="floatingInputGrid" label="Email">
                 <Form.Control
                   type="text"
-                  placeholder="Emai;"
+                  placeholder="Email;"
                   required
                   ref={emailInputRef}
                 />
               </FloatingLabel>
             </Col>
             <Col md>
-               <FloatingLabel
-                    controlId="floatingPasswordInputGrid"
-                    label="Password"
-                  >
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                      required
-                      ref={passwordInputRef}
-                      onClick={onClick}
-                    />
-                  </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingPasswordInputGrid"
+                label="Password"
+              >
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  required
+                  ref={passwordInputRef}
+                  onClick={onClick}
+                />
+              </FloatingLabel>
 
-                  {showHint ? <Hint /> : null}
+              {showHint ? <Hint /> : null}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Street">
@@ -251,16 +251,21 @@ const AdminAddClient = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code(A1A1A1)"
+                  pattern="[A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9]"
                   required
                   ref={postalCodeInputRef}
                 />
               </FloatingLabel>
             </Col>
             <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Phone Number">
+              <FloatingLabel
+                controlId="floatingInputGrid"
+                label="Phone Number(0001112222)"
+              >
                 <Form.Control
                   type="text"
-                  placeholder="Phone Number"
+                  placeholder="Phone Number(0001112222)"
+                  pattern="\d{10}"
                   required
                   ref={phoneNumberInputRef}
                 />

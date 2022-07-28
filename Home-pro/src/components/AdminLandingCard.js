@@ -48,7 +48,7 @@ function AdminLandingCard() {
         <Row xs={1} md={3} className="g-4">
           <Col>
             <NavLink
-              to="/manageCustomer"
+              to="adminClientAdd"
               style={(isActive) => ({
                 color: isActive ? "#ffb347" : "black",
               })}
@@ -74,7 +74,7 @@ function AdminLandingCard() {
                 </center>
                 <Card.Body>
                   <Card.Title>
-                    <center>Manage Customers</center>
+                    <center>Add a Client</center>
                   </Card.Title>
                 </Card.Body>
               </Card>
@@ -82,7 +82,7 @@ function AdminLandingCard() {
           </Col>
           <Col>
             <NavLink
-              to="/manageTech"
+              to="/adminTechAdd"
               style={(isActive) => ({
                 color: isActive ? "#ffb347" : "black",
               })}
@@ -115,7 +115,7 @@ function AdminLandingCard() {
           </Col>{" "}
           <Col>
             <NavLink
-              to="/manageJob"
+              to="adminTechAdd"
               style={(isActive) => ({
                 color: isActive ? "#ffb347" : "black",
               })}

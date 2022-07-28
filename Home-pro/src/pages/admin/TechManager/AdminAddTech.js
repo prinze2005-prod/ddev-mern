@@ -16,10 +16,12 @@ const AdminAddTech = ({ user }) => {
   const streetInputRef = useRef();
   const postalCodeInputRef = useRef();
   const phoneNumberInputRef = useRef();
-
+  const passwordInputRef = useRef();
   const [serviceNameList, setServiceNameList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [techData, setTechData] = useState(null);
+  const [showHint, setShowHint] = React.useState(false);
+  const onClick = () => setShowHint(true);
 
   const [checkedState, setCheckedState] = useState([
     false,
@@ -78,12 +80,14 @@ const AdminAddTech = ({ user }) => {
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
     const enteredPhoneNumber = phoneNumberInputRef.current.value;
+    const enterPassword = passwordInputRef.current.value;
 
     setTechData({
       name: enteredName,
       tech_email: enteredEmail,
       phoneNumber: enteredPhoneNumber,
       services: updatedServices,
+      password: enterPassword,
       address: {
         city: "Calgary",
         province: "Alberta",
@@ -92,9 +96,28 @@ const AdminAddTech = ({ user }) => {
       },
     });
     // setTechData({ ...techData, services: updatedServices });
+
     setServiceNameList(updatedServicesNameList);
-    setModalShow(true);
-    return;
+
+    // return;
+    errorHander();
+  }
+
+  function errorHander() {
+    let isEmpty = true;
+    for (var checkedBox in checkedState) {
+      if (checkedState[checkedBox]) {
+        isEmpty = false;
+        setModalShow(true);
+        return;
+      }
+    }
+
+    if (isEmpty) {
+      alert("at least one checkbox is needed!!!");
+      return;
+      //stop the rendering
+    }
   }
 
   //   const handlerSubmit = async () => {
@@ -117,7 +140,21 @@ const AdminAddTech = ({ user }) => {
   //   };
 
   function handlerSubmit() {
-    console.log(techData);
+    let isEmpty = true;
+    for (var checkedBox in checkedState) {
+      if (checkedState[checkedBox]) {
+        isEmpty = false;
+        console.log("good!");
+        break;
+        //write to database now!
+      }
+    }
+    console.log("I was ran!");
+    if (isEmpty) {
+      alert("at least one checkbox is needed!!!");
+      setModalShow(false);
+      return;
+    }
   }
 
   function MyVerticallyCenteredModal(props) {
@@ -140,6 +177,8 @@ const AdminAddTech = ({ user }) => {
               <b>Technician Name:</b> {techData.name} <br></br>
               <b>Technician Email:</b> {techData.tech_email} <br></br>
               <b>Phone Number:</b> {techData.phoneNumber} <br></br>
+              <b>Password:</b> {techData.password}
+              <br></br>
               <b>Service Types:</b>
               <br></br>
               <ul>
@@ -182,6 +221,20 @@ const AdminAddTech = ({ user }) => {
       </Modal>
     );
   }
+
+  function Hint() {
+    return (
+      <div>
+        <br></br>
+        <p style={{ color: "red", textAlign: "left" }}>
+          Password must contain:<br></br> at least 1 UpperCase <br></br>at least
+          1 LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
+          length: 8-24
+        </p>
+      </div>
+    );
+  }
+
   return (
     <main>
       <AdminHeader title="Add Technician" />
@@ -220,6 +273,19 @@ const AdminAddTech = ({ user }) => {
           </Row>
           <br></br>
           <Row className="g-2">
+            <Col md>
+              <FloatingLabel controlId="floatingInputGrid" label="Password">
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onClick={onClick}
+                  pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  required
+                  ref={passwordInputRef}
+                />
+              </FloatingLabel>
+              {showHint ? <Hint /> : null}
+            </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Street">
                 <Form.Control
@@ -264,16 +330,21 @@ const AdminAddTech = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code(A1A1A1)"
+                  pattern="[A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9]"
                   required
                   ref={postalCodeInputRef}
                 />
               </FloatingLabel>
             </Col>
             <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Phone Number">
+              <FloatingLabel
+                controlId="floatingInputGrid"
+                label="Phone Number(0001112222)"
+              >
                 <Form.Control
                   type="text"
-                  placeholder="Phone Number"
+                  placeholder="Phone Number(0001112222)"
+                  pattern="\d{10}"
                   required
                   ref={phoneNumberInputRef}
                 />

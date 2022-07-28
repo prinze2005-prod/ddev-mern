@@ -60,6 +60,8 @@ const getTechnicians = async (req,res,next) =>{
     res.json(technicians);
 }
 
+//maybe rewrite into array
+
 const addProfession = async(req,res,next) =>{
   const technician = await Technician.findOne({tech_email:req.body.email}).exec();
   technician.services.push(req.body.serviceNumber);

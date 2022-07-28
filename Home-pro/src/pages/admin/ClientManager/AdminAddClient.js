@@ -38,15 +38,11 @@ const AdminAddClient = ({ user }) => {
     setClientData({
       fname: enteredFirstName,
       lname: enteredLastName,
-      cust_email: enteredEmail,
+      email: enteredEmail,
       password: enteredPassword,
       phoneNumber: enteredPhoneNumber,
-      address: {
-        city: "Calgary",
-        province: "Alberta",
-        postalCode: enteredPostalCode,
-        street: enteredStreet,
-      },
+      street: enteredStreet,
+      postalCode: enteredPostalCode
     });
     setModalShow(true);
     return;
@@ -62,10 +58,11 @@ const AdminAddClient = ({ user }) => {
       body: JSON.stringify({
         fName: clientData.fname,
         lName: clientData.lname,
-        cust_email: clientData.cust_email,
-        phoneNumber: clientData.pnumber,
-        address: clientData.address,
-        password: clientData.password,
+        email: clientData.email,
+        number: clientData.phoneNumber,
+        street: clientData.street,
+        postalCode: clientData.postalCode,
+        password: clientData.password
       }),
     });
     const responseData = await response.json();
@@ -92,15 +89,15 @@ const AdminAddClient = ({ user }) => {
           <div>
             <h5>New Client Information</h5>
             <div>
-              <b>First Name:</b> {clientData.fName} <br></br>
-              <b>Last Name:</b> {clientData.lName} <br></br>
-              <b>Email:</b> {clientData.cust_email} <br></br>
-              <b>Phone Number:</b> {clientData.phoneNumber} <br></br>
+              <b>First Name:</b> {clientData.fname} <br></br>
+              <b>Last Name:</b> {clientData.lname} <br></br>
+              <b>Email:</b> {clientData.email} <br></br>
+              <b>Phone Number:</b> {clientData.number} <br></br>
               <b>Street:</b>
-              {clientData.address.street} <br></br>
+              {clientData.street} <br></br>
               <b>City:</b> Calgary <br></br>
               <b>Province:</b> Alberta<br></br>
-              <b>Postal Code:</b> {clientData.address.postalCode}
+              <b>Postal Code:</b> {clientData.postalCode}
             </div>
             <br />
             <br></br>

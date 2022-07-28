@@ -80,7 +80,7 @@ function ContactUs() {
                 <Form.Control
                   id="floatingPasswordCustom"
                   type="text"
-                  //placeholder="Service Request Number"
+                  placeholder="Service Request Number"
                   ref={serviceNumberInputRef}
                 />
                 <label htmlFor="floatingPasswordCustom">

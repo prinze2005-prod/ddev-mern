@@ -15,6 +15,8 @@ const generalRoutes = require('./routes/general-routes');
 const customerRoutes = require('./routes/customer-routes');
 const adminRoutes = require('./routes/admin-routes');
 
+const testRoutes = require('./routes/test-routes');
+
 const HttpError = require('./models/http-error');
 
 const app = express();
@@ -38,6 +40,7 @@ app.options('/', (req, res) => {
 app.use('/api/general', generalRoutes);
 app.use('/api/customer', customerRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/test',testRoutes)
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

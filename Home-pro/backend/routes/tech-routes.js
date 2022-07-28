@@ -120,6 +120,8 @@ router.post('/test', async (req, res, next) => {
     res.json({"message":"Hello "+res.locals.email+"!"})
 })
 
+
+router.post('/getreceipts',jobController.techGetReceipts);
 router.post('/getunjobs',jobController.getUnassignedJobs);
 router.patch('/unassignjob',jobController.techUnassignJob);
 router.patch('/completejob',jobController.techCompleteJob);

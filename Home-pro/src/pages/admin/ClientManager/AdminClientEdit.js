@@ -51,7 +51,7 @@ const AdminClientEdit = ({ user }) => {
   const handlerSubmit = async () => {
   try {
     const response = await fetch("http://localhost:5000/api/admin/adminupdatecustomer", {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

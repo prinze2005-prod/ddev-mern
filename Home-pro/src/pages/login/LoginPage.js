@@ -111,22 +111,35 @@ function LoginPage({ setUser }) {
                     />
                   </FloatingLabel>
                   <br></br>
-                  <Button
-                    variant="warning"
-                    type="submit"
-                    //onClick={submitHandler}
-                    style={{ color: "black", width: "100%" }}
-                  >
-                    Submit
-                  </Button>{" "}
+                  <MDBRow className="mb-4">
+                    <MDBCol>
+                      <Button
+                        variant="warning"
+                        type="submit"
+                        style={{ color: "black", width: "100%" }}
+                      >
+                        Log In
+                      </Button>
+                    </MDBCol>
+                    <MDBCol>
+                      <Link to="/">
+                        {" "}
+                        <Button
+                          variant="light"
+                          style={{ color: "black", width: "100%" }}
+                        >
+                          Cancel
+                        </Button>
+                      </Link>
+                    </MDBCol>
+                  </MDBRow>
                   {result && (
                     <div>
                       <br></br>
                       <Alert variant="danger">{result}</Alert>
                     </div>
                   )}
-                  <br></br>
-                  <br></br>
+
                   <MDBRow className="mb-4">
                     <MDBCol>
                       <Link to="#">Forgot password?</Link>

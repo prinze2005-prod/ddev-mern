@@ -34,6 +34,7 @@ import TechProfile from "./pages/tech/TechProfile";
 import AdminLandingPage from "./pages/admin/AdminLandingPage";
 import AdminProfile from "./pages/admin/AdminProfile";
 import AdminJobEdit from "./pages/admin/JobManager/AdminJobEdit";
+import AdminTechEdit from "./pages/admin/TechManager/AdminTechEdit";
 
 import TestPage from "./pages/TestPage";
 
@@ -155,7 +156,9 @@ function App() {
             <Route exact path="/adminJobEdit">
               <AdminJobEdit></AdminJobEdit>
             </Route>
-
+            <Route exact path="/adminTechEdit">
+              <AdminTechEdit></AdminTechEdit>
+            </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>
             </Route>

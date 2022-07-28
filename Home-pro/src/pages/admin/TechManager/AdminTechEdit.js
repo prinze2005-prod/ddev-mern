@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AdminHeader from "../../../components/AdminHeader.js";
 
 const AdminTechEdit = ({ user }) => {
@@ -141,41 +141,15 @@ const AdminTechEdit = ({ user }) => {
   }
   return (
     <main>
-      <AdminHeader title="Job Details" />
+      <AdminHeader title="Edit Technician Information" />
 
-      <Container>
+      <Container style={{ width: "40%" }}>
         <br></br>
         <center>
-          <h3>Job Details</h3>
+          <h3>Technician Information</h3>
         </center>
         <br></br>
         <Form onSubmit={submitHandler}>
-          <Row className="g-2">
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Job ID">
-                <Form.Control
-                  type="text"
-                  placeholder="Job ID"
-                  required
-                  value="123456"
-                  readOnly
-                />
-              </FloatingLabel>
-            </Col>
-            <Col md>
-              <FloatingLabel
-                controlId="floatingInputGrid"
-                label="Technician Email"
-              >
-                <Form.Control
-                  type="text"
-                  placeholder="Technician Email"
-                  required
-                />
-              </FloatingLabel>
-            </Col>
-          </Row>
-          <br></br>
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="First Name">
@@ -183,17 +157,20 @@ const AdminTechEdit = ({ user }) => {
                   type="text"
                   placeholder="First Name"
                   required
-                  readOnly
+                  defaultValue="Joe"
                 />
               </FloatingLabel>
             </Col>
+          </Row>
+          <br></br>
+          <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Last Name">
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
                   required
-                  readOnly
+                  defaultValue="blow"
                 />
               </FloatingLabel>
             </Col>
@@ -203,23 +180,26 @@ const AdminTechEdit = ({ user }) => {
             <Col md>
               <FloatingLabel
                 controlId="floatingInputGrid"
-                label="Customer Email"
+                label="Technician Email"
               >
                 <Form.Control
-                  type="text"
-                  placeholder="Customer Email"
+                  type="email"
+                  placeholder="Technician Email"
                   required
-                  readOnly
+                  defaultValue="tech@gmail.com"
                 />
               </FloatingLabel>
             </Col>
+          </Row>
+          <br></br>
+          <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Phone Number">
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
                   required
-                  readOnly
+                  defaultValue="1234567890"
                 />
               </FloatingLabel>
             </Col>
@@ -227,66 +207,20 @@ const AdminTechEdit = ({ user }) => {
           <br></br>
           <Row className="g-2">
             <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Street">
-                <Form.Control
-                  type="text"
-                  placeholder="Street"
-                  required
-                  readOnly
-                />
-              </FloatingLabel>
-            </Col>
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Postal Code">
-                <Form.Control
-                  type="text"
-                  placeholder="Postal Code"
-                  required
-                  readOnly
-                />
-              </FloatingLabel>
-            </Col>
-          </Row>
-          <br></br>
-          <Row className="g-2">
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="City">
-                <Form.Control type="text" value="Calgary" readOnly />
-              </FloatingLabel>
-            </Col>
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Province">
-                <Form.Control type="text" value="Alberta" readOnly />
+              <FloatingLabel controlId="floatingSelect" label="Service Type">
+                <Form.Select aria-label="Floating label select example">
+                  <option value="plumber">Plumber</option>
+                  <option value="painter">Painter</option>
+                  <option value="heating">Heating</option>
+                  <option value="handyman">Handyman</option>
+                  <option value="electrician">Electrician</option>
+                  <option value="appliance">Appliance</option>
+                </Form.Select>
               </FloatingLabel>
             </Col>
           </Row>
           <br></br>
 
-          <Row className="g-2">
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Date">
-                <Form.Control type="date" placeholder="Date" required />
-              </FloatingLabel>
-            </Col>
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Time">
-                <Form.Control type="time" placeholder="Time" required />
-              </FloatingLabel>
-            </Col>
-          </Row>
-          <br></br>
-          <FloatingLabel
-            controlId="floatingTextarea2"
-            label="Brief Description"
-          >
-            <Form.Control
-              as="textarea"
-              placeholder="Leave a comment here"
-              required
-              readOnly
-              style={{ height: "100px" }}
-            />
-          </FloatingLabel>
           <br></br>
           <center>
             <Button

@@ -70,7 +70,7 @@ const Profile = ({ user }) => {
         "http://localhost:5000/api/customer/editprofile",
         {
           method: "PATCH",
-          credentials: "include", //TWO THINGS: Cookies and this header
+          credentials: "include", //TWO THINGS: Cookies and this header <============
           headers: {
             "Content-Type": "application/json",
           },
@@ -81,8 +81,8 @@ const Profile = ({ user }) => {
             pnumber: profileData.pnumber,
             street: profileData.street,
             postalCode: profileData.postalCode,
-            refreshToken: HP_refreshToken,
-            accessToken: HP_accessToken,
+            refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+            accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
           }),
         }
       );

@@ -52,6 +52,7 @@ const createJob = async (req,res,next) => {
   console.log(req.body);
   console.log(req.body.email);
   try{
+  console.log(req.body.start_time) 
   const newJob = new Job({
     first_name: req.body.fname,
     last_name: req.body.lname,

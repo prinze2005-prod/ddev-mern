@@ -243,7 +243,7 @@ const updateCustomerAccount = async (req,res,next) => {
     let error1 = existingAccount.validateSync();
     if(error1 !== undefined){
       console.log(error1);
-      throw 'failed validation';
+      res.json({message: "Error in validation"});
     }
     existingCustomer.fName = req.body.fname;
     existingCustomer.lName = req.body.lname;
@@ -253,7 +253,7 @@ const updateCustomerAccount = async (req,res,next) => {
     let error2 = existingCustomer.validateSync();
     if(error2 !== undefined){
       console.log(error2);
-      throw 'failed validation';
+      res.json({message: "Error in validation"});
     }
     console.log("I run!");
     await existingCustomer.save();

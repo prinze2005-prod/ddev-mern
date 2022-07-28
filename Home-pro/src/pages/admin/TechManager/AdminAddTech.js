@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,20 +11,15 @@ import AdminHeader from "../../../components/AdminHeader.js";
 const AdminAddTech = ({ user }) => {
   let history = useHistory();
 
+  const emailInputRef = useRef();
+  const nameInputRef = useRef();
+  const streetInputRef = useRef();
+  const postalCodeInputRef = useRef();
+  const phoneNumberInputRef = useRef();
+
   const [serviceNameList, setServiceNameList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [techData, setTechData] = useState({
-    name: "",
-    tech_email: "",
-    phoneNumber: "",
-    services: [],
-    address: {
-      city: "Calgary",
-      province: "Alberta",
-      postalCode: "",
-      street: "",
-    },
-  });
+  const [techData, setTechData] = useState(null);
 
   const [checkedState, setCheckedState] = useState([
     false,
@@ -78,8 +73,25 @@ const AdminAddTech = ({ user }) => {
         }
       }
     }
+    const enteredEmail = emailInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
+    const enteredStreet = streetInputRef.current.value;
+    const enteredPostalCode = postalCodeInputRef.current.value;
+    const enteredPhoneNumber = phoneNumberInputRef.current.value;
 
-    setTechData({ ...techData, services: updatedServices });
+    setTechData({
+      name: enteredName,
+      tech_email: enteredEmail,
+      phoneNumber: enteredPhoneNumber,
+      services: updatedServices,
+      address: {
+        city: "Calgary",
+        province: "Alberta",
+        postalCode: enteredPostalCode,
+        street: enteredStreet,
+      },
+    });
+    // setTechData({ ...techData, services: updatedServices });
     setServiceNameList(updatedServicesNameList);
     setModalShow(true);
     return;
@@ -123,7 +135,7 @@ const AdminAddTech = ({ user }) => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <h5>You Information</h5>
+            <h5>New Technician Information</h5>
             <div>
               <b>Technician Name:</b> {techData.name} <br></br>
               <b>Technician Email:</b> {techData.tech_email} <br></br>
@@ -135,10 +147,11 @@ const AdminAddTech = ({ user }) => {
                   <li key={service}>&#9830;{service}</li>
                 ))}
               </ul>
-              <b>Street:</b> <br></br>
+              <b>Street:</b>
+              {techData.address.street} <br></br>
               <b>City:</b> Calgary <br></br>
               <b>Province:</b> Alberta<br></br>
-              <b>Postal Code: </b>
+              <b>Postal Code:</b> {techData.address.postalCode}
             </div>
             <br />
             <br></br>
@@ -187,10 +200,7 @@ const AdminAddTech = ({ user }) => {
                   type="text"
                   placeholder="Name"
                   required
-                  value={techData?.name}
-                  onChange={(e) =>
-                    setTechData({ ...techData, name: e.target.value })
-                  }
+                  ref={nameInputRef}
                 />
               </FloatingLabel>
             </Col>
@@ -203,9 +213,7 @@ const AdminAddTech = ({ user }) => {
                   type="email"
                   placeholder="Technician Email"
                   required
-                  onChange={(e) =>
-                    setTechData({ ...techData, tech_email: e.target.value })
-                  }
+                  ref={emailInputRef}
                 />
               </FloatingLabel>
             </Col>
@@ -218,12 +226,7 @@ const AdminAddTech = ({ user }) => {
                   type="text"
                   placeholder="Street"
                   required
-                  //   onChange={(e) =>
-                  //     setTechData({
-                  //       ...techData.address,
-                  //       street: e.target.value,
-                  //     })
-                  //   }
+                  ref={streetInputRef}
                 />
               </FloatingLabel>
             </Col>
@@ -262,12 +265,7 @@ const AdminAddTech = ({ user }) => {
                   type="text"
                   placeholder="Postal Code(A1A1A1)"
                   required
-                  //   onChange={(e) =>
-                  //     setTechData({
-                  //       ...techData.address,
-                  //       postalCode: e.target.value,
-                  //     })
-                  //   }
+                  ref={postalCodeInputRef}
                 />
               </FloatingLabel>
             </Col>
@@ -277,9 +275,7 @@ const AdminAddTech = ({ user }) => {
                   type="text"
                   placeholder="Phone Number"
                   required
-                  onChange={(e) =>
-                    setTechData({ ...techData, phoneNumber: e.target.value })
-                  }
+                  ref={phoneNumberInputRef}
                 />
               </FloatingLabel>
             </Col>

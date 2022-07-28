@@ -33,7 +33,7 @@ const techGetJobs = async(req,res,next) => {
 }
 
 const getUnassignedJobs = async(req,res,next) => {
-  const jobs = await Job.find({tech_email:"unassigned"}).exec()
+  const jobs = await Job.find({status:"unassigned"}).exec()
   res.json(jobs);
 }
 

@@ -11,33 +11,6 @@ import AdminHeader from "../../../components/AdminHeader.js";
 const AdminTechEdit = ({ user }) => {
   let history = useHistory();
 
-  const serviceType = [
-    {
-      serviceName: "Electrical",
-      serviceId: 1,
-    },
-    {
-      serviceName: "Plumbing",
-      serviceId: 2,
-    },
-    {
-      serviceName: "Heating & Cooling",
-      serviceId: 3,
-    },
-    {
-      serviceName: "Painting",
-      serviceId: 4,
-    },
-    {
-      serviceName: "Handyman",
-      serviceId: 5,
-    },
-    {
-      serviceName: "Appliance Service",
-      serviceId: 6,
-    },
-  ];
-
   const [serviceNameList, setServiceNameList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [techData, setTechData] = useState({
@@ -90,7 +63,7 @@ const AdminTechEdit = ({ user }) => {
 
     let updatedServicesNameList = [];
     if (updatedServices.length !== 0) {
-      for (var i = 0; i < updatedServices.length; i++) {
+      for (i = 0; i < updatedServices.length; i++) {
         switch (updatedServices[i]) {
           case 1:
             updatedServicesNameList.push("Electrical");
@@ -152,35 +125,36 @@ const AdminTechEdit = ({ user }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Proceed Your Booking
+            Proceed Your Updating
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
             <h5>You Information</h5>
-            <p>
-              name: {techData.name} <br></br>
-              tech_email: {techData.tech_email} <br></br>
-              phoneNumber: {techData.phoneNumber} <br></br>
-              services:<br></br>
-              {serviceNameList.map((service) => (
-                <>
-                  <span key={service}>{service}</span>
-                  <br></br>
-                </>
-              ))}
-              street: {techData.address.street} <br></br>
-              city: "Calgary" <br></br>
-              province: "Alberta"<br></br>
-              postalCode: {techData.address.postalCode}
-            </p>
+            <div>
+              <b>Technician Name:</b> {techData.name} <br></br>
+              <b>Technician Email:</b> {techData.tech_email} <br></br>
+              <b>Phone Number:</b> {techData.phoneNumber} <br></br>
+              <b>Service Types:</b>
+              <br></br>
+              <ul>
+                {serviceNameList.map((service) => (
+                  <li key={service}>&#9830;{service}</li>
+                ))}
+              </ul>
+              <b>Street:</b> {techData.address.street} <br></br>
+              <b>City:</b> Calgary <br></br>
+              <b>Province:</b> Alberta<br></br>
+              <b>Postal Code: </b>
+              {techData.address.postalCode}
+            </div>
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
               Please ensure above information is correct
             </h5>
             <h5 style={{ color: "darkred" }}>
-              Click "Save Changes" to update technician information
+              Click "Continue" to update technician information
             </h5>
           </div>
         </Modal.Body>
@@ -197,7 +171,7 @@ const AdminTechEdit = ({ user }) => {
             style={{ color: "black" }}
             onClick={handlerSubmit}
           >
-            Submit
+            Continue
           </Button>
         </Modal.Footer>
       </Modal>

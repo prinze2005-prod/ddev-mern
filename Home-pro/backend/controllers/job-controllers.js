@@ -5,19 +5,19 @@ const HttpError = require('../models/http-error');
 const Job = require('../models/job');
 const Receipt = require('../models/receipt');
 
+//job get functions
+
 const getJobs = async (req, res, next) => {
   const jobs = await Job.find().exec();
   res.json(jobs);
 }
 
 const getJobsByCust= async(req,res,next) => {
-  //to modify to use token job for customer
   const jobs = await Job.find({cust_email:req.body.email}).exec()
   res.json(jobs);
 }
 
 const getJobsByTech = async(req,res,next) => {
-  //to modify to use token job for tech
   const jobs = await Job.find({tech_email:req.body.email}).exec()
   res.json(jobs);
 }
@@ -38,9 +38,11 @@ const getUnassignedJobs = async(req,res,next) => {
 }
 
 const getJobById = async(req,res,next) => {
-  const job = await Job.findOne({job_id : req.body.job_id})
+  const job = await Job.findOne({job_id : req.body.jobID});
   res.json(job);
 }
+
+//job create functions
 
 const createJob = async (req,res,next) => {
   console.log(req.body);
@@ -76,6 +78,57 @@ const createJob = async (req,res,next) => {
   }
 };
 
+//job set functions
+
+const techAssignJob = async(req, res, next) =>{
+  try{
+    const job = await Job.findOne(req.body.jobID)
+    job.tech_email=res.locals.email;
+    job.status = "assigned";
+    await job.save();
+    res.json({"message":"success"});
+  }catch(err){
+    res.json({"message":"error has occured"});
+  }
+}
+const techCompleteJob = async(req, res, next) =>{
+  try{
+    const job = await Job.findOne(req.body.jobID)
+    job.status = "completed";
+    await job.save();
+    res.json({"message":"success"});
+  }catch(err){
+    res.json({"message":"error has occured"});
+  }
+}
+
+const techUnassignJob = async(req, res, next) =>{
+  try{
+    const job = await Job.findOne(req.body.jobID)
+    job.tech_email="unassigned";
+    job.status = "unassigned";
+    await job.save();
+    res.json({"message":"success"});
+  }catch(err){
+    res.json({"message":"error has occured"});
+  }
+}
+
+
+const adminAssignJob = async(req,res,next) => {
+  try{
+    const job = await Job.findOne(req.body.jobID)
+    job.tech_email=req.body.email;
+    job.status = "assigned";
+    await job.save();
+    res.json({"message":"success"});
+  }catch(err){
+    res.json({"message":"error has occured"});
+  }
+}
+
+//receipt get functions
+
 const getReceipts = async (req, res, next) => {
   const receipts = await Receipt.find().exec();
   res.json(receipts);
@@ -90,3 +143,6 @@ exports.getJobs = getJobs;
 exports.getReceipts = getReceipts;
 exports.customerGetJobs = customerGetJobs;
 exports.techGetJobs = techGetJobs;
+exports.techAssignJob = techAssignJob;
+exports.techCompleteJob = techCompleteJob;
+exports.techUnassignJob = techUnassignJob;

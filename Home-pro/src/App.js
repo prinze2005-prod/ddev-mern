@@ -39,6 +39,7 @@ import AdminAddTech from "./pages/admin/TechManager/AdminAddTech";
 
 import TestPage from "./pages/TestPage";
 import AdminAddClient from "./pages/admin/ClientManager/AdminAddClient";
+import AdminClientEdit from "./pages/admin/ClientManager/AdminClientEdit";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -166,6 +167,9 @@ function App() {
             </Route>
             <Route exact path="/adminClientAdd">
               <AdminAddClient/>
+            </Route>
+            <Route exact path="/adminClientEdit">
+              <AdminClientEdit/>
             </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>

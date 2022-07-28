@@ -152,6 +152,7 @@ function SignupPage() {
                     <Form.Control
                       type="email"
                       placeholder="Email"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                       required
                       ref={emailInputRef}
                     />

@@ -72,6 +72,12 @@ function LoginPage({ setUser }) {
       LoginPage();
     }
     console.log(message);
+    if(message === 'Customer'){
+      history.push("/");
+    } else if(message === 'Technician'){
+      history.push("/tech");
+    }
+
   }
 
   return (

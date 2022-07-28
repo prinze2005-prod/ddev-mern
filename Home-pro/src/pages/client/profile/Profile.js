@@ -12,8 +12,15 @@ import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 const Profile = ({ user }) => {
   let history = useHistory();
 
-  const [modalShow, setModalShow] = React.useState(false);
-  const [profileData, setProfileData] = React.useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [profileData, setProfileData] = useState({
+    fname: "Saksham",
+    lname: "Ohri",
+    password: "sak",
+    pnumber: "1112223333",
+    street: "sait",
+    postalCode: "T1T 1T1",
+  });
 
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
@@ -47,19 +54,20 @@ const Profile = ({ user }) => {
 
   const handlerSubmit = async () => {
     try {
-      var cookies = document.cookie.split(';');
+      var cookies = document.cookie.split(";");
       let HP_refreshToken;
       let HP_accessToken;
-      for(var i = 0; i<cookies.length; i++){
+      for (var i = 0; i < cookies.length; i++) {
         var cook = cookies[i].split("=");
-        if(cook[0].includes("HP_refreshToken")){
+        if (cook[0].includes("HP_refreshToken")) {
           HP_refreshToken = cook[1];
         }
-        if(cook[0].includes("HP_accessToken")){
+        if (cook[0].includes("HP_accessToken")) {
           HP_accessToken = cook[1];
         }
       }
-      const response = await fetch("http://localhost:5000/api/customer/editprofile",
+      const response = await fetch(
+        "http://localhost:5000/api/customer/editprofile",
         {
           method: "PATCH",
           credentials: "include", //TWO THINGS: Cookies and this header
@@ -73,15 +81,16 @@ const Profile = ({ user }) => {
             pnumber: profileData.pnumber,
             street: profileData.street,
             postalCode: profileData.postalCode,
-            refreshToken : HP_refreshToken,
-            accessToken : HP_accessToken
+            refreshToken: HP_refreshToken,
+            accessToken: HP_accessToken,
           }),
         }
       );
       const responseData = await response.json();
       console.log(responseData);
-      if (!!responseData) {
+      if (responseData) {
         console.log("updated!");
+        console.log(profileData);
         history.push("/");
       }
     } catch (err) {
@@ -117,7 +126,7 @@ const Profile = ({ user }) => {
               Please ensure above information is correct
             </h5>
             <h5 style={{ color: "darkred" }}>
-              Click "Submit" to save your changes
+              Click "Continue" to save your changes
             </h5>
           </div>
         </Modal.Body>
@@ -134,7 +143,7 @@ const Profile = ({ user }) => {
             style={{ color: "black" }}
             onClick={handlerSubmit}
           >
-            Submit
+            Continue
           </Button>
         </Modal.Footer>
       </Modal>
@@ -158,6 +167,7 @@ const Profile = ({ user }) => {
                   type="text"
                   placeholder="First Name"
                   required
+                  defaultValue={profileData?.fname}
                   ref={fnameInputRef}
                 />
               </FloatingLabel>
@@ -167,6 +177,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
+                  defaultValue={profileData?.lname}
                   required
                   ref={lnameInputRef}
                 />
@@ -180,6 +191,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  defaultValue={profileData?.password}
                   required
                   ref={passwordInputRef}
                 />
@@ -190,6 +202,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
+                  defaultValue={profileData?.pnumber}
                   required
                   ref={pnumberInputRef}
                 />
@@ -203,6 +216,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Street"
+                  defaultValue={profileData?.street}
                   required
                   ref={streetInputRef}
                 />
@@ -213,6 +227,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code"
+                  defaultValue={profileData?.postalCode}
                   required
                   ref={postalCodeInputRef}
                 />

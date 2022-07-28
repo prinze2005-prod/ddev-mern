@@ -4,6 +4,7 @@ const HttpError = require('../models/http-error');
 
 const Job = require('../models/job');
 const Receipt = require('../models/receipt');
+const technician = require('../models/technician');
 
 //job get functions
 
@@ -95,7 +96,19 @@ const techCompleteJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne(req.body.jobID)
     job.status = "completed";
+
+    const newReceipt = new Receipt({
+      job_id: job.job_id,
+      serviceName: "PlaceHolder",
+      duration: 2,
+      first_2_hour_charge: 180,
+      additional_per_hour: 90,
+      total_charge: 270
+    })
+
+    await newReceipt.save();
     await job.save();
+    
     res.json({"message":"success"});
   }catch(err){
     res.json({"message":"error has occured"});
@@ -129,6 +142,43 @@ const adminAssignJob = async(req,res,next) => {
 
 //receipt get functions
 
+
+const customerGetReceipts = async (req, res, next) =>{
+  try{
+    const jobs = await Job.find({cust_email:res.locals.email})
+    //const jobs = await Job.find({cust_email:req.body.email})
+    const receipts =[];
+    for(let job of jobs){
+      if(job.status === "completed"){
+        const receipt = await Receipt.findOne({job_id: job.job_id})
+        receipts.push(receipt);
+      }
+    }
+    res.json(receipts);
+  }catch(err){
+    console.log(err);
+    res.json({"message":"error has occured"});
+  } 
+}
+
+const techGetReceipts = async (req, res, next) =>{
+  try{
+    const jobs = await Job.find({tech_email:res.locals.email})
+    //const jobs = await Job.find({tech_email:req.body.email})
+    const receipts =[];
+    for(let job of jobs){
+      if(job.status === "completed"){
+        const receipt = await Receipt.findOne({job_id: job.job_id})
+        receipts.push(receipt);
+      }
+    }
+    res.json(receipts);
+  }catch(err){
+    console.log(err);
+    res.json({"message":"error has occured"});
+  } 
+}
+
 const getReceipts = async (req, res, next) => {
   const receipts = await Receipt.find().exec();
   res.json(receipts);
@@ -146,3 +196,5 @@ exports.techGetJobs = techGetJobs;
 exports.techAssignJob = techAssignJob;
 exports.techCompleteJob = techCompleteJob;
 exports.techUnassignJob = techUnassignJob;
+exports.customerGetReceipts = customerGetReceipts;
+exports.techGetReceipts = techGetReceipts;

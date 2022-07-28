@@ -55,6 +55,21 @@ const updateTechAccount = async (req,res,next) => {
     }
   };
 
+
+  const adminGetTechInfo = async (req,res,next) => {
+    try{
+      const existingTech = await Technician.findOne({tech_email: req.body.email});
+      if(existingTech == null){
+        res.json("error");
+        return;
+      }
+      res.json(existingTech);
+    }catch(err){
+      res.json("error");
+      return;
+    }
+  }  
+
   const adminUpdateTechAccount = async (req,res,next) => {
     let existingAccount;
     let existingTech;
@@ -264,3 +279,5 @@ exports.getTechnicians = getTechnicians;
 exports.updateTechAccount = updateTechAccount;
 exports.adminUpdateTechAccount = adminUpdateTechAccount;
 exports.addTechAccount = addTechAccount;
+exports.createTech = createTech;
+exports.adminGetTechInfo = adminGetTechInfo;

@@ -11,9 +11,7 @@ const techSchema = new Schema({
             province: {type: String, required: true},
             postalCode: {type: String, required: true}
     },
-    services: [{ 
-      num : { type:Number, required:true }
-    }],
+    services: [{ type:Number, required:true }],
     phoneNumber:{ type: Number, required: true }
 });
 module.exports = mongoose.model('technician', techSchema, 'Technicians');

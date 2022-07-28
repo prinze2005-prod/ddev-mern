@@ -13,11 +13,12 @@ const router = express.Router();
 
 //to add validation
 
-router.get('/getaccs', accountController.getAccounts);
-router.get('/getinquirys', inquiryController.getInquirys)
-router.get('/getjobs', jobController.getJobs);
-router.get('/getcustomers', customerController.getCustomers);
-router.get('/gettechnicians',technicianController.getTechnicians); 
+router.post('/getaccs', accountController.getAccounts);
+router.post('/getinquirys', inquiryController.getInquirys)
+router.post('/getjobs', jobController.getJobs);
+router.post('/getcustomers', customerController.getCustomers);
+router.post('/gettechnicians',technicianController.getTechnicians); 
+router.post('/gettechinfo',technicianController.adminGetTechInfo);
 router.post('/getjobsbycust', jobController.getJobsByCust);
 router.post('/getjobsbytech', jobController.getJobsByTech);
 router.post('/addservicetotech', technicianController.addProfession);

@@ -16,7 +16,7 @@ const AdminTechEdit = ({ user }) => {
     name: "Elbow River Plumbing",
     tech_email: "info@calgaryplumbing.com",
     phoneNumber: "4031516598",
-    services: [2, 3, 5],
+    services: [2, 3],
     address: {
       city: "Calgary",
       province: "Alberta",
@@ -32,39 +32,62 @@ const AdminTechEdit = ({ user }) => {
   const isHandyman = techData.services.includes(5);
   const isAppliance = techData.services.includes(6);
 
+  const [checkedState, setCheckedState] = useState([
+    isElectrical,
+    isPlumbing,
+    isHeating,
+    isPainting,
+    isHandyman,
+    isAppliance,
+  ]);
+
+  //   event handler for checkbox
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+  };
+
   async function submitHandler(event) {
     event.preventDefault();
+    // create a new array for services
+    let updatedServices = [];
+    for (var i = 0; i < 6; i++) {
+      if (checkedState[i]) {
+        updatedServices.push(i + 1);
+      }
+    }
 
-    // setTechData({
-    //   fname: "Joe",
-    //   lname: "Blow",
-    //   tech_email: "tech@gmail.com",
-    //   phoneNumber: "4031516598",
-    //   services: [2, 3, 5],
-    // });
+    setTechData({ ...techData, services: updatedServices });
 
     setModalShow(true);
     return;
   }
 
-  const handlerSubmit = async () => {
-    try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
-      });
-      const responseData = await response.json();
-      console.log(responseData);
-      if (!!responseData) {
-        history.push("/BookingConfirmPage");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //   const handlerSubmit = async () => {
+  //     try {
+  //       const response = await fetch("", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({}),
+  //       });
+  //       const responseData = await response.json();
+  //       console.log(responseData);
+  //       if (!!responseData) {
+  //         history.push("/BookingConfirmPage");
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+
+  function handlerSubmit() {
+    console.log(techData);
+  }
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -82,14 +105,23 @@ const AdminTechEdit = ({ user }) => {
         <Modal.Body>
           <div>
             <h5>You Information</h5>
-
+            <p>
+              name: {techData.name} <br></br>
+              tech_email: {techData.tech_email} <br></br>
+              phoneNumber: {techData.phoneNumber} <br></br>
+              services: {techData.services} <br></br>
+              street: {techData.address.street} <br></br>
+              city: "Calgary" <br></br>
+              province: "Alberta"<br></br>
+              postalCode: {techData.address.postalCode}
+            </p>
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
               Please ensure above information is correct
             </h5>
             <h5 style={{ color: "darkred" }}>
-              Click "Submit" to proceed your booking
+              Click "Save Changes" to update technician information
             </h5>
           </div>
         </Modal.Body>
@@ -254,6 +286,7 @@ const AdminTechEdit = ({ user }) => {
                 value="1"
                 defaultChecked={isElectrical}
                 id="electrical"
+                onChange={() => handleOnChange(0)}
               />
               &nbsp;<label htmlFor="electrical">Electrical</label>
               &nbsp;&nbsp;&nbsp;&nbsp;
@@ -262,37 +295,42 @@ const AdminTechEdit = ({ user }) => {
                 value="2"
                 defaultChecked={isPlumbing}
                 id="plumbing"
+                onChange={() => handleOnChange(1)}
               />
               &nbsp;<label htmlFor="plumbing">Plumbing</label>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 type="checkbox"
-                value="2"
+                value="3"
                 defaultChecked={isHeating}
                 id="heating"
+                onChange={() => handleOnChange(2)}
               />
               &nbsp;<label htmlFor="heating">Heating & Cooling</label>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 type="checkbox"
-                value="3"
+                value="4"
                 defaultChecked={isPainting}
+                onChange={() => handleOnChange(3)}
                 id="painting"
               />
               &nbsp;<label htmlFor="painting">Painting</label>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 type="checkbox"
-                value="4"
+                value="5"
                 defaultChecked={isHandyman}
+                onChange={() => handleOnChange(4)}
                 id="handyman"
               />
               &nbsp;<label htmlFor="handyman">Handyman</label>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 type="checkbox"
-                value="2"
+                value="6"
                 defaultChecked={isAppliance}
+                onChange={() => handleOnChange(5)}
                 id="appliance"
               />
               &nbsp;<label htmlFor="appliance">Appliances</label>

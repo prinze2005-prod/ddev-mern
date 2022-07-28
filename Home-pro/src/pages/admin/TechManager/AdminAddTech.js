@@ -8,43 +8,31 @@ import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
 import AdminHeader from "../../../components/AdminHeader.js";
 
-const AdminTechEdit = ({ user }) => {
+const AdminAddTech = ({ user }) => {
   let history = useHistory();
 
   const [serviceNameList, setServiceNameList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [techData, setTechData] = useState({
-    name: "Elbow River Plumbing",
-    tech_email: "info@calgaryplumbing.com",
-    phoneNumber: "4031516598",
-    services: [2, 3],
+    name: "",
+    tech_email: "",
+    phoneNumber: "",
+    services: [],
     address: {
       city: "Calgary",
       province: "Alberta",
-      postalCode: "T2H0S9",
-      street: "409 Forge Rd SE",
+      postalCode: "",
+      street: "",
     },
   });
 
-  let initServices = [];
-  for (var item in techData.services) {
-    initServices.push(techData.services[item]);
-  }
-
-  const isElectrical = initServices.includes(1);
-  const isPlumbing = initServices.includes(2);
-  const isHeating = initServices.includes(3);
-  const isPainting = initServices.includes(4);
-  const isHandyman = initServices.includes(5);
-  const isAppliance = initServices.includes(6);
-
   const [checkedState, setCheckedState] = useState([
-    isElectrical,
-    isPlumbing,
-    isHeating,
-    isPainting,
-    isHandyman,
-    isAppliance,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
   ]);
 
   //   event handler for checkbox
@@ -147,11 +135,10 @@ const AdminTechEdit = ({ user }) => {
                   <li key={service}>&#9830;{service}</li>
                 ))}
               </ul>
-              <b>Street:</b> {techData.address.street} <br></br>
+              <b>Street:</b> <br></br>
               <b>City:</b> Calgary <br></br>
               <b>Province:</b> Alberta<br></br>
               <b>Postal Code: </b>
-              {techData.address.postalCode}
             </div>
             <br />
             <br></br>
@@ -184,12 +171,12 @@ const AdminTechEdit = ({ user }) => {
   }
   return (
     <main>
-      <AdminHeader title="Edit Technician" />
+      <AdminHeader title="Add Technician" />
 
       <Container>
         <br></br>
         <center>
-          <h3>Technician Information</h3>
+          <h3>New Technician Information</h3>
         </center>
         <br></br>
         <Form onSubmit={submitHandler}>
@@ -200,7 +187,7 @@ const AdminTechEdit = ({ user }) => {
                   type="text"
                   placeholder="Name"
                   required
-                  defaultValue={techData?.name}
+                  value={techData?.name}
                   onChange={(e) =>
                     setTechData({ ...techData, name: e.target.value })
                   }
@@ -216,7 +203,6 @@ const AdminTechEdit = ({ user }) => {
                   type="email"
                   placeholder="Technician Email"
                   required
-                  defaultValue={techData?.tech_email}
                   onChange={(e) =>
                     setTechData({ ...techData, tech_email: e.target.value })
                   }
@@ -232,8 +218,12 @@ const AdminTechEdit = ({ user }) => {
                   type="text"
                   placeholder="Street"
                   required
-                  value={techData?.address.street}
-                  disabled
+                  //   onChange={(e) =>
+                  //     setTechData({
+                  //       ...techData.address,
+                  //       street: e.target.value,
+                  //     })
+                  //   }
                 />
               </FloatingLabel>
             </Col>
@@ -272,8 +262,12 @@ const AdminTechEdit = ({ user }) => {
                   type="text"
                   placeholder="Postal Code(A1A1A1)"
                   required
-                  value={techData?.address.postalCode}
-                  disabled
+                  //   onChange={(e) =>
+                  //     setTechData({
+                  //       ...techData.address,
+                  //       postalCode: e.target.value,
+                  //     })
+                  //   }
                 />
               </FloatingLabel>
             </Col>
@@ -283,7 +277,6 @@ const AdminTechEdit = ({ user }) => {
                   type="text"
                   placeholder="Phone Number"
                   required
-                  defaultValue={techData?.phoneNumber}
                   onChange={(e) =>
                     setTechData({ ...techData, phoneNumber: e.target.value })
                   }
@@ -296,26 +289,9 @@ const AdminTechEdit = ({ user }) => {
           <Row className="g-2">
             <Col md>
               <span>Service Type:</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              {/* {serviceType.map((service) => (
-                  
-                <>
-                  <input
-                    type="checkbox"
-                    id={service.serviceId}
-                    label={service.serviceName}
-                    key={service.serviceId}
-                  />
-                  &nbsp;
-                  <label htmlFor={service.serviceName}>
-                    {service.serviceName}
-                  </label>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                </>
-              ))} */}
               <input
                 type="checkbox"
                 value="1"
-                defaultChecked={isElectrical}
                 id="electrical"
                 onChange={() => handleOnChange(0)}
               />
@@ -324,7 +300,6 @@ const AdminTechEdit = ({ user }) => {
               <input
                 type="checkbox"
                 value="2"
-                defaultChecked={isPlumbing}
                 id="plumbing"
                 onChange={() => handleOnChange(1)}
               />
@@ -333,7 +308,6 @@ const AdminTechEdit = ({ user }) => {
               <input
                 type="checkbox"
                 value="3"
-                defaultChecked={isHeating}
                 id="heating"
                 onChange={() => handleOnChange(2)}
               />
@@ -342,7 +316,6 @@ const AdminTechEdit = ({ user }) => {
               <input
                 type="checkbox"
                 value="4"
-                defaultChecked={isPainting}
                 onChange={() => handleOnChange(3)}
                 id="painting"
               />
@@ -351,7 +324,6 @@ const AdminTechEdit = ({ user }) => {
               <input
                 type="checkbox"
                 value="5"
-                defaultChecked={isHandyman}
                 onChange={() => handleOnChange(4)}
                 id="handyman"
               />
@@ -360,7 +332,6 @@ const AdminTechEdit = ({ user }) => {
               <input
                 type="checkbox"
                 value="6"
-                defaultChecked={isAppliance}
                 onChange={() => handleOnChange(5)}
                 id="appliance"
               />
@@ -408,4 +379,4 @@ const AdminTechEdit = ({ user }) => {
   );
 };
 
-export default AdminTechEdit;
+export default AdminAddTech;

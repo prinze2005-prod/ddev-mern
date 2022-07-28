@@ -1,3 +1,5 @@
+const serviceContoller = require('./service-controllers');
+
 const { validationResult } = require('express-validator');
 
 const HttpError = require('../models/http-error');
@@ -5,6 +7,7 @@ const HttpError = require('../models/http-error');
 const Job = require('../models/job');
 const Receipt = require('../models/receipt');
 const technician = require('../models/technician');
+
 
 //job get functions
 
@@ -97,6 +100,24 @@ const techCompleteJob = async(req, res, next) =>{
     const job = await Job.findOne(req.body.jobID)
     job.status = "completed";
 
+    const service = await serviceContoller.getServiceById(job.service_id)
+
+    const duration = req.body.duration;
+    let total;
+    if(duration <= 2 ){
+      total = service.base_cost;
+    }else{
+      total = (req.body.duration * (service.rate_per_hour - 2)) + service.base_cost;
+    }
+    const newReceipt = new Receipt({
+      job_id: job.job_id,
+      serviceName: service.serviceName,
+      duration: req.body.duration,
+      first_2_hour_charge: service.base_cost,
+      additional_per_hour: service.additional_per_hour,
+      total_charge: total
+    })
+    /*
     const newReceipt = new Receipt({
       job_id: job.job_id,
       serviceName: "PlaceHolder",
@@ -105,10 +126,10 @@ const techCompleteJob = async(req, res, next) =>{
       additional_per_hour: 90,
       total_charge: 270
     })
-
+    */
     await newReceipt.save();
     await job.save();
-    
+
     res.json({"message":"success"});
   }catch(err){
     res.json({"message":"error has occured"});

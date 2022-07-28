@@ -58,7 +58,7 @@ const AdminClientEdit = ({ user }) => {
       body: JSON.stringify({
         fName: clientData.fname,
         lName: clientData.lname,
-        cust_email: clientData.email,
+        email: clientData.email,
         number: clientData.phoneNumber,
         street: clientData.street,
         postalCode: clientData.postalCode,

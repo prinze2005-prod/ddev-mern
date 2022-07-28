@@ -12,7 +12,25 @@ const AdminJobEdit = ({ user }) => {
   let history = useHistory();
 
   const [modalShow, setModalShow] = useState(false);
-  const [techData, setTechData] = useState(null);
+  const [techData, setTechData] = useState({
+    first_name: "John",
+    last_name: "Doe",
+    tech_email: "unassigned",
+    cust_email: "john.doe@gmail.com",
+    status: "unassigned",
+    description: "my pumpling system has some problem and doesn't work!!!!!!!",
+    address: {
+      street: "SAIT ",
+      city: "Calgary",
+      province: "Alberta",
+      postalCode: "T1T 1T1",
+    },
+    phoneNumber: "1112223333",
+    service_id: 2,
+    __v: 0,
+    job_id: 45,
+    start_time: "2022-07-2910:33",
+  });
 
   const emailInputRef = useRef();
 
@@ -27,7 +45,8 @@ const AdminJobEdit = ({ user }) => {
     const enteredTime = timeInputRef.current.value;
 
     setTechData({
-      email: enteredEmail,
+      ...techData,
+      tech_email: enteredEmail,
       start_time: enteredDate + enteredTime,
     });
 
@@ -77,8 +96,8 @@ const AdminJobEdit = ({ user }) => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <h5>New Information</h5>
-            Technician Email: {techData.email} <br></br>
+            <h5>New Job Information</h5>
+            Technician Email: {techData.tech_email} <br></br>
             Service Date:{techData.start_time.slice(0, 10)}
             <br></br>
             Service Time: {techData.start_time.slice(10)}
@@ -88,7 +107,7 @@ const AdminJobEdit = ({ user }) => {
               Please ensure above information is correct
             </h5>
             <h5 style={{ color: "darkred" }}>
-              Click "Save Changes" for update
+              Click "Continue" to update job information
             </h5>
           </div>
         </Modal.Body>
@@ -105,7 +124,7 @@ const AdminJobEdit = ({ user }) => {
             style={{ color: "black" }}
             onClick={handlerSubmit}
           >
-            Save Changes
+            Continue
           </Button>
         </Modal.Footer>
       </Modal>
@@ -113,12 +132,12 @@ const AdminJobEdit = ({ user }) => {
   }
   return (
     <main>
-      <AdminHeader title="Job Details" />
+      <AdminHeader title="Edit a Job" />
 
       <Container>
         <br></br>
         <center>
-          <h3>Job Details</h3>
+          <h3>Edit Job Information</h3>
         </center>
         <br></br>
         <Form onSubmit={submitHandler}>
@@ -129,7 +148,7 @@ const AdminJobEdit = ({ user }) => {
                   type="text"
                   placeholder="Job ID"
                   required
-                  value="123456"
+                  value={techData.job_id}
                   readOnly
                 />
               </FloatingLabel>
@@ -143,6 +162,7 @@ const AdminJobEdit = ({ user }) => {
                   type="text"
                   placeholder="Technician Email"
                   required
+                  defaultValue={techData.tech_email}
                   ref={emailInputRef}
                 />
               </FloatingLabel>
@@ -155,7 +175,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="First Name"
-                  required
+                  value={techData.first_name}
                   readOnly
                 />
               </FloatingLabel>
@@ -165,7 +185,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
-                  required
+                  value={techData.last_name}
                   readOnly
                 />
               </FloatingLabel>
@@ -181,7 +201,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Customer Email"
-                  required
+                  value={techData.cust_email}
                   readOnly
                 />
               </FloatingLabel>
@@ -191,7 +211,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
-                  required
+                  value={techData.phoneNumber}
                   readOnly
                 />
               </FloatingLabel>
@@ -204,7 +224,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Street"
-                  required
+                  value={techData.address.street}
                   readOnly
                 />
               </FloatingLabel>
@@ -214,7 +234,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code"
-                  required
+                  value={techData.address.postalCode}
                   readOnly
                 />
               </FloatingLabel>
@@ -242,6 +262,7 @@ const AdminJobEdit = ({ user }) => {
                   type="date"
                   placeholder="Date"
                   required
+                  defaultValue={techData.start_time.slice(0, 10)}
                   ref={dateInputRef}
                 />
               </FloatingLabel>
@@ -252,6 +273,7 @@ const AdminJobEdit = ({ user }) => {
                   type="time"
                   placeholder="Time"
                   required
+                  defaultValue={techData.start_time.slice(10)}
                   ref={timeInputRef}
                 />
               </FloatingLabel>
@@ -265,7 +287,7 @@ const AdminJobEdit = ({ user }) => {
             <Form.Control
               as="textarea"
               placeholder="Leave a comment here"
-              required
+              value={techData.description}
               readOnly
               style={{ height: "100px" }}
             />

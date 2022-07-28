@@ -9,7 +9,7 @@ const jobSchema = new Schema({
     tech_email: { type: String, required: true},
     cust_email: { type: String, required: true},
     status: { type: String, required: true },
-    start_time: { type: Date},
+    start_time: { type: String, required: true},
     description: {type: String, required: true},
     address: {
         street: {type: String, required: true},

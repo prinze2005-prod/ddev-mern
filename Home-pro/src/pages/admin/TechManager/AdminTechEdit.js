@@ -5,62 +5,83 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AdminHeader from "../../../components/AdminHeader.js";
 
-const AdminJobEdit = ({ user }) => {
+const AdminTechEdit = ({ user }) => {
   let history = useHistory();
 
-  const [modalShow, setModalShow] = useState(false);
-  const [techData, setTechData] = useState(null);
+  const [modalShow, setModalShow] = React.useState(false);
+  const [bookingData, setBookingData] = React.useState(null);
 
+  const fnameInputRef = useRef();
+  const lnameInputRef = useRef();
   const emailInputRef = useRef();
-
+  const pnumberInputRef = useRef();
+  const streetInputRef = useRef();
+  const postalCodeInputRef = useRef();
   const dateInputRef = useRef();
   const timeInputRef = useRef();
+  const descriptionInputRef = useRef();
 
   async function submitHandler(event) {
     event.preventDefault();
 
+    const enteredFirstName = fnameInputRef.current.value;
+    const enteredLastName = lnameInputRef.current.value;
     const enteredEmail = emailInputRef.current.value;
+    const enteredpNumber = pnumberInputRef.current.value;
+    const enteredStreet = streetInputRef.current.value;
+    const enteredPostalCode = postalCodeInputRef.current.value;
     const enteredDate = dateInputRef.current.value;
     const enteredTime = timeInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
 
-    setTechData({
+    setBookingData({
+      fname: enteredFirstName,
+      lname: enteredLastName,
       email: enteredEmail,
+      pnumber: enteredpNumber,
+      street: enteredStreet,
+      postalCode: enteredPostalCode,
       start_time: enteredDate + enteredTime,
+      description: enteredDescription,
     });
 
     setModalShow(true);
     return;
   }
 
-  // const handlerSubmit = async () => {
-  //   try {
-  //     const response = await fetch("", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         tech_email: techData.email,
-  //         start_time: techData.start_time,
-  //       }),
-  //     });
-  //     const responseData = await response.json();
-  //     console.log(responseData);
-
-  // if (!!responseData) {
-  //   history.push("/adminJobEdit");
-  // }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  function handlerSubmit() {
-    console.log(techData);
-  }
+  const handlerSubmit = async () => {
+    try {
+      const response = await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fname: bookingData.fname,
+          lname: bookingData.lname,
+          email: bookingData.email,
+          pnumber: bookingData.pnumber,
+          street: bookingData.street,
+          postalCode: bookingData.postalCode,
+          city: "Calgary",
+          province: "Alberta",
+          service: "Plumbing",
+          start_time: bookingData.start_time,
+          description: bookingData.description,
+        }),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!!responseData) {
+        history.push("/BookingConfirmPage");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -77,18 +98,25 @@ const AdminJobEdit = ({ user }) => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <h5>New Information</h5>
-            Technician Email: {techData.email} <br></br>
-            Service Date:{techData.start_time.slice(0, 10)}
-            <br></br>
-            Service Time: {techData.start_time.slice(10)}
+            <h5>You Information</h5>
+            First Name: {bookingData.fname} <br></br>
+            Last Name: {bookingData.lname} <br></br>
+            Email: {bookingData.email} <br></br>
+            Phone Number: {bookingData.pnumber} <br></br>
+            Street: {bookingData.street} <br></br>
+            Postal Code: {bookingData.postalCode} <br></br>
+            City: Calgary <br></br>
+            Province: Alberta <br></br>
+            Service: Plumbing <br></br>
+            Service Time: {bookingData.start_time} <br></br>
+            Description: {bookingData.description}
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
               Please ensure above information is correct
             </h5>
             <h5 style={{ color: "darkred" }}>
-              Click "Save Changes" for update
+              Click "Submit" to proceed your booking
             </h5>
           </div>
         </Modal.Body>
@@ -105,7 +133,7 @@ const AdminJobEdit = ({ user }) => {
             style={{ color: "black" }}
             onClick={handlerSubmit}
           >
-            Save Changes
+            Submit
           </Button>
         </Modal.Footer>
       </Modal>
@@ -143,7 +171,6 @@ const AdminJobEdit = ({ user }) => {
                   type="text"
                   placeholder="Technician Email"
                   required
-                  ref={emailInputRef}
                 />
               </FloatingLabel>
             </Col>
@@ -238,22 +265,12 @@ const AdminJobEdit = ({ user }) => {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Date">
-                <Form.Control
-                  type="date"
-                  placeholder="Date"
-                  required
-                  ref={dateInputRef}
-                />
+                <Form.Control type="date" placeholder="Date" required />
               </FloatingLabel>
             </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Time">
-                <Form.Control
-                  type="time"
-                  placeholder="Time"
-                  required
-                  ref={timeInputRef}
-                />
+                <Form.Control type="time" placeholder="Time" required />
               </FloatingLabel>
             </Col>
           </Row>
@@ -272,30 +289,16 @@ const AdminJobEdit = ({ user }) => {
           </FloatingLabel>
           <br></br>
           <center>
-            <Row>
-              <Col>
-                <Button
-                  type="submit"
-                  variant="warning"
-                  style={{ color: "black", width: "30%" }}
-                  //onClick={() => setModalShow(true)}
-                >
-                  Save Changes
-                </Button>
-              </Col>
-              <Col>
-                <Link to="/admin">
-                  <Button
-                    variant="light"
-                    style={{ color: "black", width: "30%" }}
-                  >
-                    Cancel
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
+            <Button
+              type="submit"
+              variant="warning"
+              style={{ color: "black" }}
+              //onClick={() => setModalShow(true)}
+            >
+              Save Changes
+            </Button>
           </center>
-          {techData && (
+          {bookingData && (
             <MyVerticallyCenteredModal
               show={modalShow}
               onHide={() => setModalShow(false)}
@@ -309,4 +312,4 @@ const AdminJobEdit = ({ user }) => {
   );
 };
 
-export default AdminJobEdit;
+export default AdminTechEdit;

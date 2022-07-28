@@ -152,7 +152,7 @@ function App() {
             <Route exact path="/adminProfile">
               <AdminProfile></AdminProfile>
             </Route>
-            <Route exact path="/adminJobDetail">
+            <Route exact path="/adminJobEdit">
               <AdminJobEdit></AdminJobEdit>
             </Route>
 

@@ -11,8 +11,8 @@ import { useHistory } from "react-router-dom";
 const BookPlumber = ({ user }) => {
   let history = useHistory();
 
-  const [modalShow, setModalShow] = React.useState(false);
-  const [bookingData, setBookdingData] = React.useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [bookingData, setBookdingData] = useState(null);
 
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
@@ -50,31 +50,32 @@ const BookPlumber = ({ user }) => {
 
     setModalShow(true);
     return;
-
-    
   }
 
   const handlerSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/general/createjob", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname: bookingData.fname,
-          lname: bookingData.lname,
-          email: bookingData.email,
-          pnumber: bookingData.pnumber,
-          street: bookingData.street,
-          postalCode: bookingData.postalCode,
-          city: "Calgary",
-          province: "Alberta",
-          service: 2,
-          start_time: bookingData.start_time,
-          description: bookingData.description,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/general/createjob",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname: bookingData.fname,
+            lname: bookingData.lname,
+            email: bookingData.email,
+            pnumber: bookingData.pnumber,
+            street: bookingData.street,
+            postalCode: bookingData.postalCode,
+            city: "Calgary",
+            province: "Alberta",
+            service: 2,
+            start_time: bookingData.start_time,
+            description: bookingData.description,
+          }),
+        }
+      );
       const responseData = await response.json();
       console.log(responseData);
       if (!!responseData) {
@@ -110,7 +111,10 @@ const BookPlumber = ({ user }) => {
             City: Calgary <br></br>
             Province: Alberta <br></br>
             Service: Plumbing <br></br>
-            Service Time: {bookingData.start_time} <br></br>
+            Service Date:{bookingData.start_time.slice(0, 10)}
+            <br></br>
+            Service Time: {bookingData.start_time.slice(10)}
+            <br />
             Description: {bookingData.description}
             <br />
             <br></br>
@@ -151,11 +155,6 @@ const BookPlumber = ({ user }) => {
           <h3>Book a Plumber</h3>
         </center>
         <h6>* All Fields are required</h6>
-        {user && (
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Use my default information" />
-          </Form.Group>
-        )}
         <Form onSubmit={submitHandler}>
           <Row className="g-2">
             <Col md>

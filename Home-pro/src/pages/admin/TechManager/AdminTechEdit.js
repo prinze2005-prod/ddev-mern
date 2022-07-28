@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,6 +11,34 @@ import AdminHeader from "../../../components/AdminHeader.js";
 const AdminTechEdit = ({ user }) => {
   let history = useHistory();
 
+  const serviceType = [
+    {
+      serviceName: "Electrical",
+      serviceId: 1,
+    },
+    {
+      serviceName: "Plumbing",
+      serviceId: 2,
+    },
+    {
+      serviceName: "Heating & Cooling",
+      serviceId: 3,
+    },
+    {
+      serviceName: "Painting",
+      serviceId: 4,
+    },
+    {
+      serviceName: "Handyman",
+      serviceId: 5,
+    },
+    {
+      serviceName: "Appliance Service",
+      serviceId: 6,
+    },
+  ];
+
+  const [serviceNameList, setServiceNameList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [techData, setTechData] = useState({
     name: "Elbow River Plumbing",
@@ -50,7 +78,7 @@ const AdminTechEdit = ({ user }) => {
     setCheckedState(updatedCheckedState);
   };
 
-  async function submitHandler(event) {
+  function submitHandler(event) {
     event.preventDefault();
     // create a new array for services
     let updatedServices = [];
@@ -60,8 +88,33 @@ const AdminTechEdit = ({ user }) => {
       }
     }
 
-    setTechData({ ...techData, services: updatedServices });
+    let updatedServicesNameList = [];
+    if (updatedServices.length !== 0) {
+      for (var i = 0; i < updatedServices.length; i++) {
+        switch (updatedServices[i]) {
+          case 1:
+            updatedServicesNameList.push("Electrical");
+            break;
+          case 2:
+            updatedServicesNameList.push("Plumbing");
+            break;
+          case 3:
+            updatedServicesNameList.push("Heating & Cooling");
+            break;
+          case 4:
+            updatedServicesNameList.push("Painting");
+            break;
+          case 5:
+            updatedServicesNameList.push("Handyman");
+            break;
+          case 6:
+            updatedServicesNameList.push("Appliance Service");
+        }
+      }
+    }
 
+    setTechData({ ...techData, services: updatedServices });
+    setServiceNameList(updatedServicesNameList);
     setModalShow(true);
     return;
   }
@@ -109,7 +162,13 @@ const AdminTechEdit = ({ user }) => {
               name: {techData.name} <br></br>
               tech_email: {techData.tech_email} <br></br>
               phoneNumber: {techData.phoneNumber} <br></br>
-              services: {techData.services} <br></br>
+              services:<br></br>
+              {serviceNameList.map((service) => (
+                <>
+                  <span key={service}>{service}</span>
+                  <br></br>
+                </>
+              ))}
               street: {techData.address.street} <br></br>
               city: "Calgary" <br></br>
               province: "Alberta"<br></br>

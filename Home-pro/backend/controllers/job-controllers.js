@@ -96,7 +96,19 @@ const techCompleteJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne(req.body.jobID)
     job.status = "completed";
+
+    const newReceipt = new Receipt({
+      job_id: job.job_id,
+      serviceName: "PlaceHolder",
+      duration: 2,
+      first_2_hour_charge: 180,
+      additional_per_hour: 90,
+      total_charge: 270
+    })
+
+    await newReceipt.save();
     await job.save();
+    
     res.json({"message":"success"});
   }catch(err){
     res.json({"message":"error has occured"});

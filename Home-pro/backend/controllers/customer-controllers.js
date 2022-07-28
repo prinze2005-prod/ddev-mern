@@ -29,10 +29,11 @@ const adminUpdateProfile = async (req,res,next) => {
     existingCustomer.lName = req.body.lName;
     existingCustomer.street = req.body.street;
     existingCustomer.postalCode = req.body.postalCode;
+    existingCustomer.phoneNumber = req.body.pnumber;
     let error = existingCustomer.validateSync();
     if(error !== undefined){
       console.log(error);
-      throw 'failed validation';
+      res.json({message: "Error has occured"});
     }
     console.log("I was ran!");
     await existingCustomer.save();
@@ -64,10 +65,11 @@ const updateProfile = async (req,res,next) => {
     existingCustomer.lName = req.body.lName;
     existingCustomer.street = req.body.street;
     existingCustomer.postalCode = req.body.postalCode;
+    existingCustomer.phoneNumber = req.body.pnumber;
     let error = existingCustomer.validateSync();
     if(error !== undefined){
       console.log(error);
-      throw 'failed validation';
+      res.json({message:"Error has occured"});
     }
     console.log("I was ran!");
     await existingCustomer.save();

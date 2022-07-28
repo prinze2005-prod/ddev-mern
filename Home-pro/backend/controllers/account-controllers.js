@@ -123,22 +123,34 @@ const login = async (req, res, next) => {
   //response
   res.cookie("HP_refreshToken", encryptedRefreshToken);
   res.cookie("HP_accessToken", encryptedAccessToken);
-
+  let role;
   if(existingUser.authorization === "Customer"){
     const existingCustomer = await Customer.findOne({cust_email: existingUser.email})
     res.cookie("HP_userEmail", existingCustomer.cust_email)
     res.cookie("HP_userFName", existingCustomer.fName)
     res.cookie("HP_userLName", existingCustomer.lName)
     res.cookie("HP_type","Customer")
+    role="Customer";
   }
   if(existingUser.authorization === "Technician"){
     const existingTechnician = await Technician.findOne({tech_email: existingUser.email})
     res.cookie("HP_userEmail", existingTechnician.cust_email)
     res.cookie("HP_userName", existingTechnician.fName)
     res.cookie("HP_type","Technician")
+    role="Technician";
   }
+  /*
+  if(existingUser.authorization === "Admin"){
+    const existingTechnician = await Technician.findOne({tech_email: existingUser.email})
+    res.cookie("HP_userEmail", existingTechnician.cust_email)
+    res.cookie("HP_userName", existingTechnician.fName)
+    res.cookie("HP_type","Technician")
+    role="Technician";
+  }
+  */
+
   // more else if for other account types
-  res.json({message: 'success'});
+  res.json({message : role});
 
 };
 

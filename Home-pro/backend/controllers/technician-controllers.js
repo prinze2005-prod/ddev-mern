@@ -60,7 +60,28 @@ const getTechnicians = async (req,res,next) =>{
     res.json(technicians);
 }
 
+const addProfession = async(req,res,next) =>{
+  const technician = await Technician.findOne({tech_email:req.body.email}).exec();
+  technician.services.push(req.body.serviceNumber);
+  await technician.save();
+  res.json("updated");
+}
 
+const removeProfession = async(req,res,next) =>{
+  const technician = await Technician.findOne({tech_email:req.body.email}).exec();
+  const index = technician.services.indexOf(req.body.serviceNumber);
+  if(index == -1){
+    res.json({"message":"tech does not provide servece"});
+    return;
+  }
+  technician.services.splice(index,1);
+  await technician.save();
+  res.json({"message":"updated"});
+}
+
+
+
+//to be tested
 const createTech = async (req,res,next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -123,5 +144,8 @@ const createTech = async (req,res,next) => {
     return;
   };
 
+
+exports.addProfession = addProfession;
+exports.removeProfession = removeProfession;
 exports.getTechnicians = getTechnicians;
 exports.updateTechAccount = updateTechAccount;

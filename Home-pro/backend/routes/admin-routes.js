@@ -20,5 +20,8 @@ router.get('/getcustomers', customerController.getCustomers);
 router.get('/gettechnicians',technicianController.getTechnicians); 
 router.post('/getjobsbycust', jobController.getJobsByCust);
 router.post('/getjobsbytech', jobController.getJobsByTech);
+router.post('/addservicetotech', technicianController.addProfession);
+router.post('/removeservicefromtech',technicianController.removeProfession);
+
 
 module.exports = router;

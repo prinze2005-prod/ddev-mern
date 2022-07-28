@@ -24,6 +24,7 @@ router.post('/getjobsbytech', jobController.getJobsByTech);
 router.post('/addservicetotech', technicianController.addProfession);
 router.post('/removeservicefromtech',technicianController.removeProfession);
 router.post('/adminaddtech',technicianController.addTechAccount);
+router.patch('/adminupdatetechaccount',technicianController.adminUpdateTechAccount);
 router.patch('/adminupdatecustomer',customerController.adminUpdateProfile);
 
 

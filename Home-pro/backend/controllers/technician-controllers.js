@@ -103,6 +103,7 @@ const updateTechAccount = async (req,res,next) => {
       existingTech.address.postalCode = req.body.postalCode;
       existingTech.phoneNumber = req.body.number;
       existingTech.services = req.body.services;
+      console.log(existingTech);
       let error2 = existingTech.validateSync();
       if(error2 !== undefined){
         console.log(error2);

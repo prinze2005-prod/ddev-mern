@@ -41,6 +41,7 @@ import TestPage from "./pages/TestPage";
 import AdminAddClient from "./pages/admin/ClientManager/AdminAddClient";
 import AdminClientEdit from "./pages/admin/ClientManager/AdminClientEdit";
 import ReviewInquires from "./pages/admin/ReviewInquires";
+import AdminJob from "./pages/admin/JobManager/AdminJob";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -174,6 +175,9 @@ function App() {
             </Route>
             <Route exact path="/reviewInquiries">
               <ReviewInquires/>
+            </Route>
+            <Route exact path="/adminjob">
+              <AdminJob/>
             </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>

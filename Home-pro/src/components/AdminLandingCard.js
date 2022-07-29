@@ -115,7 +115,7 @@ function AdminLandingCard() {
           </Col>{" "}
           <Col>
             <NavLink
-              to="adminTechAdd"
+              to="adminJob"
               style={(isActive) => ({
                 color: isActive ? "#ffb347" : "black",
               })}

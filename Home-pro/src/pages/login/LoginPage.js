@@ -73,10 +73,12 @@ function LoginPage({ setUser }) {
     }
     console.log(message);
     if(message === 'Customer'){
+      const userData = { username: loginData.email };
+      setUser(userData);
       history.push("/");
     } else if(message === 'Technician'){
       history.push("/tech");
-    }
+    } 
 
   }
 

@@ -26,6 +26,7 @@ router.post('/removeservicefromtech',technicianController.removeProfession);
 router.post('/adminaddtech',technicianController.addTechAccount);
 router.patch('/adminupdatetechaccount',technicianController.adminUpdateTechAccount);
 router.patch('/adminupdatecustomer',customerController.adminUpdateProfile);
+router.patch('/adminassignjob',jobController.adminAssignJob);
 
 
 

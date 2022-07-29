@@ -90,6 +90,7 @@ const techAssignJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne(req.body.jobID)
     job.tech_email=res.locals.email;
+    job.start_time=req.start_tiime;
     job.status = "assigned";
     await job.save();
     res.json({"message":"success"});
@@ -155,6 +156,7 @@ const adminAssignJob = async(req,res,next) => {
   try{
     const job = await Job.findOne(req.body.jobID)
     job.tech_email=req.body.email;
+    job.start_time=req.start_tiime;
     job.status = "assigned";
     await job.save();
     res.json({"message":"success"});
@@ -208,6 +210,8 @@ const getReceipts = async (req, res, next) => {
 }
 
 
+
+
 exports.getUnassignedJobs = getUnassignedJobs;
 exports.getJobsByTech = getJobsByTech;
 exports.getJobsByCust = getJobsByCust;
@@ -221,3 +225,4 @@ exports.techCompleteJob = techCompleteJob;
 exports.techUnassignJob = techUnassignJob;
 exports.customerGetReceipts = customerGetReceipts;
 exports.techGetReceipts = techGetReceipts;
+exports.adminAssignJob = adminAssignJob;

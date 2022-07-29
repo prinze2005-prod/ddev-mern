@@ -4,6 +4,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 
 const ListOfServices = () => {
+  const jobData =[
+    {
+       jobId: 12345,
+       tech_email: 'info@calgaryplumbing.com',
+       status: 'unassigned',
+       start_time: '2022-07-2923:07',
+       address: [
+           {street: '11 Sait way NW',
+           postalCode: 'A1A 1A1'}
+       ],
+       service_id: 2
+    },
+    {
+        jobId: 22336,
+       tech_email: 'info@calgaryplumbing.com',
+       status: 'unassigned',
+       start_time: '2022-07-2923:07',
+       address: [
+           {street: '13 Sait way NW',
+           postalCode: 'A1A 1B1'}
+       ],
+       service_id: 1
+    }
+];
   return (
     <Wrapper className="section">
       <div className="title">
@@ -15,26 +39,35 @@ const ListOfServices = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Service #</th>
-                <th>Service Name</th>
-                <th>Service Date</th>
-                <th>Service Time</th>
+              <th>Service Id</th>
+              <th>Technician Email</th>
+              <th>Status</th>
+              <th>Start Time</th>
+              <th>Street</th>
+              <th>Postal Code</th>
+              <th>Service Id</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>59545</td>
-                <td>Plumbing</td>
-                <td>22 March, 2022</td>
-                <td>1400</td>
-              </tr>
-              <tr>
-                <td>65471</td>
-                <td>Electrician</td>
-                <td>11 April, 2022</td>
-                <td>1600</td>
-              </tr>
-            </tbody>
+                {jobData.map(obj =>
+                    <tr>
+                     <td>{obj.jobId} </td>   
+                     <td>{obj.tech_email} </td>
+                     <td>{obj.status} </td>
+                     <td>{obj.start_time} </td>
+                     <td>{obj.address.map(add => 
+                      <div>   {add.street} </div>
+                     )} </td>
+                     <td>{obj.address.map(add => 
+                      <div>   {add.postalCode} </div>
+                     )} </td>
+                     <td>{obj.service_id} </td>
+                     </tr>
+                 )}
+              
+            
+            
+          </tbody>
           </Table>
         </div>
       </div>

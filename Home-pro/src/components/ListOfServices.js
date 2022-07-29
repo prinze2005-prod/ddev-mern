@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState} from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
@@ -28,7 +28,20 @@ const ListOfServices = () => {
        service_id: 1
     }
 ];
+
+  const [serName, setSerName] = useState(null);
+//   {jobData.map(a =>
+//     <div> 
+//     if({a.service_id} === 1){
+//        setSerName('Electrical')
+//     }
+//     else if({a.service_id} === 2){
+//        setSerName('Plumbing')
+//     }
+//     </div>
+// )}
   return (
+   
     <Wrapper className="section">
       <div className="title">
         <h2>List of previous services</h2>
@@ -45,7 +58,7 @@ const ListOfServices = () => {
               <th>Start Time</th>
               <th>Street</th>
               <th>Postal Code</th>
-              <th>Service Id</th>
+              <th>Service Name</th>
               </tr>
             </thead>
             <tbody>
@@ -61,7 +74,7 @@ const ListOfServices = () => {
                      <td>{obj.address.map(add => 
                       <div>   {add.postalCode} </div>
                      )} </td>
-                     <td>{obj.service_id} </td>
+                     <td>{serName} </td>
                      </tr>
                  )}
               
@@ -95,9 +108,6 @@ const Wrapper = styled.section`
     text-align: center;
   }
   tr:hover {
-    background-color: var(--clr-primary-5);
-  }
-  td:hover {
     background-color: var(--clr-primary-5);
   }
 

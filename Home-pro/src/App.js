@@ -42,6 +42,9 @@ import AdminAddClient from "./pages/admin/ClientManager/AdminAddClient";
 import AdminClientEdit from "./pages/admin/ClientManager/AdminClientEdit";
 import ReviewInquires from "./pages/admin/ReviewInquires";
 import AdminJob from "./pages/admin/JobManager/AdminJob";
+import PastTransaction from "./pages/admin/PastTransaction";
+import ManageTechPage from "./pages/admin/TechManager/ManageTechPage";
+import ManageClient from "./pages/admin/ClientManager/ManageClient";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -178,6 +181,15 @@ function App() {
             </Route>
             <Route exact path="/adminjob">
               <AdminJob/>
+            </Route>
+            <Route exact path="/pastTransaction">
+              <PastTransaction/>
+            </Route>
+            <Route exact path="/manageTech">
+              <ManageTechPage/>
+            </Route>
+            <Route exact path="/ManageClient">
+              <ManageClient/>
             </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>

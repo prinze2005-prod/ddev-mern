@@ -139,6 +139,7 @@ const addTechAccount = async (req,res,next) => {
       //
       //
       //
+      console.log(req.body.password);
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
       const newAccount= new Account({

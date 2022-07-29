@@ -139,7 +139,7 @@ const AdminAddTech = ({ user }) => {
   //     }
   //   };
 
-  function handlerSubmit() {
+  async function handlerSubmit() {
     let isEmpty = true;
     for (var checkedBox in checkedState) {
       if (checkedState[checkedBox]) {
@@ -155,6 +155,31 @@ const AdminAddTech = ({ user }) => {
       setModalShow(false);
       return;
     }
+    try {
+      const response = await fetch("http://localhost:5000/api/admin/adminaddtech", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email:techData.tech_email,
+          name: techData.name,
+          password:techData.password,
+          street: techData.address.street,
+          postalCode: techData.address.postalCode,
+          number: techData.phoneNumber,
+          services: techData.services
+        }),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!!responseData) {
+        history.push("/BookingConfirmPage");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
   function MyVerticallyCenteredModal(props) {

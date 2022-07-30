@@ -8,7 +8,10 @@ const getCustomers = async (req, res, next) => {
   res.json(customers);
 }
 
-
+const getLoggedInInfo = async (req, res, next) => {
+  const customer = await Customer.findOne({cust_email: res.locals.email});
+  res.json(customer);
+}
 
 const adminUpdateProfile = async (req,res,next) => {
   let existingCustomer;
@@ -85,3 +88,4 @@ const updateProfile = async (req,res,next) => {
 exports.updateProfile = updateProfile;
 exports.getCustomers = getCustomers;
 exports.adminUpdateProfile = adminUpdateProfile;
+exports.getLoggedInInfo = getLoggedInInfo;

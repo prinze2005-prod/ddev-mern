@@ -120,7 +120,7 @@ router.post('/test', async (req, res, next) => {
     res.json({"message":"Hello "+res.locals.email+"!"})
 })
 
-
+router.post('/getLoggedInInfo',customerController.getLoggedInInfo);
 router.post('/getreceipts',jobController.customerGetReceipts);
 router.post('/getJobs',jobController.customerGetJobs);
 router.patch('/editprofile',accountController.updateCustomerAccount);

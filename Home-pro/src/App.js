@@ -57,6 +57,12 @@ function App() {
   }, []);
   function handleLogout() {
     setUser(null);
+    document.cookie = "HP_userEmail= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_userFName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_userLName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_type= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_refreshToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_accessToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
     window.location = "/";
   }
 

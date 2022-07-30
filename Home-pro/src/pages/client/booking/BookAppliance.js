@@ -11,6 +11,30 @@ import { useHistory } from "react-router-dom";
 const BookAppliance= ({ user }) => {
   let history = useHistory();
 
+  let HP_userFName="";
+  let HP_userLName="";
+  let HP_userEmail="";
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_userFName")) {
+        HP_userFName = cook[1];
+      }
+      if (cook[0].includes("HP_userLName")) {
+        HP_userLName = cook[1];
+      }
+      if (cook[0].includes("HP_userEmail")) {
+        HP_userEmail = cook[1];
+        HP_userEmail = HP_userEmail.replace("%40","@");
+      }
+    }
+  }catch(err){
+    console.log(err);
+  }
+
+
+
   const [modalShow, setModalShow] = React.useState(false);
   const [bookingData, setBookdingData] = React.useState(null);
 
@@ -162,6 +186,7 @@ const BookAppliance= ({ user }) => {
               <FloatingLabel controlId="floatingInputGrid" label="First Name">
                 <Form.Control
                   type="text"
+                  defaultValue={HP_userFName}
                   placeholder="First Name"
                   required
                   ref={fnameInputRef}
@@ -172,6 +197,7 @@ const BookAppliance= ({ user }) => {
               <FloatingLabel controlId="floatingInputGrid" label="Last Name">
                 <Form.Control
                   type="text"
+                  defaultValue={HP_userLName}
                   placeholder="Last Name"
                   required
                   ref={lnameInputRef}
@@ -188,6 +214,7 @@ const BookAppliance= ({ user }) => {
               >
                 <Form.Control
                   type="email"
+                  defaultValue={HP_userEmail}
                   placeholder="Email Address"
                   required
                   ref={emailInputRef}

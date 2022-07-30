@@ -11,6 +11,28 @@ import { useHistory } from "react-router-dom";
 const BookHeatCool= ({ user }) => {
   let history = useHistory();
 
+  let HP_userFName="";
+  let HP_userLName="";
+  let HP_userEmail="";
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_userFName")) {
+        HP_userFName = cook[1];
+      }
+      if (cook[0].includes("HP_userLName")) {
+        HP_userLName = cook[1];
+      }
+      if (cook[0].includes("HP_userEmail")) {
+        HP_userEmail = cook[1];
+        HP_userEmail = HP_userEmail.replace("%40","@");
+      }
+    }
+  }catch(err){
+    console.log(err);
+  }
+
   const [modalShow, setModalShow] = React.useState(false);
   const [bookingData, setBookdingData] = React.useState(null);
 
@@ -163,6 +185,7 @@ const BookHeatCool= ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="First Name"
+                  defaultValue={HP_userFName}
                   required
                   ref={fnameInputRef}
                 />
@@ -173,6 +196,7 @@ const BookHeatCool= ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
+                  defaultValue={HP_userLName}
                   required
                   ref={lnameInputRef}
                 />
@@ -189,6 +213,7 @@ const BookHeatCool= ({ user }) => {
                 <Form.Control
                   type="email"
                   placeholder="Email Address"
+                  defaultValue={HP_userEmail}
                   required
                   ref={emailInputRef}
                 />

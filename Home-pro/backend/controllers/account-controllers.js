@@ -139,15 +139,11 @@ const login = async (req, res, next) => {
     res.cookie("HP_type","Technician")
     role="Technician";
   }
-  /*
   if(existingUser.authorization === "Admin"){
-    const existingTechnician = await Technician.findOne({tech_email: existingUser.email})
-    res.cookie("HP_userEmail", existingTechnician.cust_email)
-    res.cookie("HP_userName", existingTechnician.fName)
-    res.cookie("HP_type","Technician")
-    role="Technician";
+    res.cookie("HP_userEmail", existingUser.email)
+    res.cookie("HP_type","Admin")
+    role="Admin";
   }
-  */
 
   // more else if for other account types
   res.json({message : role});

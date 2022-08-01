@@ -77,8 +77,16 @@ function LoginPage({ setUser }) {
       setUser(userData);
       history.push("/");
     } else if(message === 'Technician'){
+      const userData = { username: loginData.email };
+      setUser(userData);
       history.push("/tech");
     } 
+
+    else if(message === 'Admin'){
+      const userData = { username: loginData.email };
+      setUser(userData);
+      history.push("/admin");
+    }
 
   }
 

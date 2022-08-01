@@ -76,7 +76,7 @@ const ListOfServices = () => {
    
     <Wrapper className="section">
       <div className="title">
-        <h2>List of previous services</h2>
+        <h2>List of your services</h2>
         <div className="underline"></div>
         <div className="container">
           {" "}

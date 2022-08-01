@@ -238,29 +238,46 @@ const updateCustomerAccount = async (req,res,next) => {
     return
   }
   try{
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    existingAccount.password=hashedPassword;
-    let error1 = existingAccount.validateSync();
-    if(error1 !== undefined){
-      console.log(error1);
-      res.json({message: "Error in validation"});
+    if(req.body.password == null){
+      existingCustomer.fName = req.body.fname;
+      existingCustomer.lName = req.body.lname;
+      existingCustomer.street = req.body.street;
+      existingCustomer.postalCode = req.body.postalCode;
+      existingCustomer.phoneNumber = req.body.pnumber;
+      let error2 = existingCustomer.validateSync();
+      if(error2 !== undefined){
+        console.log(error2);
+        res.json({message: "Error in validation"});
+      }
+      console.log("I run!");
+      await existingCustomer.save();
+      console.log("I was ran!");
+      res.json({message: "Success!"});
+    }else{
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      existingAccount.password=hashedPassword;
+      let error1 = existingAccount.validateSync();
+      if(error1 !== undefined){
+        console.log(error1);
+        res.json({message: "Error in validation"});
+      }
+      existingCustomer.fName = req.body.fname;
+      existingCustomer.lName = req.body.lname;
+      existingCustomer.street = req.body.street;
+      existingCustomer.postalCode = req.body.postalCode;
+      existingCustomer.phoneNumber = req.body.pnumber;
+      let error2 = existingCustomer.validateSync();
+      if(error2 !== undefined){
+        console.log(error2);
+        res.json({message: "Error in validation"});
+      }
+      console.log("I run!");
+      await existingCustomer.save();
+      console.log("I was ran!");
+      await existingAccount.save();
+      console.log("I was ran too");
+      res.json({message: "Success!"});
     }
-    existingCustomer.fName = req.body.fname;
-    existingCustomer.lName = req.body.lname;
-    existingCustomer.street = req.body.street;
-    existingCustomer.postalCode = req.body.postalCode;
-    existingCustomer.phoneNumber = req.body.pnumber;
-    let error2 = existingCustomer.validateSync();
-    if(error2 !== undefined){
-      console.log(error2);
-      res.json({message: "Error in validation"});
-    }
-    console.log("I run!");
-    await existingCustomer.save();
-    console.log("I was ran!");
-    await existingAccount.save();
-    console.log("I was ran too");
-    res.json({message: "Success!"});
   }catch(err){
     res.json({message: "Error has occured"});
   }

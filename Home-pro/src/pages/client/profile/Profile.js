@@ -130,6 +130,27 @@ const Profile = ({ user }) => {
     }
   };
 
+  const handleFNameChange = (events) => {
+    let text = events.target.value;
+    setProfileData([text,profileData[1],profileData[2],profileData[3],profileData[4],profileData[5]]);
+  }
+  const handleLNameChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],text,profileData[2],profileData[3],profileData[4],profileData[5]]);
+  }
+  const handlePNumberChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],profileData[1],profileData[2],text,profileData[4],profileData[5]]);
+  }
+  const handleStreetChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],profileData[1],profileData[2],profileData[3],text,profileData[5]]);
+  }
+  const handlePCodeChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],profileData[1],profileData[2],profileData[3],profileData[4],text]);
+  }
+
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -200,6 +221,7 @@ const Profile = ({ user }) => {
                   placeholder="First Name"
                   required
                   value={profileData[0]}
+                  onChange={handleFNameChange}
                   ref={fnameInputRef}
                 />
               </FloatingLabel>
@@ -210,6 +232,7 @@ const Profile = ({ user }) => {
                   type="text"
                   placeholder="Last Name"
                   value={profileData[1]}
+                  onChange={handleLNameChange}
                   required
                   ref={lnameInputRef}
                 />
@@ -234,6 +257,7 @@ const Profile = ({ user }) => {
                   type="text"
                   placeholder="Phone Number"
                   value={profileData[3]}
+                  onChange={handlePNumberChange}
                   required
                   ref={pnumberInputRef}
                 />
@@ -248,6 +272,7 @@ const Profile = ({ user }) => {
                   type="text"
                   placeholder="Street"
                   value={profileData[4]}
+                  onChange={handleStreetChange}
                   required
                   ref={streetInputRef}
                 />
@@ -259,6 +284,7 @@ const Profile = ({ user }) => {
                   type="text"
                   placeholder="Postal Code"
                   value={profileData[5]}
+                  onChange={handlePCodeChange}
                   required
                   ref={postalCodeInputRef}
                 />

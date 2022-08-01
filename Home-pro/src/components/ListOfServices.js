@@ -1,10 +1,10 @@
-import React ,{useState} from "react";
+import React ,{useState, useEffect} from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 
 const ListOfServices = () => {
-  const jobData =[
+  const [jobData,setJobData] =useState([
     {
        jobId: 12345,
        tech_email: 'info@calgaryplumbing.com',
@@ -27,7 +27,7 @@ const ListOfServices = () => {
        ],
        service_id: 1
     }
-];
+  ]);
 
   const [serName, setSerName] = useState(null);
 //   {jobData.map(a =>
@@ -40,6 +40,38 @@ const ListOfServices = () => {
 //     }
 //     </div>
 // )}
+  let HP_refreshToken;
+  let HP_accessToken;
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_refreshToken")) {
+        HP_refreshToken = cook[1];
+      }
+      if (cook[0].includes("HP_accessToken")) {
+        HP_accessToken = cook[1];
+      }
+    }
+  }catch(err){
+    console.log(err)
+  }
+  useEffect(() => {
+    fetch("http://localhost:5000/api/customer/getJobs",
+    {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      })})
+    .then(response => response.json())
+    .then(data => setJobData(data));
+  },[]);
+
   return (
    
     <Wrapper className="section">
@@ -58,23 +90,17 @@ const ListOfServices = () => {
               <th>Start Time</th>
               <th>Street</th>
               <th>Postal Code</th>
-              <th>Service Name</th>
               </tr>
             </thead>
             <tbody>
                 {jobData.map(obj =>
                     <tr>
-                     <td>{obj.jobId} </td>   
+                     <td>{obj.job_id} </td>   
                      <td>{obj.tech_email} </td>
                      <td>{obj.status} </td>
                      <td>{obj.start_time} </td>
-                     <td>{obj.address.map(add => 
-                      <div>   {add.street} </div>
-                     )} </td>
-                     <td>{obj.address.map(add => 
-                      <div>   {add.postalCode} </div>
-                     )} </td>
-                     <td>{serName} </td>
+                     <td>{obj.address.street} </td>
+                     <td>{obj.address.postalCode} </td>
                      </tr>
                  )}
               

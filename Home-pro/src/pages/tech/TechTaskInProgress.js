@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState, useRef, useEffect }from "react";
 import Container from "react-bootstrap/Container";
 import TechHeader from "../../components/TechHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,6 +6,43 @@ import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 
 function TechTaskInProgress() {
+  
+  let HP_refreshToken;
+  let HP_accessToken;
+
+  const [jobData, setJobData] = useState(null);
+  
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_refreshToken")) {
+        HP_refreshToken = cook[1];
+      }
+      if (cook[0].includes("HP_accessToken")) {
+        HP_accessToken = cook[1];
+      }
+    }
+  }catch(err){
+    console.log(err)
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/tech/getTechProfile",
+    {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      })})
+    .then(response => response.json())
+    .then(data => setJobData(data));
+  },[]);
+  
   return (
     <main>
       <TechHeader title="Tasks in Progress" />

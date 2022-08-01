@@ -1,23 +1,59 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import TechHeader from "../../components/TechHeader";
+import TechHeader from '../../components/TechHeader';
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
 const TechProfile = ({ user }) => {
   let history = useHistory();
 
-  const [modalShow, setModalShow] = React.useState(false);
-  const [profileData, setProfileData] = React.useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [profileData, setProfileData] = useState([
+    "Name",
+    "",
+    "Phonenumber",
+    "Street",
+    "PostalCode"
+  ]);
+
+  let HP_refreshToken;
+  let HP_accessToken;
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_refreshToken")) {
+        HP_refreshToken = cook[1];
+      }
+      if (cook[0].includes("HP_accessToken")) {
+        HP_accessToken = cook[1];
+      }
+    }
+  }catch(err){
+    console.log(err)
+  }
+  useEffect(() => {
+    fetch("http://localhost:5000/api/tech/getTechProfile",
+    {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      })})
+    .then(response => response.json())
+    .then(data => setProfileData([data.name,"",data.phoneNumber, data.address.street, data.address.postalCode]));
+  },[]);
 
   const fnameInputRef = useRef();
-  const lnameInputRef = useRef();
-  const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const pnumberInputRef = useRef();
   const streetInputRef = useRef();
@@ -26,23 +62,19 @@ const TechProfile = ({ user }) => {
   async function submitHandler(event) {
     event.preventDefault();
 
-    const enteredFirstName = fnameInputRef.current.value;
-    const enteredLastName = lnameInputRef.current.value;
-    const enteredEmail = emailInputRef.current.value;
+    const enteredName = fnameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredpNumber = pnumberInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
 
-    setProfileData({
-      fname: enteredFirstName,
-      lname: enteredLastName,
-      email: enteredEmail,
-      password: enteredPassword,
-      pnumber: enteredpNumber,
-      street: enteredStreet,
-      postalCode: enteredPostalCode,
-    });
+    setProfileData([
+      enteredName,
+      enteredPassword,
+      enteredpNumber,
+      enteredStreet,
+      enteredPostalCode,
+    ]);
 
     setModalShow(true);
     return;
@@ -50,30 +82,65 @@ const TechProfile = ({ user }) => {
 
   const handlerSubmit = async () => {
     try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname: profileData.fname,
-          lname: profileData.lname,
-          email: profileData.email,
-          password: profileData.password,
-          pnumber: profileData.pnumber,
-          street: profileData.street,
-          postalCode: profileData.postalCode,
-        }),
-      });
+      var cookies = document.cookie.split(";");
+      let HP_refreshToken;
+      let HP_accessToken;
+      for (var i = 0; i < cookies.length; i++) {
+        var cook = cookies[i].split("=");
+        if (cook[0].includes("HP_refreshToken")) {
+          HP_refreshToken = cook[1];
+        }
+        if (cook[0].includes("HP_accessToken")) {
+          HP_accessToken = cook[1];
+        }
+      }
+      const response = await fetch(
+        "http://localhost:5000/api/tech/editprofile",
+        {
+          method: "PATCH",
+          credentials: "include", //TWO THINGS: Cookies and this header <============
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: profileData[0],
+            password: profileData[1],
+            pnumber: profileData[2],
+            street: profileData[3],
+            postalCode: profileData[4],
+            refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+            accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+          }),
+        }
+      );
       const responseData = await response.json();
       console.log(responseData);
-      if (!!responseData) {
+      if (responseData) {
+        console.log("updated!");
+        console.log(profileData);
         history.push("/");
       }
     } catch (err) {
       console.log(err);
     }
   };
+
+  const handleNameChange = (events) => {
+    let text = events.target.value;
+    setProfileData([text,profileData[1],profileData[2],profileData[3],profileData[4]]);
+  }
+  const handlePNumberChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],profileData[1],text,profileData[3],profileData[4]]);
+  }
+  const handleStreetChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],profileData[1],profileData[2],text,profileData[4]]);
+  }
+  const handlePCodeChange = (events) => {
+    let text = events.target.value;
+    setProfileData([profileData[0],profileData[1],profileData[2],profileData[3],text]);
+  }
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -91,20 +158,18 @@ const TechProfile = ({ user }) => {
         <Modal.Body>
           <div>
             <h5>You Information</h5>
-            First Name: {profileData.fname} <br></br>
-            Last Name: {profileData.lname} <br></br>
-            Email: {profileData.email} <br></br>
-            Password: {profileData.password} <br></br>
-            Phone Number: {profileData.pnumber} <br></br>
-            Street: {profileData.street} <br></br>
-            Postal Code: {profileData.postalCode}
+            Name: {profileData[0]} <br></br>
+            Password: {profileData[1]} <br></br>
+            Phone Number: {profileData[2]} <br></br>
+            Street: {profileData[3]} <br></br>
+            Postal Code: {profileData[4]}
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
               Please ensure above information is correct
             </h5>
             <h5 style={{ color: "darkred" }}>
-              Click "Submit" to save your changes
+              Click "Continue" to save your changes
             </h5>
           </div>
         </Modal.Body>
@@ -121,7 +186,7 @@ const TechProfile = ({ user }) => {
             style={{ color: "black" }}
             onClick={handlerSubmit}
           >
-            Submit
+            Continue
           </Button>
         </Modal.Footer>
       </Modal>
@@ -145,17 +210,9 @@ const TechProfile = ({ user }) => {
                   type="text"
                   placeholder="First Name"
                   required
+                  value={profileData[0]}
+                  onChange={handleNameChange}
                   ref={fnameInputRef}
-                />
-              </FloatingLabel>
-            </Col>
-            <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Last Name">
-                <Form.Control
-                  type="text"
-                  placeholder="Last Name"
-                  required
-                  ref={lnameInputRef}
                 />
               </FloatingLabel>
             </Col>
@@ -164,7 +221,12 @@ const TechProfile = ({ user }) => {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Password">
-                <Form.Control type="password" placeholder="Password" required />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  required
+                  ref={passwordInputRef}
+                />
               </FloatingLabel>
             </Col>
             <Col md>
@@ -172,6 +234,8 @@ const TechProfile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
+                  value={profileData[2]}
+                  onChange={handlePNumberChange}
                   required
                   ref={pnumberInputRef}
                 />
@@ -185,6 +249,8 @@ const TechProfile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Street"
+                  value={profileData[3]}
+                  onChange={handleStreetChange}
                   required
                   ref={streetInputRef}
                 />
@@ -195,6 +261,8 @@ const TechProfile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code"
+                  value={profileData[4]}
+                  onChange={handlePCodeChange}
                   required
                   ref={postalCodeInputRef}
                 />
@@ -214,7 +282,7 @@ const TechProfile = ({ user }) => {
                 </Button>
               </MDBCol>
               <MDBCol>
-                <Link to="/tech">
+                <Link to="/">
                   {" "}
                   <Button
                     variant="light"

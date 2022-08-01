@@ -36,6 +36,11 @@ const techGetJobs = async(req,res,next) => {
   res.json(jobs);
 }
 
+const techGetInProgressJobs = async(req, res, next) => {
+  const jobs = await Job.find({tech_email:res.locals.email, status:"assigned"})
+  res.json(jobs);
+}
+
 const getUnassignedJobs = async(req,res,next) => {
   const jobs = await Job.find({status:"unassigned"}).exec()
   res.json(jobs);
@@ -226,3 +231,4 @@ exports.techUnassignJob = techUnassignJob;
 exports.customerGetReceipts = customerGetReceipts;
 exports.techGetReceipts = techGetReceipts;
 exports.adminAssignJob = adminAssignJob;
+exports.techGetInProgressJobs = techGetInProgressJobs;

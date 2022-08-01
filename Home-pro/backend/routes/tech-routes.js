@@ -121,12 +121,14 @@ router.post('/test', async (req, res, next) => {
 })
 
 
+router.post('/getTechProfile',technicianController.techGetTechInfo);
 router.post('/getreceipts',jobController.techGetReceipts);
 router.post('/getunjobs',jobController.getUnassignedJobs);
 router.patch('/unassignjob',jobController.techUnassignJob);
 router.patch('/completejob',jobController.techCompleteJob);
 router.patch('/assignjob',jobController.techAssignJob);
 router.post('/getJobs',jobController.techGetJobs);
+router.post('/getInProgressJobs',jobController.techGetInProgressJobs);
 router.patch('/editprofile',technicianController.updateTechAccount);
 
 module.exports = router;

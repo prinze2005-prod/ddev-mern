@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -13,14 +13,46 @@ const Profile = ({ user }) => {
   let history = useHistory();
 
   const [modalShow, setModalShow] = useState(false);
-  const [profileData, setProfileData] = useState({
-    fname: "Saksham",
-    lname: "Ohri",
-    password: "sak",
-    pnumber: "1112223333",
-    street: "sait",
-    postalCode: "T1T 1T1",
-  });
+  const [profileData, setProfileData] = useState([
+    "Saksham",
+    "Ohri",
+    "",
+    "1112223333",
+    "sait",
+    "T1T 1T1"
+  ]);
+
+  let HP_refreshToken;
+  let HP_accessToken;
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_refreshToken")) {
+        HP_refreshToken = cook[1];
+      }
+      if (cook[0].includes("HP_accessToken")) {
+        HP_accessToken = cook[1];
+      }
+    }
+  }catch(err){
+    console.log(err)
+  }
+  useEffect(() => {
+    fetch("http://localhost:5000/api/customer/getLoggedInInfo",
+    {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      })})
+    .then(response => response.json())
+    .then(data => setProfileData([data.fName, data.lName,"",data.phoneNumber,data.address.street,data.address.postalCode]));
+  },[]);
 
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
@@ -39,14 +71,14 @@ const Profile = ({ user }) => {
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
 
-    setProfileData({
-      fname: enteredFirstName,
-      lname: enteredLastName,
-      password: enteredPassword,
-      pnumber: enteredpNumber,
-      street: enteredStreet,
-      postalCode: enteredPostalCode,
-    });
+    setProfileData([
+      enteredFirstName,
+      enteredLastName,
+      enteredPassword,
+      enteredpNumber,
+      enteredStreet,
+      enteredPostalCode,
+    ]);
 
     setModalShow(true);
     return;
@@ -75,12 +107,12 @@ const Profile = ({ user }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            fname: profileData.fname,
-            lname: profileData.lname,
-            password: profileData.password,
-            pnumber: profileData.pnumber,
-            street: profileData.street,
-            postalCode: profileData.postalCode,
+            fname: profileData[0],
+            lname: profileData[1],
+            password: profileData[2],
+            pnumber: profileData[3],
+            street: profileData[4],
+            postalCode: profileData[5],
             refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
             accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
           }),
@@ -114,12 +146,12 @@ const Profile = ({ user }) => {
         <Modal.Body>
           <div>
             <h5>You Information</h5>
-            First Name: {profileData.fname} <br></br>
-            Last Name: {profileData.lname} <br></br>
-            Password: {profileData.password} <br></br>
-            Phone Number: {profileData.pnumber} <br></br>
-            Street: {profileData.street} <br></br>
-            Postal Code: {profileData.postalCode}
+            First Name: {profileData[0]} <br></br>
+            Last Name: {profileData[1]} <br></br>
+            Password: {profileData[2]} <br></br>
+            Phone Number: {profileData[3]} <br></br>
+            Street: {profileData[4]} <br></br>
+            Postal Code: {profileData[5]}
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
@@ -167,7 +199,7 @@ const Profile = ({ user }) => {
                   type="text"
                   placeholder="First Name"
                   required
-                  defaultValue={profileData?.fname}
+                  value={profileData[0]}
                   ref={fnameInputRef}
                 />
               </FloatingLabel>
@@ -177,7 +209,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
-                  defaultValue={profileData?.lname}
+                  value={profileData[1]}
                   required
                   ref={lnameInputRef}
                 />
@@ -191,7 +223,6 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="password"
                   placeholder="Password"
-                  defaultValue={profileData?.password}
                   required
                   ref={passwordInputRef}
                 />
@@ -202,7 +233,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
-                  defaultValue={profileData?.pnumber}
+                  value={profileData[3]}
                   required
                   ref={pnumberInputRef}
                 />
@@ -216,7 +247,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Street"
-                  defaultValue={profileData?.street}
+                  value={profileData[4]}
                   required
                   ref={streetInputRef}
                 />
@@ -227,7 +258,7 @@ const Profile = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code"
-                  defaultValue={profileData?.postalCode}
+                  value={profileData[5]}
                   required
                   ref={postalCodeInputRef}
                 />

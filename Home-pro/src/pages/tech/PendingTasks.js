@@ -66,13 +66,9 @@ try {
     .then(data => setJobData(data));
   },[]);
   
-  const handleAccept = async () => {
-    {jobData.map(obj =>
-       <div>
-        {obj.address.status === "Assigned"};
-        
-       </div>
-      )}
+  const handleAccept = (event, param) =>  {
+    console.log(param)
+ 
 
   };
 
@@ -104,7 +100,7 @@ try {
                      <td>{obj.start_time} </td>
                      <td>{obj.address.street} </td>
                      <td>{obj.address.postalCode} </td>
-                     <td> <Button variant="warning" onClick={handleAccept}>Accept</Button>{' '}</td>
+                     <td> <Button variant="warning" onClick={event => handleAccept(event, obj.job_id)}>Accept</Button>{' '}</td>
                      </tr>
                  )}
           </tbody>

@@ -6,27 +6,30 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../../../assets/hero-bcg.jpeg";
+import { PageHero } from "../../../components";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alerts from "../../../components/Alerts";
 
-function ContactUs() {
+function ContactUs({ user, handleLogout }) {
   let history = useHistory();
-  const [alertShow, setAlertShow] = useState(false);
+  const [alertShow, setAlertShow] = React.useState(false);
 
   const emailInputRef = useRef();
   const serviceNumberInputRef = useRef();
   const inquiryInputRef = useRef();
 
   async function submitHandler(event) {
-    setAlertShow(true);
+   
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
 
     const enteredServiceNumber = serviceNumberInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
-
+    if(enteredEmail != null || enteredInquiry != null){
+      setAlertShow(true);
+    }
     //  if(enteredServiceNumber === null){
     //    enteredServiceNumber = 'No service number'
     //  }

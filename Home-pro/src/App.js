@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Footer } from "./components";
 
 import { Home, About } from "./pages";
-import ContactPage from "./pages/client/contact/ContactPage";
+
 import LoginPage from "./pages/login/LoginPage";
 import ServicePage from "./pages/client/service/ServicePage";
 import SignupPage from "./pages/signup/SignupPage";
@@ -82,9 +82,7 @@ function App() {
             <Route exact path="/about">
               <About />
             </Route>
-            <Route exact path="/contact">
-              <ContactPage />
-            </Route>
+
             <Route exact path="/service">
               <ServicePage />
             </Route>

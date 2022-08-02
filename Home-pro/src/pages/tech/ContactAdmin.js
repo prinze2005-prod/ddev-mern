@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../../assets/hero-bcg.jpeg";
 import { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Alerts from "../../components/Alerts";
 
 function ContactAdmin() {
@@ -107,9 +107,16 @@ function ContactAdmin() {
                   required
                 />
               </FloatingLabel>
-              <Button variant="warning" style={{ color: "black" }}>
-                Submit
-              </Button>{" "}
+              <center>
+                <Button variant="warning" style={{ color: "black" }}>
+                  Submit
+                </Button>{" "}
+                <Button variant="light">
+                  <Link to="/tech" style={{ color: "black" }}>
+                    Go Back
+                  </Link>
+                </Button>{" "}
+              </center>
             </Form>
           </Col>
           <Col className="text-center">

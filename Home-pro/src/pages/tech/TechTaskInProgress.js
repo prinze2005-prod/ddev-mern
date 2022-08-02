@@ -10,7 +10,27 @@ function TechTaskInProgress() {
   let HP_refreshToken;
   let HP_accessToken;
 
-  const [jobData, setJobData] = useState(null);
+  const [jobData, setJobData] = useState([
+    {
+    jobId: 12345,
+    cust_email: 'customer@gmail.com',
+    phoneNumber: 1234567890,
+    start_time: '2022-07-2923:07',
+    address: [
+        {street: '11 Sait way NW',
+        postalCode: 'A1A 1A1'}
+    ]
+ },{
+  jobId: 12345,
+  cust_email: 'customer@gmail.com',
+  phoneNumber: 1234567890,
+  start_time: '2022-07-2923:07',
+  address: [
+      {street: '11 Sait way NW',
+      postalCode: 'A1A 1A1'}
+  ]
+}
+]);
   
   try {
     var cookies = document.cookie.split(";");
@@ -28,7 +48,7 @@ function TechTaskInProgress() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tech/getTechProfile",
+    fetch("http://localhost:5000/api/tech/getInProgressJobs",
     {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
@@ -54,30 +74,24 @@ function TechTaskInProgress() {
           <thead>
             <tr>
               <th>Job ID</th>
-              <th>Date</th>
-              <th>Customer Name</th>
+              <th>Customer Email</th>
               <th>Phone Number</th>
+              <th>Start Time</th>
+              <th>Street</th>
+              <th>Postal Code</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1772336</td>
-              <td>Mar 20, 2022</td>
-              <td>John Doe</td>
-              <td>4031112222</td>
-            </tr>
-            <tr>
-              <td>1228335</td>
-              <td>Jan 14, 2022</td>
-              <td>Joe Doe</td>
-              <td>4031112222</td>
-            </tr>
-            <tr>
-              <td>1344339</td>
-              <td>Dec 22, 2021</td>
-              <td>Joe Blow</td>
-              <td>4031112222</td>
-            </tr>
+          {jobData.map(obj =>
+                    <tr>
+                     <td>{obj.job_id} </td>   
+                     <td>{obj.cust_email} </td>
+                     <td>{obj.phoneNumber} </td>
+                     <td>{obj.start_time} </td>
+                     <td>{obj.address.street} </td>
+                     <td>{obj.address.postalCode} </td>
+                     </tr>
+                 )}
           </tbody>
         </Table>
         <center>

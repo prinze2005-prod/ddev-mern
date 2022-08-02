@@ -1,13 +1,14 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-
+import NewNav from "../../../components/NewNav";
 import { PageHero } from "../../../components";
 import ServicesCard from "../../../components/ServicesCard";
 
-function ServicePage() {
+function ServicePage({ user, handleLogout }) {
   return (
     <main>
-      <PageHero title="Services" />
+      <NewNav user={user} handleLogout={handleLogout}></NewNav>
+
       <Container>
         <br></br>
         <ServicesCard />

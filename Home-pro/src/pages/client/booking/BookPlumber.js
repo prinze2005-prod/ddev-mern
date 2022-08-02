@@ -7,13 +7,14 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
+import NewNav from "../../../components/NewNav";
 
-const BookPlumber = ({ user }) => {
+const BookPlumber = ({ user, handleLogout }) => {
   let history = useHistory();
 
-  let HP_userFName="";
-  let HP_userLName="";
-  let HP_userEmail="";
+  let HP_userFName = "";
+  let HP_userLName = "";
+  let HP_userEmail = "";
   try {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -26,10 +27,10 @@ const BookPlumber = ({ user }) => {
       }
       if (cook[0].includes("HP_userEmail")) {
         HP_userEmail = cook[1];
-        HP_userEmail = HP_userEmail.replace("%40","@");
+        HP_userEmail = HP_userEmail.replace("%40", "@");
       }
     }
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
 
@@ -169,7 +170,7 @@ const BookPlumber = ({ user }) => {
   }
   return (
     <main>
-      <PageHero title="Booking" />
+      <NewNav user={user} handleLogout={handleLogout}></NewNav>
 
       <Container>
         <br></br>

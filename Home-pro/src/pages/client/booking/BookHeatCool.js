@@ -7,13 +7,14 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
+import NewNav from "../../../components/NewNav";
 
-const BookHeatCool= ({ user }) => {
+const BookHeatCool = ({ user, handleLogout }) => {
   let history = useHistory();
 
-  let HP_userFName="";
-  let HP_userLName="";
-  let HP_userEmail="";
+  let HP_userFName = "";
+  let HP_userLName = "";
+  let HP_userEmail = "";
   try {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -26,10 +27,10 @@ const BookHeatCool= ({ user }) => {
       }
       if (cook[0].includes("HP_userEmail")) {
         HP_userEmail = cook[1];
-        HP_userEmail = HP_userEmail.replace("%40","@");
+        HP_userEmail = HP_userEmail.replace("%40", "@");
       }
     }
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
 
@@ -72,31 +73,32 @@ const BookHeatCool= ({ user }) => {
 
     setModalShow(true);
     return;
-
-    
   }
 
   const handlerSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/general/createjob", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname: bookingData.fname,
-          lname: bookingData.lname,
-          email: bookingData.email,
-          pnumber: bookingData.pnumber,
-          street: bookingData.street,
-          postalCode: bookingData.postalCode,
-          city: "Calgary",
-          province: "Alberta",
-          service: 3,
-          start_time: bookingData.start_time,
-          description: bookingData.description,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/general/createjob",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname: bookingData.fname,
+            lname: bookingData.lname,
+            email: bookingData.email,
+            pnumber: bookingData.pnumber,
+            street: bookingData.street,
+            postalCode: bookingData.postalCode,
+            city: "Calgary",
+            province: "Alberta",
+            service: 3,
+            start_time: bookingData.start_time,
+            description: bookingData.description,
+          }),
+        }
+      );
       const responseData = await response.json();
       console.log(responseData);
       if (!!responseData) {
@@ -165,7 +167,7 @@ const BookHeatCool= ({ user }) => {
   }
   return (
     <main>
-      <PageHero title="Booking" />
+      <NewNav user={user} handleLogout={handleLogout}></NewNav>
 
       <Container>
         <br></br>

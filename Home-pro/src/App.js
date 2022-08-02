@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Sidebar, Footer } from "./components";
 
 import { Home, About } from "./pages";
-import BookingPage from "./pages/client/booking/BookingPage";
 import ContactPage from "./pages/client/contact/ContactPage";
 import LoginPage from "./pages/login/LoginPage";
 import ServicePage from "./pages/client/service/ServicePage";
@@ -57,40 +56,40 @@ function App() {
   }, []);
   function handleLogout() {
     setUser(null);
-    document.cookie = "HP_userEmail= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_userFName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_userLName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_type= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_refreshToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_accessToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_userEmail= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "HP_userFName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "HP_userLName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "HP_type= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie =
+      "HP_refreshToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie =
+      "HP_accessToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location = "/";
   }
 
   return (
     <Router>
       <div style={{ minHeight: "600px" }}>
-        <Navbar user={user} handleLogout={handleLogout} />
-        <Sidebar user={user} handleLogout={handleLogout} />
+        {/* <Navbar user={user} handleLogout={handleLogout} />
+        <Sidebar user={user} handleLogout={handleLogout} /> */}
+
         <div style={{ backgroundColor: "#FDFAF4" }}>
           {" "}
           <Switch>
             <Route exact path="/">
-              <Home user={user} />
+              <Home user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/about">
-              <About />
+              <About user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/contact">
-              <ContactPage />
+              <ContactPage user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/service">
-              <ServicePage />
-            </Route>
-            <Route exact path="/booking">
-              <BookingPage />
+              <ServicePage user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/login">
-              <LoginPage setUser={setUser} />
+              <LoginPage setUser={setUser} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/signup">
               <SignupPage />
@@ -99,49 +98,49 @@ function App() {
               <TechLandingPage />
             </Route>
             <Route exact path="/PaintingPage">
-              <PaintingPage />
+              <PaintingPage user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/Plumbing">
-              <Plumbing />
+              <Plumbing user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/Electrician">
-              <Electrician />
+              <Electrician user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/Heating">
-              <Heating />
+              <Heating user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/Handyman">
-              <Handyman />
+              <Handyman user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/Appliances">
-              <Appliances />
+              <Appliances user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/bookPlumber">
-              <BookPlumber user={user} />
+              <BookPlumber user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/bookElectrician">
-              <BookElectrician />
+              <BookElectrician user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/bookPainter">
-              <BookPainter />
+              <BookPainter user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/bookHeatCool">
-              <BookHeatCool />
+              <BookHeatCool user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/bookHandyman">
-              <BookHandyman />
+              <BookHandyman user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/bookAppliance">
-              <BookAppliance />
+              <BookAppliance user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/BookingConfirmPage">
-              <BookingConfirmPage />
+              <BookingConfirmPage user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/ContactUs">
-              <ContactUs />
+              <ContactUs user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/Profile">
-              <Profile user={user} />
+              <Profile user={user} handleLogout={handleLogout} />
             </Route>
             <Route exact path="/techPerformance">
               <TechPerformance />
@@ -177,25 +176,25 @@ function App() {
               <AdminAddTech></AdminAddTech>
             </Route>
             <Route exact path="/adminClientAdd">
-              <AdminAddClient/>
+              <AdminAddClient />
             </Route>
             <Route exact path="/adminClientEdit">
-              <AdminClientEdit/>
+              <AdminClientEdit />
             </Route>
             <Route exact path="/reviewInquiries">
-              <ReviewInquires/>
+              <ReviewInquires />
             </Route>
             <Route exact path="/adminjob">
-              <AdminJob/>
+              <AdminJob />
             </Route>
             <Route exact path="/pastTransaction">
-              <PastTransaction/>
+              <PastTransaction />
             </Route>
             <Route exact path="/manageTech">
-              <ManageTechPage/>
+              <ManageTechPage />
             </Route>
             <Route exact path="/ManageClient">
-              <ManageClient/>
+              <ManageClient />
             </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>

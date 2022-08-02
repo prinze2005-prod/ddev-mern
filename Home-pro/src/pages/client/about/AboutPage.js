@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { PageHero } from "../../../components";
 import aboutImg from "../../../assets/hero-bcg-3.jpeg";
+import NewNav from "../../../components/NewNav";
 
-const AboutPage = () => {
+const AboutPage = ({ user, handleLogout }) => {
   return (
     <main>
-      <PageHero title="about" />
+      <NewNav user={user} handleLogout={handleLogout}></NewNav>
+
       <Wrapper className="page section section-center">
         <img src={aboutImg} alt="nice desk" />
         <article>
@@ -15,9 +17,11 @@ const AboutPage = () => {
             <div className="underline"></div>
           </div>
           <p>
-          We provide all our services are curated with the same care we would expect to have in our own homes. 
-          We offer wide variety of services you need to keep your home in tip-top shape. From general repairs to new 
-          installations to ongoing maintenance, your home can be your sanctuary with a little extra love. 
+            We provide all our services are curated with the same care we would
+            expect to have in our own homes. We offer wide variety of services
+            you need to keep your home in tip-top shape. From general repairs to
+            new installations to ongoing maintenance, your home can be your
+            sanctuary with a little extra love.
           </p>
         </article>
       </Wrapper>

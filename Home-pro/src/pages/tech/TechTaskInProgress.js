@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function TechTaskInProgress() {
   let HP_refreshToken;
@@ -56,6 +57,24 @@ function TechTaskInProgress() {
       .then((data) => setJobData(data));
   }, []);
 
+  const handleComplete = async (event, param) => {
+    console.log(param);
+    await fetch("http://localhost:5000/api/tech/completejob", {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jobID: param,
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      }),
+    });
+    history.push("/tech");
+    history.push("/pendingtasks");
+  };
+
   return (
     <main>
       <Container style={{ minHeight: "500px" }}>
@@ -74,6 +93,7 @@ function TechTaskInProgress() {
               <th>Start Time</th>
               <th>Street</th>
               <th>Postal Code</th>
+              <th>Complete</th>
             </tr>
           </thead>
           <tbody>
@@ -85,6 +105,16 @@ function TechTaskInProgress() {
                 <td>{obj.start_time} </td>
                 <td>{obj.address.street} </td>
                 <td>{obj.address.postalCode} </td>
+                <td>
+                  {" "}
+                  <Button
+                    variant="warning"
+                    style={{ color: "black" }}
+                    // onClick={(event) => handleComplete(event, obj.job_id)}
+                  >
+                    Complete
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>

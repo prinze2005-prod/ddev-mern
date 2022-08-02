@@ -6,14 +6,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../../../assets/hero-bcg.jpeg";
-import { PageHero } from "../../../components";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alerts from "../../../components/Alerts";
 
-function ContactUs({ user, handleLogout }) {
+function ContactUs() {
   let history = useHistory();
-  const [alertShow, setAlertShow] = React.useState(false);
+  const [alertShow, setAlertShow] = useState(false);
 
   const emailInputRef = useRef();
   const serviceNumberInputRef = useRef();

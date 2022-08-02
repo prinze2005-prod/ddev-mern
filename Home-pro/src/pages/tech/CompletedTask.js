@@ -61,7 +61,10 @@ const CompletedTask = () => {
     <main>
       <Container style={{ minHeight: "500px" }}>
         <br></br>
-        <h2>Completed Tasks</h2>
+        <center>
+          <h2>Completed Tasks</h2>
+        </center>
+
         <br></br>
         <Table striped bordered hover>
           <thead>

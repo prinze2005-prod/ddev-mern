@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
-import AdminHeader from "../../../components/AdminHeader.js";
 
 const AdminAddClient = ({ user }) => {
   let history = useHistory();
@@ -144,8 +143,6 @@ const AdminAddClient = ({ user }) => {
 
   return (
     <main>
-      <AdminHeader title="Add Client" />
-
       <Container>
         <br></br>
         <center>

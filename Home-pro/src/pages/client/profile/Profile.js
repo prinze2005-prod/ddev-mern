@@ -9,18 +9,11 @@ import { PageHero } from "../../../components";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, handleLogout }) => {
   let history = useHistory();
 
   const [modalShow, setModalShow] = useState(false);
-  const [profileData, setProfileData] = useState([
-    "Saksham",
-    "Ohri",
-    "",
-    "1112223333",
-    "sait",
-    "T1T 1T1"
-  ]);
+  const [profileData, setProfileData] = useState(["", "", "", "", "", ""]);
 
   let HP_refreshToken;
   let HP_accessToken;
@@ -35,12 +28,11 @@ const Profile = ({ user }) => {
         HP_accessToken = cook[1];
       }
     }
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
   useEffect(() => {
-    fetch("http://localhost:5000/api/customer/getLoggedInInfo",
-    {
+    fetch("http://localhost:5000/api/customer/getLoggedInInfo", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -49,10 +41,20 @@ const Profile = ({ user }) => {
       body: JSON.stringify({
         refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
         accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-      })})
-    .then(response => response.json())
-    .then(data => setProfileData([data.fName, data.lName,"",data.phoneNumber,data.address.street,data.address.postalCode]));
-  },[]);
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setProfileData([
+          data.fName,
+          data.lName,
+          "",
+          data.phoneNumber,
+          data.address.street,
+          data.address.postalCode,
+        ])
+      );
+  }, []);
 
   const fnameInputRef = useRef();
   const lnameInputRef = useRef();
@@ -132,24 +134,59 @@ const Profile = ({ user }) => {
 
   const handleFNameChange = (events) => {
     let text = events.target.value;
-    setProfileData([text,profileData[1],profileData[2],profileData[3],profileData[4],profileData[5]]);
-  }
+    setProfileData([
+      text,
+      profileData[1],
+      profileData[2],
+      profileData[3],
+      profileData[4],
+      profileData[5],
+    ]);
+  };
   const handleLNameChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],text,profileData[2],profileData[3],profileData[4],profileData[5]]);
-  }
+    setProfileData([
+      profileData[0],
+      text,
+      profileData[2],
+      profileData[3],
+      profileData[4],
+      profileData[5],
+    ]);
+  };
   const handlePNumberChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],profileData[1],profileData[2],text,profileData[4],profileData[5]]);
-  }
+    setProfileData([
+      profileData[0],
+      profileData[1],
+      profileData[2],
+      text,
+      profileData[4],
+      profileData[5],
+    ]);
+  };
   const handleStreetChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],profileData[1],profileData[2],profileData[3],text,profileData[5]]);
-  }
+    setProfileData([
+      profileData[0],
+      profileData[1],
+      profileData[2],
+      profileData[3],
+      text,
+      profileData[5],
+    ]);
+  };
   const handlePCodeChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],profileData[1],profileData[2],profileData[3],profileData[4],text]);
-  }
+    setProfileData([
+      profileData[0],
+      profileData[1],
+      profileData[2],
+      profileData[3],
+      profileData[4],
+      text,
+    ]);
+  };
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -204,8 +241,6 @@ const Profile = ({ user }) => {
   }
   return (
     <main>
-      <PageHero title="Profile" />
-
       <Container>
         <br></br>
         <center>

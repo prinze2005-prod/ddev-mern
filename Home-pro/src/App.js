@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Navbar, Sidebar, Footer } from "./components";
+import { Footer } from "./components";
 
 import { Home, About } from "./pages";
-import BookingPage from "./pages/client/booking/BookingPage";
 import ContactPage from "./pages/client/contact/ContactPage";
 import LoginPage from "./pages/login/LoginPage";
 import ServicePage from "./pages/client/service/ServicePage";
@@ -36,7 +35,6 @@ import AdminProfile from "./pages/admin/AdminProfile";
 import AdminJobEdit from "./pages/admin/JobManager/AdminJobEdit";
 import AdminTechEdit from "./pages/admin/TechManager/AdminTechEdit";
 import AdminAddTech from "./pages/admin/TechManager/AdminAddTech";
-
 import TestPage from "./pages/TestPage";
 import AdminAddClient from "./pages/admin/ClientManager/AdminAddClient";
 import AdminClientEdit from "./pages/admin/ClientManager/AdminClientEdit";
@@ -45,6 +43,7 @@ import AdminJob from "./pages/admin/JobManager/AdminJob";
 import PastTransaction from "./pages/admin/PastTransaction";
 import ManageTechPage from "./pages/admin/TechManager/ManageTechPage";
 import ManageClient from "./pages/admin/ClientManager/ManageClient";
+import NewNav from "./components/NewNav";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -57,21 +56,24 @@ function App() {
   }, []);
   function handleLogout() {
     setUser(null);
-    document.cookie = "HP_userEmail= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_userFName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_userLName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_type= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_refreshToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-    document.cookie = "HP_accessToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "HP_userEmail= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "HP_userFName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "HP_userLName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "HP_type= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie =
+      "HP_refreshToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie =
+      "HP_accessToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location = "/";
   }
 
   return (
     <Router>
-      <div style={{ minHeight: "600px" }}>
-        <Navbar user={user} handleLogout={handleLogout} />
-        <Sidebar user={user} handleLogout={handleLogout} />
-        <div style={{ backgroundColor: "#FDFAF4" }}>
+      <div>
+        {/* <Navbar user={user} handleLogout={handleLogout} />
+        <Sidebar user={user} handleLogout={handleLogout} /> */}
+        <NewNav user={user} handleLogout={handleLogout}></NewNav>
+        <div style={{ backgroundColor: "#FDFAF4", minHeight: "900px" }}>
           {" "}
           <Switch>
             <Route exact path="/">
@@ -85,9 +87,6 @@ function App() {
             </Route>
             <Route exact path="/service">
               <ServicePage />
-            </Route>
-            <Route exact path="/booking">
-              <BookingPage />
             </Route>
             <Route exact path="/login">
               <LoginPage setUser={setUser} />
@@ -117,7 +116,7 @@ function App() {
               <Appliances />
             </Route>
             <Route exact path="/bookPlumber">
-              <BookPlumber user={user} />
+              <BookPlumber />
             </Route>
             <Route exact path="/bookElectrician">
               <BookElectrician />
@@ -141,7 +140,7 @@ function App() {
               <ContactUs />
             </Route>
             <Route exact path="/Profile">
-              <Profile user={user} />
+              <Profile />
             </Route>
             <Route exact path="/techPerformance">
               <TechPerformance />
@@ -177,25 +176,25 @@ function App() {
               <AdminAddTech></AdminAddTech>
             </Route>
             <Route exact path="/adminClientAdd">
-              <AdminAddClient/>
+              <AdminAddClient />
             </Route>
             <Route exact path="/adminClientEdit">
-              <AdminClientEdit/>
+              <AdminClientEdit />
             </Route>
             <Route exact path="/reviewInquiries">
-              <ReviewInquires/>
+              <ReviewInquires />
             </Route>
             <Route exact path="/adminjob">
-              <AdminJob/>
+              <AdminJob />
             </Route>
             <Route exact path="/pastTransaction">
-              <PastTransaction/>
+              <PastTransaction />
             </Route>
             <Route exact path="/manageTech">
-              <ManageTechPage/>
+              <ManageTechPage />
             </Route>
             <Route exact path="/ManageClient">
-              <ManageClient/>
+              <ManageClient />
             </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>

@@ -6,7 +6,6 @@ import aboutImg from "../../../assets/hero-bcg-3.jpeg";
 const AboutPage = () => {
   return (
     <main>
-      <PageHero title="about" />
       <Wrapper className="page section section-center">
         <img src={aboutImg} alt="nice desk" />
         <article>
@@ -15,9 +14,11 @@ const AboutPage = () => {
             <div className="underline"></div>
           </div>
           <p>
-          We provide all our services are curated with the same care we would expect to have in our own homes. 
-          We offer wide variety of services you need to keep your home in tip-top shape. From general repairs to new 
-          installations to ongoing maintenance, your home can be your sanctuary with a little extra love. 
+            We provide all our services are curated with the same care we would
+            expect to have in our own homes. We offer wide variety of services
+            you need to keep your home in tip-top shape. From general repairs to
+            new installations to ongoing maintenance, your home can be your
+            sanctuary with a little extra love.
           </p>
         </article>
       </Wrapper>

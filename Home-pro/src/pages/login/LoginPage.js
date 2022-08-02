@@ -21,7 +21,7 @@ function LoginPage({ setUser }) {
   const passwordInputRef = useRef();
   let responseData;
 
-  const [result, setResult] = React.useState(null);
+  const [result, setResult] = useState(null);
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -53,7 +53,7 @@ function LoginPage({ setUser }) {
       console.log(responseData);
       message = responseData.message;
 
-      if (message == "success" || message == "Account in use") {
+      if (message === "success" || message === "Account in use") {
         //do redirect to home page
         const userData = { username: loginData.email };
         //localStorage.setItem('user', userData);
@@ -72,22 +72,19 @@ function LoginPage({ setUser }) {
       LoginPage();
     }
     console.log(message);
-    if(message === 'Customer'){
-      const userData = { username: loginData.email };
+    if (message === "Customer") {
+      const userData = { username: loginData.email, role: "Customer" };
       setUser(userData);
       history.push("/");
-    } else if(message === 'Technician'){
-      const userData = { username: loginData.email };
+    } else if (message === "Technician") {
+      const userData = { username: loginData.email, role: "Technician" };
       setUser(userData);
       history.push("/tech");
-    } 
-
-    else if(message === 'Admin'){
-      const userData = { username: loginData.email };
+    } else if (message === "Admin") {
+      const userData = { username: loginData.email, role: "Admin" };
       setUser(userData);
       history.push("/admin");
     }
-
   }
 
   return (

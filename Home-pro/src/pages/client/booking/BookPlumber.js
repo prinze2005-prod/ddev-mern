@@ -8,12 +8,12 @@ import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
 
-const BookPlumber = ({ user }) => {
+const BookPlumber = () => {
   let history = useHistory();
 
-  let HP_userFName="";
-  let HP_userLName="";
-  let HP_userEmail="";
+  let HP_userFName = "";
+  let HP_userLName = "";
+  let HP_userEmail = "";
   try {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -26,10 +26,10 @@ const BookPlumber = ({ user }) => {
       }
       if (cook[0].includes("HP_userEmail")) {
         HP_userEmail = cook[1];
-        HP_userEmail = HP_userEmail.replace("%40","@");
+        HP_userEmail = HP_userEmail.replace("%40", "@");
       }
     }
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
 
@@ -169,8 +169,6 @@ const BookPlumber = ({ user }) => {
   }
   return (
     <main>
-      <PageHero title="Booking" />
-
       <Container>
         <br></br>
         <center>

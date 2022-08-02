@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import TechHeader from "../../components/TechHeader";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import Table from "react-bootstrap/Table";
@@ -12,21 +12,22 @@ function TechPerformance() {
 
   const [performanceData, setPerformanceData] = useState([
     {
-    job_id: 142,
-    date: '2022-07-29 23:07',
-    rating: 5
- },
- {
-  job_id: 144,
-  date: '2022-06-16 23:07',
-  rating: 5
-},{
-  job_id: 156,
-  date: '2022-05-22 23:07',
-  rating: 5
-},
-]);
-  
+      job_id: 142,
+      date: "2022-07-29 23:07",
+      rating: 5,
+    },
+    {
+      job_id: 144,
+      date: "2022-06-16 23:07",
+      rating: 5,
+    },
+    {
+      job_id: 156,
+      date: "2022-05-22 23:07",
+      rating: 5,
+    },
+  ]);
+
   try {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -38,13 +39,12 @@ function TechPerformance() {
         HP_accessToken = cook[1];
       }
     }
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 
   useEffect(() => {
-    fetch("",
-    {
+    fetch("", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -53,94 +53,106 @@ function TechPerformance() {
       body: JSON.stringify({
         refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
         accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-      })})
-    .then(response => response.json())
-    .then(data => setPerformanceData(data));
-  },[]);
-  
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => setPerformanceData(data));
+  }, []);
+
   return (
     <main>
       <Wrapper className="section">
-      <TechHeader title="Performance Data" />
-      <Container>
-        <br></br>
-        <h2>Rating</h2>
-        <br></br>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Job ID</th>
-              <th>Date</th>
-              <th>Rating</th>
-            </tr>
-          </thead>
-          <tbody>
-          {performanceData.map(obj =>
-                    <tr>
-                     <td>{obj.job_id} </td>   
-                     <td>{obj.date} </td>
-                     <td>{obj.rating} </td>
-                     </tr>
-                 )}
-          </tbody>
-        </Table>
-        <br></br>
-        <h2>Personal Revenue</h2>
-        <br></br>
-        <h6>Pending Payments</h6>
-        <br></br>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Job ID</th>
-              <th>Date</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1772336</td>
-              <td>Mar 20, 2022</td>
-              <td>$250</td>
-            </tr>
-          </tbody>
-        </Table>
-        <br></br>
-        <h6>Collected Payments</h6>
-        <br></br>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Job ID</th>
-              <th>Date</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1228335</td>
-              <td>Jan 14, 2022</td>
-              <td>$180</td>
-            </tr>
-            <tr>
-              <td>1344339</td>
-              <td>Dec 22, 2021</td>
-              <td>$525</td>
-            </tr>
-          </tbody>
-        </Table>
+        <Container>
+          <br></br>
+          <center>
+            <h2>Rating</h2>
+          </center>
 
-        <center>
-          <Link
-            to="/Tech"
-            className="btn"
-            style={{ backgroundColor: "#ffb347" }}
-          >
-            back to Tech page
-          </Link>
-        </center>
-        <br></br>
-      </Container>
+          <br></br>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Job ID</th>
+                <th>Date</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              {performanceData.map((obj) => (
+                <tr>
+                  <td>{obj.job_id} </td>
+                  <td>{obj.date} </td>
+                  <td>{obj.rating} </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <br></br>
+          <center>
+            <h2>Personal Revenue</h2>
+          </center>
+
+          <br></br>
+          <center>
+            <h6>Pending Payments</h6>
+          </center>
+
+          <br></br>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Job ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1772336</td>
+                <td>Mar 20, 2022</td>
+                <td>$250</td>
+              </tr>
+            </tbody>
+          </Table>
+          <br></br>
+          <center>
+            <h6>Collected Payments</h6>
+          </center>
+
+          <br></br>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Job ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1228335</td>
+                <td>Jan 14, 2022</td>
+                <td>$180</td>
+              </tr>
+              <tr>
+                <td>1344339</td>
+                <td>Dec 22, 2021</td>
+                <td>$525</td>
+              </tr>
+            </tbody>
+          </Table>
+
+          <center>
+            <Link
+              to="/Tech"
+              className="btn"
+              style={{ backgroundColor: "#ffb347" }}
+            >
+              back to Tech page
+            </Link>
+          </center>
+          <br></br>
+        </Container>
       </Wrapper>
     </main>
   );

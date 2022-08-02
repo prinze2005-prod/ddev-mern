@@ -7,11 +7,11 @@ import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../../../assets/hero-bcg.jpeg";
 import { PageHero } from "../../../components";
-import { useRef , useState} from "react";
+import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alerts from "../../../components/Alerts";
 
-function ContactUs() {
+function ContactUs({ user, handleLogout }) {
   let history = useHistory();
   const [alertShow, setAlertShow] = React.useState(false);
 
@@ -20,17 +20,17 @@ function ContactUs() {
   const inquiryInputRef = useRef();
 
   async function submitHandler(event) {
-    setAlertShow(true) 
+    setAlertShow(true);
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
-    
+
     const enteredServiceNumber = serviceNumberInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
 
-  //  if(enteredServiceNumber === null){
-  //    enteredServiceNumber = 'No service number'
-  //  }
+    //  if(enteredServiceNumber === null){
+    //    enteredServiceNumber = 'No service number'
+    //  }
 
     const inquiryData = {
       email: enteredEmail,
@@ -39,22 +39,24 @@ function ContactUs() {
     };
     console.log(inquiryData);
     try {
-      const response = await fetch("http://localhost:5000/api/general/createinquiry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: inquiryData.email,
-          serviceNumber: inquiryData.serviceNumber,
-          description: inquiryData.inquiry
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/general/createinquiry",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: inquiryData.email,
+            serviceNumber: inquiryData.serviceNumber,
+            description: inquiryData.inquiry,
+          }),
+        }
+      );
       const responseData = await response.json();
       console.log(responseData);
       if (!!responseData) {
         history.push("/contactus");
-      
       }
     } catch (err) {
       console.log(err);
@@ -63,8 +65,9 @@ function ContactUs() {
 
   return (
     <main>
-      <PageHero title="Contact Us" />
-      {alertShow && (<Alerts message = 'Your inquiry has been sent successfully !'/>)}
+      {alertShow && (
+        <Alerts message="Your inquiry has been sent successfully !" />
+      )}
       <Container>
         <br></br>
         <Row>

@@ -7,9 +7,8 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
-import NewNav from "../../../components/NewNav";
 
-const BookPlumber = ({ user, handleLogout }) => {
+const BookPlumber = () => {
   let history = useHistory();
 
   let HP_userFName = "";
@@ -170,8 +169,6 @@ const BookPlumber = ({ user, handleLogout }) => {
   }
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Container>
         <br></br>
         <center>

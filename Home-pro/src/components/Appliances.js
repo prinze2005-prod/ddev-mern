@@ -2,13 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Image from "../assets/appliances.jpg";
 import { NavLink } from "react-router-dom";
-import NewNav from "./NewNav";
 
-const Appliances = ({ user, handleLogout }) => {
+const Appliances = () => {
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Wrapper className="page section section-center">
         <img src={Image} alt="painting" />
         <article>
@@ -72,12 +69,6 @@ const Wrapper = styled.section`
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
   }
-`;
-const PaintTitle = styled.div`
-  background: var(--clr-primary-5);
-  display: flex;
-  justify-content: center;
-  text-align: center;
 `;
 const DefaultButton = styled.button`
   background: var(--clr-primary-5);

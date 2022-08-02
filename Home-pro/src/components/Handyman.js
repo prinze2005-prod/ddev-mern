@@ -2,13 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Image from "../assets/handi-man.jpg";
 import { NavLink } from "react-router-dom";
-import NewNav from "./NewNav";
 
-const Handyman = ({ user, handleLogout }) => {
+const Handyman = () => {
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Wrapper className="page section section-center">
         <img src={Image} alt="handi-man" />
         <article>

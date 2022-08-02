@@ -10,7 +10,6 @@ import { PageHero } from "../../../components";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alerts from "../../../components/Alerts";
-import NewNav from "../../../components/NewNav";
 
 function ContactUs({ user, handleLogout }) {
   let history = useHistory();
@@ -66,8 +65,6 @@ function ContactUs({ user, handleLogout }) {
 
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       {alertShow && (
         <Alerts message="Your inquiry has been sent successfully !" />
       )}

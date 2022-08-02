@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Navbar, Sidebar, Footer } from "./components";
+import { Footer } from "./components";
 
 import { Home, About } from "./pages";
 import ContactPage from "./pages/client/contact/ContactPage";
@@ -35,7 +35,6 @@ import AdminProfile from "./pages/admin/AdminProfile";
 import AdminJobEdit from "./pages/admin/JobManager/AdminJobEdit";
 import AdminTechEdit from "./pages/admin/TechManager/AdminTechEdit";
 import AdminAddTech from "./pages/admin/TechManager/AdminAddTech";
-
 import TestPage from "./pages/TestPage";
 import AdminAddClient from "./pages/admin/ClientManager/AdminAddClient";
 import AdminClientEdit from "./pages/admin/ClientManager/AdminClientEdit";
@@ -44,6 +43,7 @@ import AdminJob from "./pages/admin/JobManager/AdminJob";
 import PastTransaction from "./pages/admin/PastTransaction";
 import ManageTechPage from "./pages/admin/TechManager/ManageTechPage";
 import ManageClient from "./pages/admin/ClientManager/ManageClient";
+import NewNav from "./components/NewNav";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -69,27 +69,27 @@ function App() {
 
   return (
     <Router>
-      <div style={{ minHeight: "600px" }}>
+      <div>
         {/* <Navbar user={user} handleLogout={handleLogout} />
         <Sidebar user={user} handleLogout={handleLogout} /> */}
-
-        <div style={{ backgroundColor: "#FDFAF4" }}>
+        <NewNav user={user} handleLogout={handleLogout}></NewNav>
+        <div style={{ backgroundColor: "#FDFAF4", minHeight: "900px" }}>
           {" "}
           <Switch>
             <Route exact path="/">
-              <Home user={user} handleLogout={handleLogout} />
+              <Home />
             </Route>
             <Route exact path="/about">
-              <About user={user} handleLogout={handleLogout} />
+              <About />
             </Route>
             <Route exact path="/contact">
-              <ContactPage user={user} handleLogout={handleLogout} />
+              <ContactPage />
             </Route>
             <Route exact path="/service">
-              <ServicePage user={user} handleLogout={handleLogout} />
+              <ServicePage />
             </Route>
             <Route exact path="/login">
-              <LoginPage setUser={setUser} handleLogout={handleLogout} />
+              <LoginPage setUser={setUser} />
             </Route>
             <Route exact path="/signup">
               <SignupPage />
@@ -98,49 +98,49 @@ function App() {
               <TechLandingPage />
             </Route>
             <Route exact path="/PaintingPage">
-              <PaintingPage user={user} handleLogout={handleLogout} />
+              <PaintingPage />
             </Route>
             <Route exact path="/Plumbing">
-              <Plumbing user={user} handleLogout={handleLogout} />
+              <Plumbing />
             </Route>
             <Route exact path="/Electrician">
-              <Electrician user={user} handleLogout={handleLogout} />
+              <Electrician />
             </Route>
             <Route exact path="/Heating">
-              <Heating user={user} handleLogout={handleLogout} />
+              <Heating />
             </Route>
             <Route exact path="/Handyman">
-              <Handyman user={user} handleLogout={handleLogout} />
+              <Handyman />
             </Route>
             <Route exact path="/Appliances">
-              <Appliances user={user} handleLogout={handleLogout} />
+              <Appliances />
             </Route>
             <Route exact path="/bookPlumber">
-              <BookPlumber user={user} handleLogout={handleLogout} />
+              <BookPlumber />
             </Route>
             <Route exact path="/bookElectrician">
-              <BookElectrician user={user} handleLogout={handleLogout} />
+              <BookElectrician />
             </Route>
             <Route exact path="/bookPainter">
-              <BookPainter user={user} handleLogout={handleLogout} />
+              <BookPainter />
             </Route>
             <Route exact path="/bookHeatCool">
-              <BookHeatCool user={user} handleLogout={handleLogout} />
+              <BookHeatCool />
             </Route>
             <Route exact path="/bookHandyman">
-              <BookHandyman user={user} handleLogout={handleLogout} />
+              <BookHandyman />
             </Route>
             <Route exact path="/bookAppliance">
-              <BookAppliance user={user} handleLogout={handleLogout} />
+              <BookAppliance />
             </Route>
             <Route exact path="/BookingConfirmPage">
-              <BookingConfirmPage user={user} handleLogout={handleLogout} />
+              <BookingConfirmPage />
             </Route>
             <Route exact path="/ContactUs">
-              <ContactUs user={user} handleLogout={handleLogout} />
+              <ContactUs />
             </Route>
             <Route exact path="/Profile">
-              <Profile user={user} handleLogout={handleLogout} />
+              <Profile />
             </Route>
             <Route exact path="/techPerformance">
               <TechPerformance />

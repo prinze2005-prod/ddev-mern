@@ -39,48 +39,39 @@ const NewNav = ({ user, handleLogout }) => {
             <MDBIcon icon="bars" fas />
           </MDBNavbarToggler>
           <MDBCollapse navbar center show={showNavNoTogglerSecond}>
-            <MDBNavbarNav className="mb-2 mb-lg-0">
-              <MDBNavbarItem>
-                <MDBNavbarLink>
-                  <Link to="/" style={{ color: "black" }}>
-                    Home
-                  </Link>
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink>
-                  <Link to="/about" style={{ color: "black" }}>
-                    About Us
-                  </Link>
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink>
-                  <Link to="/service" style={{ color: "black" }}>
-                    Services
-                  </Link>
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-              {user && (
-                <MDBNavbarItem>
-                  <MDBNavbarLink>
-                    <Link to="/profile" style={{ color: "black" }}>
-                      Profile
-                    </Link>
-                  </MDBNavbarLink>
-                </MDBNavbarItem>
-              )}
-              <MDBNavbarItem>
-                <MDBNavbarLink>
-                  <Link to="/contactus" style={{ color: "black" }}>
-                    Contact Us
-                  </Link>
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-            </MDBNavbarNav>
-
             {!user && (
               <>
+                <MDBNavbarNav className="mb-2 mb-lg-0">
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/" style={{ color: "black" }}>
+                        Home
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/about" style={{ color: "black" }}>
+                        About Us
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/service" style={{ color: "black" }}>
+                        Services
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/contactus" style={{ color: "black" }}>
+                        Contact Us
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                </MDBNavbarNav>
                 <MDBNavbarItem className="d-flex w-auto mb-0">
                   <Link to="login">
                     <MDBBtn color="warning" style={{ color: "black" }}>
@@ -90,12 +81,62 @@ const NewNav = ({ user, handleLogout }) => {
                 </MDBNavbarItem>
               </>
             )}
-            {user && (
+            {user && user.role === "Customer" && (
               <>
-                <MDBNavbarItem className="d-flex w-auto mb-0">
+                <MDBNavbarNav className="mb-2 mb-lg-0">
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/" style={{ color: "black" }}>
+                        Home
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/about" style={{ color: "black" }}>
+                        About Us
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/service" style={{ color: "black" }}>
+                        Services
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/profile" style={{ color: "black" }}>
+                        Profile
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                      <Link to="/contactus" style={{ color: "black" }}>
+                        Contact Us
+                      </Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
+                </MDBNavbarNav>
+
+                <MDBNavbarItem className="d-flex ms-auto mb-0">
                   <MDBNavbarLink disabled>{user.username}</MDBNavbarLink>
+                  <MDBBtn
+                    color="warning"
+                    style={{ color: "black" }}
+                    onClick={handleLogout}
+                  >
+                    logout
+                  </MDBBtn>
                 </MDBNavbarItem>
-                <MDBNavbarItem className="d-flex w-auto mb-0">
+              </>
+            )}
+            {user && (user.role === "Technician" || user.role === "Admin") && (
+              <>
+                <MDBNavbarItem className="d-flex ms-auto mb-0">
+                  <MDBNavbarLink disabled>{user.username}</MDBNavbarLink>
                   <MDBBtn
                     color="warning"
                     style={{ color: "black" }}

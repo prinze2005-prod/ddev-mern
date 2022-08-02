@@ -2,13 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { PageHero } from "../../../components";
 import aboutImg from "../../../assets/hero-bcg-3.jpeg";
-import NewNav from "../../../components/NewNav";
 
-const AboutPage = ({ user, handleLogout }) => {
+const AboutPage = () => {
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Wrapper className="page section section-center">
         <img src={aboutImg} alt="nice desk" />
         <article>

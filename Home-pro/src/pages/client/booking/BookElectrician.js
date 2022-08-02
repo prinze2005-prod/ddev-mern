@@ -7,9 +7,8 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
-import NewNav from "../../../components/NewNav";
 
-const BookElectrician = ({ user, handleLogout }) => {
+const BookElectrician = () => {
   let history = useHistory();
 
   let HP_userFName = "";
@@ -167,19 +166,13 @@ const BookElectrician = ({ user, handleLogout }) => {
   }
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Container>
         <br></br>
         <center>
           <h3>Book an Electrician</h3>
         </center>
         <h6>* All Fields are required</h6>
-        {user && (
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Use my default information" />
-          </Form.Group>
-        )}
+
         <Form onSubmit={submitHandler}>
           <Row className="g-2">
             <Col md>

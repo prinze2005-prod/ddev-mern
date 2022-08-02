@@ -8,20 +8,12 @@ import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
-import NewNav from "../../../components/NewNav";
 
 const Profile = ({ user, handleLogout }) => {
   let history = useHistory();
 
   const [modalShow, setModalShow] = useState(false);
-  const [profileData, setProfileData] = useState([
-    "Saksham",
-    "Ohri",
-    "",
-    "1112223333",
-    "sait",
-    "T1T 1T1",
-  ]);
+  const [profileData, setProfileData] = useState(["", "", "", "", "", ""]);
 
   let HP_refreshToken;
   let HP_accessToken;
@@ -249,8 +241,6 @@ const Profile = ({ user, handleLogout }) => {
   }
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Container>
         <br></br>
         <center>

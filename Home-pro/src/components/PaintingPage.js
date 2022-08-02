@@ -2,12 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Image from "../assets/painterNew.jpg";
 import { NavLink } from "react-router-dom";
-import NewNav from "./NewNav";
+
 const PaintingPage = ({ user, handleLogout }) => {
   return (
     <main>
-      <NewNav user={user} handleLogout={handleLogout}></NewNav>
-
       <Wrapper className="page section section-center">
         <img src={Image} alt="painting" />
         <article>

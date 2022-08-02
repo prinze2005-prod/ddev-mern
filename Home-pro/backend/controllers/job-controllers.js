@@ -112,7 +112,7 @@ const techCompleteJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne(req.body.jobID)
     job.status = "completed";
-
+    /*
     const service = await serviceContoller.getServiceById(job.service_id)
 
     const duration = req.body.duration;
@@ -130,6 +130,7 @@ const techCompleteJob = async(req, res, next) =>{
       additional_per_hour: service.additional_per_hour,
       total_charge: total
     })
+    */
     /*
     const newReceipt = new Receipt({
       job_id: job.job_id,
@@ -140,7 +141,7 @@ const techCompleteJob = async(req, res, next) =>{
       total_charge: 270
     })
     */
-    await newReceipt.save();
+    //await newReceipt.save();
     await job.save();
 
     res.json({"message":"success"});

@@ -1,11 +1,128 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
 import TechHeader from "../../components/TechHeader";
+import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 export default function App() {
-  const Wrapper = styled.main`
+  let HP_refreshToken;
+  let HP_accessToken;
+
+  const [jobData, setJobData] = useState([
+    {
+    job_id: 12345,
+    cust_email: 'customer@gmail.com',
+    phoneNumber: 1234567890,
+    start_time: '2022-07-2923:07',
+    address: [
+        {street: '11 Sait way NW',
+        postalCode: 'A1A 1A1'}
+    ]
+ },{
+  job_idd: 12345,
+  cust_email: 'customer@gmail.com',
+  phoneNumber: 1234567890,
+  start_time: '2022-07-2923:07',
+  address: [
+      {street: '11 Sait way NW',
+      postalCode: 'A1A 1A1'}
+  ]
+}
+]);
+  
+try {
+  var cookies = document.cookie.split(";");
+  for (var i = 0; i < cookies.length; i++) {
+    var cook = cookies[i].split("=");
+    if (cook[0].includes("HP_refreshToken")) {
+      HP_refreshToken = cook[1];
+    }
+    if (cook[0].includes("HP_accessToken")) {
+      HP_accessToken = cook[1];
+    }
+  }
+}catch(err){
+  console.log(err)
+}
+ 
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/tech/getunjobs",
+    {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      })})
+    .then(response => response.json())
+    .then(data => setJobData(data));
+  },[]);
+  
+  const handleAccept = async () => {
+    {jobData.map(obj =>
+       <div>
+        {obj.address.status === "Assigned"};
+        
+       </div>
+      )}
+
+  };
+
+  return (
+    <main>
+      <TechHeader title="Pending Tasks" />
+      <Container style={{ minHeight: "500px" }}>
+        <br></br>
+        <h2>Pending Tasks</h2>
+        <br></br>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Job ID</th>
+              <th>Customer Email</th>
+              <th>Phone Number</th>
+              <th>Start Time</th>
+              <th>Street</th>
+              <th>Postal Code</th>
+              <th>Accept Job</th>
+            </tr>
+          </thead>
+          <tbody>
+          {jobData.map(obj =>
+                    <tr>
+                     <td>{obj.job_id} </td>   
+                     <td>{obj.cust_email} </td>
+                     <td>{obj.phoneNumber} </td>
+                     <td>{obj.start_time} </td>
+                     <td>{obj.address.street} </td>
+                     <td>{obj.address.postalCode} </td>
+                     <td> <Button variant="warning" onClick={handleAccept}>Accept</Button>{' '}</td>
+                     </tr>
+                 )}
+          </tbody>
+        </Table>
+        <center>
+          <Link
+            to="/Tech"
+            className="btn"
+            style={{ backgroundColor: "#ffb347" }}
+          >
+            back to Tech page
+          </Link>
+        </center>
+      </Container>
+    </main>
+  );
+}
+const Wrapper = styled.main`
     background: var(--clr-grey-10);
     display: flex;
     justify-content: center;
@@ -115,66 +232,3 @@ export default function App() {
       border-radius: 50%;
     }
   `;
-  return (
-    <main>
-      <TechHeader title="Pending Tasks" />
-      <Wrapper className="page-100">
-        <section>
-          <MDBTable responsive>
-            <MDBTableHead>
-              <tr>
-                <th scope="col">Job-ID</th>
-                <th scope="col">Date</th>
-                <th scope="col">Customer</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Accept/Reject</th>
-              </tr>
-            </MDBTableHead>
-            <MDBTableBody>
-              <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" />
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" />
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" />
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-            </MDBTableBody>
-          </MDBTable>
-          <br />
-          <Link to="/Tech" className="btn">
-            back to Tech page
-          </Link>
-        </section>
-      </Wrapper>
-    </main>
-  );
-}

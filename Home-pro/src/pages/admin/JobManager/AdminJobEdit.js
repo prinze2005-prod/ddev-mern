@@ -90,7 +90,7 @@ const AdminJobEdit = ({ user }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Proceed Your Booking
+            Proceed Your Changes
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

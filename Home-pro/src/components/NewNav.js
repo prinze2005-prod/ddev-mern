@@ -21,7 +21,7 @@ const NewNav = ({ user, handleLogout }) => {
     <>
       <MDBNavbar sticky expand="lg" light bgColor="white">
         <MDBContainer fluid>
-          <MDBNavbarBrand className="mb-3" href="/admin">
+          <MDBNavbarBrand className="mb-3">
             <img
               src={Home_ProNew}
               alt="home pro"

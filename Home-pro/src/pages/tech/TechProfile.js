@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import TechHeader from '../../components/TechHeader';
+import TechHeader from "../../components/TechHeader";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
@@ -18,7 +18,7 @@ const TechProfile = ({ user }) => {
     "",
     "Phonenumber",
     "Street",
-    "PostalCode"
+    "PostalCode",
   ]);
 
   let HP_refreshToken;
@@ -34,12 +34,11 @@ const TechProfile = ({ user }) => {
         HP_accessToken = cook[1];
       }
     }
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
   useEffect(() => {
-    fetch("http://localhost:5000/api/tech/getTechProfile",
-    {
+    fetch("http://localhost:5000/api/tech/getTechProfile", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -48,10 +47,19 @@ const TechProfile = ({ user }) => {
       body: JSON.stringify({
         refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
         accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-      })})
-    .then(response => response.json())
-    .then(data => setProfileData([data.name,"",data.phoneNumber, data.address.street, data.address.postalCode]));
-  },[]);
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setProfileData([
+          data.name,
+          "",
+          data.phoneNumber,
+          data.address.street,
+          data.address.postalCode,
+        ])
+      );
+  }, []);
 
   const fnameInputRef = useRef();
   const passwordInputRef = useRef();
@@ -118,7 +126,7 @@ const TechProfile = ({ user }) => {
       if (responseData) {
         console.log("updated!");
         console.log(profileData);
-        history.push("/");
+        history.push("/tech");
       }
     } catch (err) {
       console.log(err);
@@ -127,20 +135,44 @@ const TechProfile = ({ user }) => {
 
   const handleNameChange = (events) => {
     let text = events.target.value;
-    setProfileData([text,profileData[1],profileData[2],profileData[3],profileData[4]]);
-  }
+    setProfileData([
+      text,
+      profileData[1],
+      profileData[2],
+      profileData[3],
+      profileData[4],
+    ]);
+  };
   const handlePNumberChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],profileData[1],text,profileData[3],profileData[4]]);
-  }
+    setProfileData([
+      profileData[0],
+      profileData[1],
+      text,
+      profileData[3],
+      profileData[4],
+    ]);
+  };
   const handleStreetChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],profileData[1],profileData[2],text,profileData[4]]);
-  }
+    setProfileData([
+      profileData[0],
+      profileData[1],
+      profileData[2],
+      text,
+      profileData[4],
+    ]);
+  };
   const handlePCodeChange = (events) => {
     let text = events.target.value;
-    setProfileData([profileData[0],profileData[1],profileData[2],profileData[3],text]);
-  }
+    setProfileData([
+      profileData[0],
+      profileData[1],
+      profileData[2],
+      profileData[3],
+      text,
+    ]);
+  };
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -282,7 +314,7 @@ const TechProfile = ({ user }) => {
                 </Button>
               </MDBCol>
               <MDBCol>
-                <Link to="/">
+                <Link to="/tech">
                   {" "}
                   <Button
                     variant="light"

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link , useHistory} from "react-router-dom";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
 import TechHeader from "../../components/TechHeader";
 import Container from "react-bootstrap/Container";
@@ -9,6 +9,8 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
 export default function App() {
+  let history = useHistory();
+
   let HP_refreshToken;
   let HP_accessToken;
 
@@ -66,10 +68,22 @@ try {
     .then(data => setJobData(data));
   },[]);
   
-  const handleAccept = (event, param) =>  {
+  const handleAccept = async (event, param) =>  {
     console.log(param)
- 
-
+    await fetch("http://localhost:5000/api/tech/assignjob",
+    {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jobID: param,
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+    })});
+    history.push("/");
+    history.push("/pendingtasks");
   };
 
   return (

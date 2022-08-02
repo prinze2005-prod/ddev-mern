@@ -98,7 +98,7 @@ const createJob = async (req,res,next) => {
 
 const techAssignJob = async(req, res, next) =>{
   try{
-    const job = await Job.findOne(req.body.jobID)
+    const job = await Job.findOne({job_id : req.body.jobID})
     job.tech_email=res.locals.email;
     job.status = "assigned";
     await job.save();

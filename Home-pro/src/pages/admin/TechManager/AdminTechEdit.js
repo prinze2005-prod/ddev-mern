@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
-import AdminHeader from "../../../components/AdminHeader.js";
 
 const AdminTechEdit = ({ user }) => {
   let history = useHistory();
@@ -27,9 +26,9 @@ const AdminTechEdit = ({ user }) => {
     address: {
       city: "Calgary",
       province: "Alberta",
-        postalCode: "T2H0S9",
-        street: "409 Forge Rd SE",
-      },
+      postalCode: "T2H0S9",
+      street: "409 Forge Rd SE",
+    },
   });
 
   let initServices = [];
@@ -121,33 +120,36 @@ const AdminTechEdit = ({ user }) => {
     return;
   }
 
-    const handlerSubmit = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/admin/adminupdatetechaccount", {
+  const handlerSubmit = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/admin/adminupdatetechaccount",
+        {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email:techData.tech_email,
+            email: techData.tech_email,
             name: techData.name,
-            password:"password",
+            password: "password",
             street: techData.address.street,
             postalCode: techData.address.postalCode,
             number: techData.phoneNumber,
-            services: techData.services
+            services: techData.services,
           }),
-        });
-        const responseData = await response.json();
-        console.log(responseData);
-        if (!!responseData) {
-          history.push("/BookingConfirmPage");
         }
-      } catch (err) {
-        console.log(err);
+      );
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!!responseData) {
+        history.push("/BookingConfirmPage");
       }
-    };
-/*
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /*
   function handlerSubmit() {
     console.log(techData);
   }
@@ -216,8 +218,6 @@ const AdminTechEdit = ({ user }) => {
   }
   return (
     <main>
-      <AdminHeader title="Edit Technician" />
-
       <Container>
         <br></br>
         <center>

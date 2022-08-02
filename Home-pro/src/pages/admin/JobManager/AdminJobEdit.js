@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
-import AdminHeader from "../../../components/AdminHeader.js";
 
 const AdminJobEdit = ({ user }) => {
   let history = useHistory();
@@ -132,8 +131,6 @@ const AdminJobEdit = ({ user }) => {
   }
   return (
     <main>
-      <AdminHeader title="Edit a Job" />
-
       <Container>
         <br></br>
         <center>

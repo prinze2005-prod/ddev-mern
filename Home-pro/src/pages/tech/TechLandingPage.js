@@ -4,7 +4,7 @@ import TechLandingCard from "../../components/TechLandingCard";
 
 function TechLandingPage() {
   return (
-    <main style={{ backgroundColor: "#EFEEED" }}>
+    <main>
       <Container>
         <br />
         <TechLandingCard />

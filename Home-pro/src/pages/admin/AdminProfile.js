@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-import AdminHeader from "../../components/AdminHeader";
+
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
@@ -129,8 +129,6 @@ const AdminProfile = ({ user }) => {
   }
   return (
     <main>
-      <AdminHeader title="Profile" />
-
       <Container>
         <br></br>
         <center>

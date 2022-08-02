@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
-import AdminHeader from "../../../components/AdminHeader.js";
 
 const AdminClientEdit = ({ user }) => {
   let history = useHistory();
@@ -42,35 +41,38 @@ const AdminClientEdit = ({ user }) => {
       password: enteredPassword,
       phoneNumber: enteredPhoneNumber,
       street: enteredStreet,
-      postalCode: enteredPostalCode 
+      postalCode: enteredPostalCode,
     });
     setModalShow(true);
     return;
   }
 
   const handlerSubmit = async () => {
-  try {
-    const response = await fetch("http://localhost:5000/api/admin/adminupdatecustomer", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fName: clientData.fname,
-        lName: clientData.lname,
-        email: clientData.email,
-        number: clientData.phoneNumber,
-        street: clientData.street,
-        postalCode: clientData.postalCode,
-        password: clientData.password
-      }),
-    });
-    const responseData = await response.json();
-    console.log(responseData);
-  } catch (err) {
-    console.log(err);
-  }
-};
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/admin/adminupdatecustomer",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fName: clientData.fname,
+            lName: clientData.lname,
+            email: clientData.email,
+            number: clientData.phoneNumber,
+            street: clientData.street,
+            postalCode: clientData.postalCode,
+            password: clientData.password,
+          }),
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -132,20 +134,18 @@ const AdminClientEdit = ({ user }) => {
   function Hint() {
     return (
       <div>
-      <br></br>
-      <p style={{ color: "red", textAlign: "left" }}>
-        Password must contain:<br></br> at least 1 UpperCase <br></br>at least 1
-        LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
-        length: 8-24
-      </p>
+        <br></br>
+        <p style={{ color: "red", textAlign: "left" }}>
+          Password must contain:<br></br> at least 1 UpperCase <br></br>at least
+          1 LowerCase <br></br>at least 1 Number/SpecialChar<br></br>
+          length: 8-24
+        </p>
       </div>
     );
   }
 
   return (
     <main>
-      <AdminHeader title="Add Client" />
-
       <Container>
         <br></br>
         <center>
@@ -188,24 +188,24 @@ const AdminClientEdit = ({ user }) => {
               </FloatingLabel>
             </Col>
             <Col md>
-               <FloatingLabel
-                    controlId="floatingPasswordInputGrid"
-                    label="Password"
-                  >
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                      required
-                      ref={passwordInputRef}
-                      onClick={onClick}
-                    />
-                  </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingPasswordInputGrid"
+                label="Password"
+              >
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  pattern="(?=^.{8,24}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  required
+                  ref={passwordInputRef}
+                  onClick={onClick}
+                />
+              </FloatingLabel>
 
-                  {showHint ? <Hint /> : null}
+              {showHint ? <Hint /> : null}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Street">

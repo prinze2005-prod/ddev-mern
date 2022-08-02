@@ -127,6 +127,7 @@ router.post('/getunjobs',jobController.getUnassignedJobs);
 router.patch('/unassignjob',jobController.techUnassignJob);
 router.patch('/completejob',jobController.techCompleteJob);
 router.patch('/assignjob',jobController.techAssignJob);
+router.post('/getCompletedJobs', jobController.techGetCompletedJobs);
 router.post('/getJobs',jobController.techGetJobs);
 router.post('/getInProgressJobs',jobController.techGetInProgressJobs);
 router.patch('/editprofile',technicianController.updateTechAccount);

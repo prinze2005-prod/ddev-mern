@@ -11,6 +11,7 @@ const customerController = require('../controllers/customer-controllers');
 const technicianController = require('../controllers/technician-controllers');
 const accountController = require('../controllers/account-controllers');
 const inquiryController = require('../controllers/inquiry-controllers');
+const reviewController = require('../controllers/review-controllers');
 const Token = require('../models/refreshToken');
 const Account = require('../models/account');
 
@@ -129,7 +130,9 @@ router.patch('/completejob',jobController.techCompleteJob);
 router.patch('/assignjob',jobController.techAssignJob);
 router.post('/getCompletedJobs', jobController.techGetCompletedJobs);
 router.post('/getJobs',jobController.techGetJobs);
+router.post('/getReviews',reviewController.techGetReviews);
 router.post('/getInProgressJobs',jobController.techGetInProgressJobs);
 router.patch('/editprofile',technicianController.updateTechAccount);
+router.post('/getReceipts',jobController.techGetReceipts);
 
 module.exports = router;

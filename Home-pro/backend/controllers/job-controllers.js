@@ -100,7 +100,6 @@ const techAssignJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne(req.body.jobID)
     job.tech_email=res.locals.email;
-    job.start_time=req.start_tiime;
     job.status = "assigned";
     await job.save();
     res.json({"message":"success"});
@@ -108,6 +107,7 @@ const techAssignJob = async(req, res, next) =>{
     res.json({"message":"error has occured"});
   }
 }
+
 const techCompleteJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne(req.body.jobID)

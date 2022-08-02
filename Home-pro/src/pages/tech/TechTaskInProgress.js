@@ -12,7 +12,7 @@ function TechTaskInProgress() {
 
   const [jobData, setJobData] = useState([
     {
-    jobId: 12345,
+    job_id: 12345,
     cust_email: 'customer@gmail.com',
     phoneNumber: 1234567890,
     start_time: '2022-07-2923:07',
@@ -21,7 +21,7 @@ function TechTaskInProgress() {
         postalCode: 'A1A 1A1'}
     ]
  },{
-  jobId: 12345,
+  job_idd: 12345,
   cust_email: 'customer@gmail.com',
   phoneNumber: 1234567890,
   start_time: '2022-07-2923:07',

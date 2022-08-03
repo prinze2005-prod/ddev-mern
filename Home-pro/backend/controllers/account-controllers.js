@@ -22,7 +22,7 @@ const login = async (req, res, next) => {
   let existingUser;
 
   try {
-    existingUser = await Account.findOne({ email: email })
+    existingUser = await Account.findOne({email: { $regex : new RegExp(req.body.email,"i") } })
   } catch (err) {
     const error = new HttpError(
       'Logging in failed, please try again later.',500);
@@ -158,7 +158,7 @@ const signUp = async (req,res,next) => {
   }
   let existingUser;
   try{
-    existingUser = await Account.findOne({email: req.body.email})
+    existingUser = await Account.findOne({email: { $regex : new RegExp(req.body.email,"i") } })
   }catch(err){
     res.json({message: err});
     return;
@@ -217,13 +217,13 @@ const updateCustomerAccount = async (req,res,next) => {
   let existingAccount;
   let existingCustomer;
   try{
-    existingAccount = await Account.findOne({email: res.locals.email});
+    existingAccount = await Account.findOne({email: { $regex : new RegExp(res.locals.email,"i") } });
   }catch(err){
     res.json({message: err});
     return;
   }
   try{
-    existingCustomer = await Customer.findOne({cust_email: res.locals.email});
+    existingCustomer = await Customer.findOne({cust_email: { $regex : new RegExp(res.locals.email,"i") } });
   }catch(err){
     res.json({message: err});
     return

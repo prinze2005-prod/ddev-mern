@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 function TechTaskInProgress() {
   let HP_refreshToken;
   let HP_accessToken;
+
+  let history = new useHistory()
 
   const [jobData, setJobData] = useState([
     {

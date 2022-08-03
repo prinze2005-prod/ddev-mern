@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 export default function PendingTask() {
   let history = useHistory();
@@ -45,7 +46,7 @@ export default function PendingTask() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tech/getunjobs", {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getunjobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -62,7 +63,7 @@ export default function PendingTask() {
 
   const handleAccept = async (event, param) => {
     console.log(param);
-    await fetch("http://localhost:5000/api/tech/assignjob", {
+    await fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/assignjob", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

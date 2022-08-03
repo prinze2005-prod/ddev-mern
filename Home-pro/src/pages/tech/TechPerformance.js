@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 function TechPerformance() {
   let HP_refreshToken;

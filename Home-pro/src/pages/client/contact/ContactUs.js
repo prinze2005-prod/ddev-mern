@@ -10,6 +10,7 @@ import { PageHero } from "../../../components";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alerts from "../../../components/Alerts";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 function ContactUs({ user, handleLogout }) {
   let history = useHistory();
@@ -42,7 +43,7 @@ function ContactUs({ user, handleLogout }) {
     console.log(inquiryData);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/general/createinquiry",
+        REACT_APP_API_ENDPOINT +"5000/api/general/createinquiry",
         {
           method: "POST",
           headers: {

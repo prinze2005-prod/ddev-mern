@@ -2,6 +2,7 @@ import React ,{useState, useEffect} from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 const ListOfServices = () => {
   const [jobData,setJobData] =useState([
@@ -57,7 +58,7 @@ const ListOfServices = () => {
     console.log(err)
   }
   useEffect(() => {
-    fetch("http://localhost:5000/api/customer/getJobs",
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/customer/getJobs",
     {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============

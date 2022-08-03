@@ -6,27 +6,31 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import picture from "../../assets/hero-bcg.jpeg";
+import { PageHero } from "../../components";
 import { useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Alerts from "../../components/Alerts";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
-function ContactAdmin() {
+function ContactAdmin({ user, handleLogout }) {
   let history = useHistory();
-  const [alertShow, setAlertShow] = useState(false);
+  const [alertShow, setAlertShow] = React.useState(false);
 
   const emailInputRef = useRef();
   const serviceNumberInputRef = useRef();
   const inquiryInputRef = useRef();
 
   async function submitHandler(event) {
-    setAlertShow(true);
+   
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
 
     const enteredServiceNumber = serviceNumberInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
-
+    if(enteredEmail != null || enteredInquiry != null){
+      setAlertShow(true);
+    }
     //  if(enteredServiceNumber === null){
     //    enteredServiceNumber = 'No service number'
     //  }
@@ -39,7 +43,7 @@ function ContactAdmin() {
     console.log(inquiryData);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/general/createinquiry",
+        REACT_APP_API_ENDPOINT +"5000/api/general/createinquiry",
         {
           method: "POST",
           headers: {
@@ -71,7 +75,7 @@ function ContactAdmin() {
         <br></br>
         <Row>
           <Col>
-            <Form style={{ marginTop: "100px" }} onSubmit={submitHandler}>
+            <Form style={{ marginTop: "100px" }}>
               <h6>* All Fields are required except Service Request Number</h6>
               <Form.Floating className="mb-3">
                 <Form.Control
@@ -107,16 +111,13 @@ function ContactAdmin() {
                   required
                 />
               </FloatingLabel>
-              <center>
-                <Button variant="warning" style={{ color: "black" }}>
-                  Submit
-                </Button>{" "}
-                <Button variant="light">
-                  <Link to="/tech" style={{ color: "black" }}>
-                    Go Back
-                  </Link>
-                </Button>{" "}
-              </center>
+              <Button
+                variant="warning"
+                style={{ color: "black" }}
+                onClick={submitHandler}
+              >
+                Submit
+              </Button>{" "}
             </Form>
           </Col>
           <Col className="text-center">

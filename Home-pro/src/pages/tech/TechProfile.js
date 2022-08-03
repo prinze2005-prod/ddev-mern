@@ -7,6 +7,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 const TechProfile = ({ user }) => {
   let history = useHistory();
@@ -37,7 +38,7 @@ const TechProfile = ({ user }) => {
     console.log(err);
   }
   useEffect(() => {
-    fetch("http://localhost:5000/api/tech/getTechProfile", {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getTechProfile", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -102,7 +103,7 @@ const TechProfile = ({ user }) => {
         }
       }
       const response = await fetch(
-        "http://localhost:5000/api/tech/editprofile",
+        REACT_APP_API_ENDPOINT +"5000/api/tech/editprofile",
         {
           method: "PATCH",
           credentials: "include", //TWO THINGS: Cookies and this header <============

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 const CompletedTask = () => {
   let HP_refreshToken;
@@ -42,7 +43,7 @@ const CompletedTask = () => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tech/getCompletedJobs", {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getCompletedJobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

@@ -15,6 +15,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
+const { REACT_APP_API_ENDPOINT } = process.env;
 var message = "";
 
 function SignupPage() {
@@ -55,7 +56,7 @@ function SignupPage() {
     };
     //will not throw error if server sends back error code (404, etc...)
     try {
-      const response = await fetch("http://localhost:5000/api/general/signup", {
+      const response = await fetch(REACT_APP_API_ENDPOINT +"5000/api/general/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Button, Form } from "react-bootstrap";
+const { REACT_APP_API_ENDPOINT } = process.env;
 /*
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -29,7 +30,7 @@ function TestPage() {
   }
   const [profileData, setProfileData] = useState([,,]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/customer/getLoggedInInfo",
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/customer/getLoggedInInfo",
     {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============

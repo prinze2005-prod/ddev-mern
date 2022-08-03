@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 const Profile = ({ user, handleLogout }) => {
   let history = useHistory();
@@ -32,7 +33,7 @@ const Profile = ({ user, handleLogout }) => {
     console.log(err);
   }
   useEffect(() => {
-    fetch("http://localhost:5000/api/customer/getLoggedInInfo", {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/customer/getLoggedInInfo", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -101,7 +102,7 @@ const Profile = ({ user, handleLogout }) => {
         }
       }
       const response = await fetch(
-        "http://localhost:5000/api/customer/editprofile",
+        REACT_APP_API_ENDPOINT +"5000/api/customer/editprofile",
         {
           method: "PATCH",
           credentials: "include", //TWO THINGS: Cookies and this header <============

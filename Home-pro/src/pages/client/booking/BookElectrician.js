@@ -7,6 +7,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { useHistory } from "react-router-dom";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 const BookElectrician = () => {
   let history = useHistory();
@@ -77,7 +78,7 @@ const BookElectrician = () => {
   const handlerSubmit = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/general/createjob",
+        REACT_APP_API_ENDPOINT +"5000/api/general/createjob",
         {
           method: "POST",
           headers: {

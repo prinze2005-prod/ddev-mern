@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import { Link, useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 function TechTaskInProgress() {
   let HP_refreshToken;
@@ -44,7 +45,7 @@ function TechTaskInProgress() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tech/getInProgressJobs", {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getInProgressJobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -61,7 +62,7 @@ function TechTaskInProgress() {
 
   const handleComplete = async (event, param) => {
     console.log(param);
-    await fetch("http://localhost:5000/api/tech/completejob", {
+    await fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/completejob", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

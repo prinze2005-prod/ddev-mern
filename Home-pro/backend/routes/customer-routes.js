@@ -21,95 +21,100 @@ const router = express.Router();
 //to add validation
 
 router.use(async (req, res, next) => {
-    if ('OPTIONS' === req.method) {
-        //respond with 200
-        res.sendStatus(200);
-    }
-    else {
-        try{
-            if(req.body.refreshToken != null && req.body.accessToken != null){
-                let rToken;
-                jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET, function(err, decoded) {
-                    if(err){
-                        console.log(err)
-                        res.json({"message":"Invalid Tokens"})
-                        return;
-                    }else{
-                        rToken=decoded
-                    }
-                });
-                let aToken;
-                jwt.verify(req.body.accessToken, process.env.ACCESS_TOKEN_SECRET, function(err, decodedagain) {
-                    if(err){
-                        console.log(err)
-                        res.json({"message":"Invalid Tokens"})
-                        return;
-                    }else{
-                        aToken = decodedagain
-                    }
-                });
+    try{
+        if ('OPTIONS' === req.method) {
+            //respond with 200
+            res.sendStatus(200);
+        }
+        else {
+            try{
+                if(req.body.refreshToken != null && req.body.accessToken != null){
+                    let rToken;
+                    jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET, function(err, decoded) {
+                        if(err){
+                            console.log(err)
+                            res.json({"message":"Invalid Tokens"})
+                            return;
+                        }else{
+                            rToken=decoded
+                        }
+                    });
+                    let aToken;
+                    jwt.verify(req.body.accessToken, process.env.ACCESS_TOKEN_SECRET, function(err, decodedagain) {
+                        if(err){
+                            console.log(err)
+                            res.json({"message":"Invalid Tokens"})
+                            return;
+                        }else{
+                            aToken = decodedagain
+                        }
+                    });
 
-                //WIP
+                    //WIP
 
-                let existingRefreshToken;
-                let existingAccount;
-                
-                try{
-                    existingRefreshToken = await Token.findById(rToken._id);
-                    existingAccount = await Account.findById(rToken.userId);
-                } catch (err) {
-
-                }
-                if(existingRefreshToken == null || existingAccount == null){
-                    res.json({"message" : "No good!"})
-                    return;
-                }
-
-                console.log("DATABASE STUFF");
-                console.log(existingAccount);
-                console.log(existingRefreshToken);
-
-                if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization){
+                    let existingRefreshToken;
+                    let existingAccount;
+                    
                     try{
-                        console.log("WE MATCH!! WE MATCH!!")
+                        existingRefreshToken = await Token.findById(rToken._id);
+                        existingAccount = await Account.findById(rToken.userId);
+                    } catch (err) {
 
-                        await existingRefreshToken.remove();
-
-                        const newRToken = await new Token({
-                            userId: existingAccount._id,
-                            token: crypto.randomBytes(32).toString("hex"),
-                        }).save()
-
-                        const encryptedNewRToken = jwt.sign(newRToken.toObject(), process.env.REFRESH_TOKEN_SECRET);
-
-                        console.log(encryptedNewRToken);
-
-                        res.cookie("HP_refreshToken", encryptedNewRToken);
-
-                        console.log("We did it!");
-
-                        res.locals.email = existingAccount.email;
-                        
-                        next();
-                    }catch(err){
-                        res.json({"Message": "Error has occured"});
+                    }
+                    if(existingRefreshToken == null || existingAccount == null){
+                        res.json({"message" : "No good!"})
                         return;
                     }
+
+                    console.log("DATABASE STUFF");
+                    console.log(existingAccount);
+                    console.log(existingRefreshToken);
+
+                    if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization){
+                        try{
+                            console.log("WE MATCH!! WE MATCH!!")
+
+                            await existingRefreshToken.remove();
+
+                            const newRToken = await new Token({
+                                userId: existingAccount._id,
+                                token: crypto.randomBytes(32).toString("hex"),
+                            }).save()
+
+                            const encryptedNewRToken = jwt.sign(newRToken.toObject(), process.env.REFRESH_TOKEN_SECRET);
+
+                            console.log(encryptedNewRToken);
+
+                            res.cookie("HP_refreshToken", encryptedNewRToken);
+
+                            console.log("We did it!");
+
+                            res.locals.email = existingAccount.email;
+                            
+                            next();
+                        }catch(err){
+                            res.json({"Message": "Error has occured"});
+                            return;
+                        }
+                    }
+                    else{
+                        res.json({"Message": "Unauthorized"});
+                        return;
+                    }
+                    //end of WIP
                 }
                 else{
                     res.json({"Message": "Unauthorized"});
                     return;
                 }
-                //end of WIP
-            }
-            else{
+            }catch(err){
                 res.json({"Message": "Unauthorized"});
                 return;
             }
-        }catch(err){
-            res.json({"Message": "Unauthorized"});
-            return;
         }
+    }catch(err){
+        res.json({"Message": "error has occured"});
+        return;
     }
 });
 

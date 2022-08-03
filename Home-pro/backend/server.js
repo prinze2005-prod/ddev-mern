@@ -9,6 +9,7 @@ const multer = require("multer");
 const fs = require("fs");
 */
 
+
 require('dotenv').config();
 
 const generalRoutes = require('./routes/general-routes');
@@ -62,7 +63,8 @@ app.use((error, req, res, next) => {
 
 
 const listEndpoints = require("express-list-endpoints"); // npm i express-list-endpoints
-console.log(listEndpoints(app));
+//console.log(listEndpoints(app));
+console.log(process.env.DOMAIN_URL);
 
 mongoose
   .connect('mongodb+srv://Scott:tiger@cluster0.oeenx.mongodb.net/HomePro?retryWrites=true&w=majority')

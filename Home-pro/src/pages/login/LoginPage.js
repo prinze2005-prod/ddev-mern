@@ -13,6 +13,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Alert from "react-bootstrap/Alert";
+const { REACT_APP_API_ENDPOINT } = process.env;
+
 var message = "";
 
 function LoginPage({ setUser }) {
@@ -20,6 +22,8 @@ function LoginPage({ setUser }) {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   let responseData;
+
+  console.log(REACT_APP_API_ENDPOINT);
 
   const [result, setResult] = useState(null);
 
@@ -38,7 +42,7 @@ function LoginPage({ setUser }) {
     try {
       //setUser(null);
 
-      const response = await fetch("http://localhost:5000/api/general/login", {
+      const response = await fetch(REACT_APP_API_ENDPOINT+"5000/api/general/login", {
         method: "POST",
         credentials: "include",
         headers: {

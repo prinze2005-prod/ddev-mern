@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { PageHero } from "../../../components";
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { withRouter } from "react-router-dom";
 const { REACT_APP_API_ENDPOINT } = process.env;
 
 const Profile = ({ user, handleLogout }) => {
@@ -366,4 +367,4 @@ const Profile = ({ user, handleLogout }) => {
   );
 };
 
-export default Profile;
+export default withRouter(Profile);

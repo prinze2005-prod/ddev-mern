@@ -45,9 +45,58 @@ import ManageTechPage from "./pages/admin/TechManager/ManageTechPage";
 import ManageClient from "./pages/admin/ClientManager/ManageClient";
 import NewNav from "./components/NewNav";
 import PastTransactionDetail from "./pages/admin/PastTransactionDetail";
+import ProtectedRoute from "./ProtectedRoute";
+
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 function App() {
+  let HP_refreshToken;
+  let HP_accessToken;
+  let HP_type;
   const [user, setUser] = useState(null);
+  const [isAuth, setIsAuth] = useState(null);
+
+   useEffect(() => {
+     try {
+       var cookies = document.cookie.split(";");
+       for (var i = 0; i < cookies.length; i++) {
+         var cook = cookies[i].split("=");
+         if (cook[0].includes("HP_refreshToken")) {
+         HP_refreshToken = cook[1];
+         }
+         if (cook[0].includes("HP_accessToken")) {
+           HP_accessToken = cook[1];
+         }
+         if (cook[0].includes("HP_type")) {
+           HP_type = cook[1];
+         }
+       }
+     fetch(REACT_APP_API_ENDPOINT +"/api/customer/getLoggedInInfo", {
+       method: "POST",
+       credentials: "include", //TWO THINGS: Cookies and this header <============
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({
+         refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+         accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+       }),
+     })
+       .then((response) => response.json())
+      if(HP_type === "Customer"){
+       
+         setIsAuth("Client");
+       }else if(HP_type === "Tech"){
+        
+         setIsAuth("Tech");
+        } else if(HP_type === "Admin"){
+         
+         setIsAuth("Admin");
+        };
+   }catch (err) {
+     console.log(err);
+   }}, []);
+  
 
   React.useEffect(() => {
     // localStorage.getItem('user')
@@ -138,9 +187,7 @@ function App() {
             <Route exact path="/ContactUs">
               <ContactUs />
             </Route>
-            <Route exact path="/Profile">
-              <Profile />
-            </Route>
+            <ProtectedRoute path="/Profile" component={Profile} isAuth={isAuth}/>    
             <Route exact path="/techPerformance">
               <TechPerformance />
             </Route>

@@ -75,7 +75,7 @@ function TechTaskInProgress() {
       }),
     });
     history.push("/tech");
-    history.push("/pendingtasks");
+    history.push("/techtaskinprogress");
   };
 
   return (
@@ -113,7 +113,7 @@ function TechTaskInProgress() {
                   <Button
                     variant="warning"
                     style={{ color: "black" }}
-                    // onClick={(event) => handleComplete(event, obj.job_id)}
+                     onClick={(event) => handleComplete(event, obj.job_id)}
                   >
                     Complete
                   </Button>

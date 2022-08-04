@@ -44,6 +44,7 @@ import PastTransaction from "./pages/admin/PastTransaction";
 import ManageTechPage from "./pages/admin/TechManager/ManageTechPage";
 import ManageClient from "./pages/admin/ClientManager/ManageClient";
 import NewNav from "./components/NewNav";
+import PastTransactionDetail from "./pages/admin/PastTransactionDetail";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -193,6 +194,12 @@ function App() {
             </Route>
             <Route exact path="/ManageClient">
               <ManageClient />
+            </Route>
+            <Route exact path="/pastTransaction">
+              <PastTransaction />
+            </Route>
+            <Route exact path="/pastTransactionDetail">
+              <PastTransactionDetail/>
             </Route>
             <Route exact path="/TestPage">
               <TestPage></TestPage>

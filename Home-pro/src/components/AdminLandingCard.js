@@ -148,7 +148,7 @@ function AdminLandingCard() {
           </Col>{" "}
           <Col>
             <NavLink
-              to="/transaction"
+              to="/pasttransaction"
               style={(isActive) => ({
                 color: isActive ? "#ffb347" : "black",
               })}

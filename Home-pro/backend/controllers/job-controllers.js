@@ -110,7 +110,7 @@ const techAssignJob = async(req, res, next) =>{
 
 const techCompleteJob = async(req, res, next) =>{
   try{
-    const job = await Job.findOne(req.body.jobID)
+    const job = await Job.findOne({job_id : req.body.jobID})
     job.status = "completed";
     /*
     const service = await serviceContoller.getServiceById(job.service_id)
@@ -239,3 +239,4 @@ exports.techGetReceipts = techGetReceipts;
 exports.adminAssignJob = adminAssignJob;
 exports.techGetInProgressJobs = techGetInProgressJobs;
 exports.techGetCompletedJobs = techGetCompletedJobs;
+exports.getJobById = getJobById;

@@ -27,7 +27,7 @@ router.post('/adminaddtech',technicianController.addTechAccount);
 router.patch('/adminupdatetechaccount',technicianController.adminUpdateTechAccount);
 router.patch('/adminupdatecustomer',customerController.adminUpdateProfile);
 router.patch('/adminassignjob',jobController.adminAssignJob);
-
+router.post('/getjobbyid', jobController.getJobById);
 
 
 module.exports = router;

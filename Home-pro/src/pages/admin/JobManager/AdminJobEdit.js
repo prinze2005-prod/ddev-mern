@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -6,12 +6,15 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
+const { REACT_APP_API_ENDPOINT } = process.env;
 
 const AdminJobEdit = ({ user }) => {
   let history = useHistory();
 
+  let jobID = 75;
+
   const [modalShow, setModalShow] = useState(false);
-  const [techData, setTechData] = useState({
+  const [jobData, setJobData] = useState({
     first_name: "John",
     last_name: "Doe",
     tech_email: "unassigned",
@@ -31,6 +34,49 @@ const AdminJobEdit = ({ user }) => {
     start_time: "2022-07-2910:33",
   });
 
+
+  let HP_refreshToken;
+  let HP_accessToken;
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_refreshToken")) {
+        HP_refreshToken = cook[1];
+      }
+      if (cook[0].includes("HP_accessToken")) {
+        HP_accessToken = cook[1];
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
+
+  useEffect(() => {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/admin/getjobbyid", {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        job_id: jobID,
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setJobData([
+          data.name,
+          "",
+          data.phoneNumber,
+          data.address.street,
+          data.address.postalCode,
+        ])
+      );
+  }, []);
+
   const emailInputRef = useRef();
 
   const dateInputRef = useRef();
@@ -43,8 +89,8 @@ const AdminJobEdit = ({ user }) => {
     const enteredDate = dateInputRef.current.value;
     const enteredTime = timeInputRef.current.value;
 
-    setTechData({
-      ...techData,
+    setJobData({
+      ...jobData,
       tech_email: enteredEmail,
       start_time: enteredDate + enteredTime,
     });
@@ -77,7 +123,7 @@ const AdminJobEdit = ({ user }) => {
   // };
 
   function handlerSubmit() {
-    console.log(techData);
+    console.log(jobData);
   }
 
   function MyVerticallyCenteredModal(props) {
@@ -96,10 +142,10 @@ const AdminJobEdit = ({ user }) => {
         <Modal.Body>
           <div>
             <h5>New Job Information</h5>
-            Technician Email: {techData.tech_email} <br></br>
-            Service Date:{techData.start_time.slice(0, 10)}
+            Technician Email: {jobData.tech_email} <br></br>
+            Service Date:{jobData.start_time.slice(0, 10)}
             <br></br>
-            Service Time: {techData.start_time.slice(10)}
+            Service Time: {jobData.start_time.slice(10)}
             <br />
             <br></br>
             <h5 style={{ color: "darkred" }}>
@@ -145,7 +191,7 @@ const AdminJobEdit = ({ user }) => {
                   type="text"
                   placeholder="Job ID"
                   required
-                  value={techData.job_id}
+                  value={jobData.job_id}
                   readOnly
                 />
               </FloatingLabel>
@@ -159,7 +205,7 @@ const AdminJobEdit = ({ user }) => {
                   type="text"
                   placeholder="Technician Email"
                   required
-                  defaultValue={techData.tech_email}
+                  defaultValue={jobData.tech_email}
                   ref={emailInputRef}
                 />
               </FloatingLabel>
@@ -172,7 +218,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="First Name"
-                  value={techData.first_name}
+                  value={jobData.first_name}
                   readOnly
                 />
               </FloatingLabel>
@@ -182,7 +228,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
-                  value={techData.last_name}
+                  value={jobData.last_name}
                   readOnly
                 />
               </FloatingLabel>
@@ -198,7 +244,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Customer Email"
-                  value={techData.cust_email}
+                  value={jobData.cust_email}
                   readOnly
                 />
               </FloatingLabel>
@@ -208,7 +254,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Phone Number"
-                  value={techData.phoneNumber}
+                  value={jobData.phoneNumber}
                   readOnly
                 />
               </FloatingLabel>
@@ -221,7 +267,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Street"
-                  value={techData.address.street}
+                  value={jobData.address.street}
                   readOnly
                 />
               </FloatingLabel>
@@ -231,7 +277,7 @@ const AdminJobEdit = ({ user }) => {
                 <Form.Control
                   type="text"
                   placeholder="Postal Code"
-                  value={techData.address.postalCode}
+                  value={jobData.address.postalCode}
                   readOnly
                 />
               </FloatingLabel>
@@ -259,7 +305,7 @@ const AdminJobEdit = ({ user }) => {
                   type="date"
                   placeholder="Date"
                   required
-                  defaultValue={techData.start_time.slice(0, 10)}
+                  defaultValue={jobData.start_time.slice(0, 10)}
                   ref={dateInputRef}
                 />
               </FloatingLabel>
@@ -270,7 +316,7 @@ const AdminJobEdit = ({ user }) => {
                   type="time"
                   placeholder="Time"
                   required
-                  defaultValue={techData.start_time.slice(10)}
+                  defaultValue={jobData.start_time.slice(10)}
                   ref={timeInputRef}
                 />
               </FloatingLabel>
@@ -284,7 +330,7 @@ const AdminJobEdit = ({ user }) => {
             <Form.Control
               as="textarea"
               placeholder="Leave a comment here"
-              value={techData.description}
+              value={jobData.description}
               readOnly
               style={{ height: "100px" }}
             />
@@ -314,7 +360,7 @@ const AdminJobEdit = ({ user }) => {
               </Col>
             </Row>
           </center>
-          {techData && (
+          {jobData && (
             <MyVerticallyCenteredModal
               show={modalShow}
               onHide={() => setModalShow(false)}

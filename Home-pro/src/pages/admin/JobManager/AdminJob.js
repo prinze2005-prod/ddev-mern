@@ -74,11 +74,6 @@ function AdminJob() {
     })
       .then((response) => response.json())
       .then((data) => setJobData(data))
-      .then(
-
-
-
-      );
   }, []);
 
   return (

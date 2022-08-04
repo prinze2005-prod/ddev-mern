@@ -17,7 +17,6 @@ function ContactAdmin({ user, handleLogout }) {
   const [alertShow, setAlertShow] = React.useState(false);
 
   const emailInputRef = useRef();
-  const serviceNumberInputRef = useRef();
   const inquiryInputRef = useRef();
 
   async function submitHandler(event) {
@@ -25,8 +24,6 @@ function ContactAdmin({ user, handleLogout }) {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
-
-    const enteredServiceNumber = serviceNumberInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
     if(enteredEmail != null || enteredInquiry != null){
       setAlertShow(true);
@@ -37,7 +34,6 @@ function ContactAdmin({ user, handleLogout }) {
 
     const inquiryData = {
       email: enteredEmail,
-      serviceNumber: enteredServiceNumber,
       inquiry: enteredInquiry,
     };
     console.log(inquiryData);
@@ -51,7 +47,7 @@ function ContactAdmin({ user, handleLogout }) {
           },
           body: JSON.stringify({
             email: inquiryData.email,
-            serviceNumber: inquiryData.serviceNumber,
+            serviceNumber: 0,
             description: inquiryData.inquiry,
           }),
         }
@@ -87,17 +83,7 @@ function ContactAdmin({ user, handleLogout }) {
                 />
                 <label htmlFor="floatingInputCustom">Email address</label>
               </Form.Floating>
-              <Form.Floating className="mb-3">
-                <Form.Control
-                  id="floatingPasswordCustom"
-                  type="text"
-                  placeholder="Service Request Number"
-                  ref={serviceNumberInputRef}
-                />
-                <label htmlFor="floatingPasswordCustom">
-                  Service Request Number
-                </label>
-              </Form.Floating>
+              
               <FloatingLabel
                 controlId="floatingTextarea2"
                 label="Inquiry"

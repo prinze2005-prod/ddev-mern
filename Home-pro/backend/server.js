@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization, include');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   next();
@@ -64,6 +64,7 @@ app.use((error, req, res, next) => {
 const listEndpoints = require("express-list-endpoints"); // npm i express-list-endpoints
 //console.log(listEndpoints(app));
 console.log(process.env.DOMAIN_URL);
+console.log("eyy");
 
 mongoose
   .connect('mongodb+srv://Scott:tiger@cluster0.oeenx.mongodb.net/HomePro?retryWrites=true&w=majority')

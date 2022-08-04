@@ -30,7 +30,7 @@ function TestPage() {
   }
   const [profileData, setProfileData] = useState([,,]);
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/customer/getLoggedInInfo",
+    fetch(REACT_APP_API_ENDPOINT +"/api/customer/getLoggedInInfo",
     {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============

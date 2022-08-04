@@ -39,7 +39,7 @@ function ContactAdmin({ user, handleLogout }) {
     console.log(inquiryData);
     try {
       const response = await fetch(
-        REACT_APP_API_ENDPOINT +"5000/api/general/createinquiry",
+        REACT_APP_API_ENDPOINT +"/api/general/createinquiry",
         {
           method: "POST",
           headers: {

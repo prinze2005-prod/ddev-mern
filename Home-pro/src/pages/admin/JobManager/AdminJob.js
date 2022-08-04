@@ -61,7 +61,7 @@ function AdminJob() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/admin/getjobs", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/admin/getjobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

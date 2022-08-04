@@ -43,7 +43,7 @@ const CompletedTask = () => {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getCompletedJobs", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getCompletedJobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

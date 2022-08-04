@@ -42,7 +42,7 @@ function LoginPage({ setUser }) {
     try {
       //setUser(null);
 
-      const response = await fetch(REACT_APP_API_ENDPOINT+"5000/api/general/login", {
+      const response = await fetch(REACT_APP_API_ENDPOINT+"/api/general/login", {
         method: "POST",
         credentials: "include",
         headers: {

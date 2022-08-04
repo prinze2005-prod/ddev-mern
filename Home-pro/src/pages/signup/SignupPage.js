@@ -56,7 +56,7 @@ function SignupPage() {
     };
     //will not throw error if server sends back error code (404, etc...)
     try {
-      const response = await fetch(REACT_APP_API_ENDPOINT +"5000/api/general/signup", {
+      const response = await fetch(REACT_APP_API_ENDPOINT +"/api/general/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

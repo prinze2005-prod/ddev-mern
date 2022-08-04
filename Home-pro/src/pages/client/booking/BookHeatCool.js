@@ -78,7 +78,7 @@ const BookHeatCool = () => {
   const handlerSubmit = async () => {
     try {
       const response = await fetch(
-        REACT_APP_API_ENDPOINT +"5000/api/general/createjob",
+        REACT_APP_API_ENDPOINT +"/api/general/createjob",
         {
           method: "POST",
           headers: {

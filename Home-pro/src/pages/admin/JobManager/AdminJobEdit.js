@@ -53,7 +53,7 @@ const AdminJobEdit = ({ user }) => {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/admin/getjobbyid", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/admin/getjobbyid", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

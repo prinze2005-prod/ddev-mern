@@ -46,7 +46,7 @@ export default function PendingTask() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getunjobs", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getunjobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -63,7 +63,7 @@ export default function PendingTask() {
 
   const handleAccept = async (event, param) => {
     console.log(param);
-    await fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/assignjob", {
+    await fetch(REACT_APP_API_ENDPOINT +"/api/tech/assignjob", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

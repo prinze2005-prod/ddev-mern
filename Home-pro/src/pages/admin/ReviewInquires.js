@@ -39,7 +39,7 @@ function ReviewInquires() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/admin/getinquirys", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/admin/getinquirys", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

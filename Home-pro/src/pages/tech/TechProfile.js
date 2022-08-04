@@ -38,7 +38,7 @@ const TechProfile = ({ user }) => {
     console.log(err);
   }
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getTechProfile", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getTechProfile", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -103,7 +103,7 @@ const TechProfile = ({ user }) => {
         }
       }
       const response = await fetch(
-        REACT_APP_API_ENDPOINT +"5000/api/tech/editprofile",
+        REACT_APP_API_ENDPOINT +"/api/tech/editprofile",
         {
           method: "PATCH",
           credentials: "include", //TWO THINGS: Cookies and this header <============

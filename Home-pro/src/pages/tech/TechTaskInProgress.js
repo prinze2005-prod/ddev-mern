@@ -45,7 +45,7 @@ function TechTaskInProgress() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/getInProgressJobs", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getInProgressJobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -62,7 +62,7 @@ function TechTaskInProgress() {
 
   const handleComplete = async (event, param) => {
     console.log(param);
-    await fetch(REACT_APP_API_ENDPOINT +"5000/api/tech/completejob", {
+    await fetch(REACT_APP_API_ENDPOINT +"/api/tech/completejob", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

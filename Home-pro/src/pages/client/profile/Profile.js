@@ -33,7 +33,7 @@ const Profile = ({ user, handleLogout }) => {
     console.log(err);
   }
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/customer/getLoggedInInfo", {
+    fetch(REACT_APP_API_ENDPOINT +"/api/customer/getLoggedInInfo", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -102,7 +102,7 @@ const Profile = ({ user, handleLogout }) => {
         }
       }
       const response = await fetch(
-        REACT_APP_API_ENDPOINT +"5000/api/customer/editprofile",
+        REACT_APP_API_ENDPOINT +"/api/customer/editprofile",
         {
           method: "PATCH",
           credentials: "include", //TWO THINGS: Cookies and this header <============

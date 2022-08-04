@@ -58,7 +58,7 @@ const ListOfServices = () => {
     console.log(err)
   }
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"5000/api/customer/getJobs",
+    fetch(REACT_APP_API_ENDPOINT +"/api/customer/getJobs",
     {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============

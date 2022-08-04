@@ -1,24 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
+const { REACT_APP_API_ENDPOINT } = process.env;
 function ReviewInquires() {
-  const inquiryData = [
+  let history = useHistory();
+
+  let HP_refreshToken;
+  let HP_accessToken;
+  const [inquiryData, setInquiryData] = useState([
     {
       email: "joeblow@gmail.com",
       serviceNumber: 125568,
-      inquiry:
+      description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s",
     },
     {
       email: "jakeblow@gmail.com",
       serviceNumber: 124778,
-      inquiry:
+      description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s",
     },
-  ];
+  ]);
+  try {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cook = cookies[i].split("=");
+      if (cook[0].includes("HP_refreshToken")) {
+        HP_refreshToken = cook[1];
+      }
+      if (cook[0].includes("HP_accessToken")) {
+        HP_accessToken = cook[1];
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
+
+  useEffect(() => {
+    fetch(REACT_APP_API_ENDPOINT +"5000/api/admin/getinquirys", {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => setInquiryData(data));
+  }, []);
+
+  const handleRead = async (event, param) => {
+    
+  };
 
   return (
     <main>
@@ -41,9 +79,9 @@ function ReviewInquires() {
           <tbody>
             {inquiryData.map((obj) => (
               <tr>
-                <td>{obj.email} </td>
-                <td>{obj.serviceNumber}</td>
-                <td>{obj.inquiry}</td>
+                <td>{obj.email}> </td>
+                <td>{obj.job_id}</td>
+                <td>{obj.description}</td>
               </tr>
             ))}
           </tbody>

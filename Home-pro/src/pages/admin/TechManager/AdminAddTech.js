@@ -176,7 +176,7 @@ const AdminAddTech = ({ user }) => {
       const responseData = await response.json();
       console.log(responseData);
       if (!!responseData) {
-        history.push("/BookingConfirmPage");
+        history.push("/Admin");
       }
     } catch (err) {
       console.log(err);

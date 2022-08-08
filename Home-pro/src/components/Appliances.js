@@ -20,6 +20,7 @@ const Appliances = () => {
             appliance repair company from our trusted contractors. They’ll have
             it back in working order for you in no time!
           </p>
+          <br></br>
           <DefaultButton style={{ color: "black", background: "#ffb347" }}>
             <NavLink
               to="/BookAppliance"

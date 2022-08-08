@@ -10,11 +10,14 @@ import icon4 from '../assets/icon4.png';
 import icon5 from '../assets/icon5.jpg';
 import icon6 from '../assets/icon6.jpg';
 import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
 export default function ServicesCard() {
 	return (
+		<ServiceContainer>
 		<div className="container" style={{marginTop: "15px"}}>
 			<br />
 			<center>
+				
 				<Row xs={1} md={3} className="g-4">
 					<Col>
 						<NavLink
@@ -35,7 +38,7 @@ export default function ServicesCard() {
 									<Card.Img
 										variant="top"
 										src={icon1}
-										style={{ width: '38%', height: '100%' }}
+										style={{ width: '38%', height: '100%', borderRadius: 20 + 'px' }}
 									/>
 								</center>
 								<Card.Body>
@@ -64,7 +67,7 @@ export default function ServicesCard() {
 									<Card.Img
 										variant="top"
 										src={icon2}
-										style={{ width: '45%', height: '100%' }}
+										style={{ width: '45%', height: '100%' , borderRadius: 20 + 'px'}}
 									/>
 								</center>
 								<Card.Body>
@@ -93,7 +96,7 @@ export default function ServicesCard() {
 									<Card.Img
 										variant="top"
 										src={icon3}
-										style={{ width: '40%', height: '100%' }}
+										style={{ width: '40%', height: '100%', borderRadius: 20 + 'px' }}
 									/>
 								</center>
 								<Card.Body>
@@ -123,7 +126,7 @@ export default function ServicesCard() {
 									<Card.Img
 										variant="top"
 										src={icon4}
-										style={{ width: '60%', height: '100%' }}
+										style={{ width: '60%', height: '100%', borderRadius: 20 + 'px', }}
 									/>
 								</center>
 								<Card.Body>
@@ -153,7 +156,7 @@ export default function ServicesCard() {
 									<Card.Img
 										variant="top"
 										src={icon5}
-										style={{ width: '55%', height: '100%' }}
+										style={{ width: '55%', height: '100%', borderRadius: 20 + 'px' }}
 									/>
 								</center>
 								<Card.Body>
@@ -183,7 +186,7 @@ export default function ServicesCard() {
 									<Card.Img
 										variant="top"
 										src={icon6}
-										style={{ width: '35%', height: '100%' }}
+										style={{ width: '35%', height: '100%', borderRadius: 20 + 'px' }}
 									/>
 								</center>
 								<Card.Body>
@@ -196,7 +199,17 @@ export default function ServicesCard() {
 						</NavLink>
 					</Col>
 				</Row>
+				
 			</center>
 		</div>
+		</ServiceContainer>
 	);
 }
+const ServiceContainer = styled.div`
+.card:hover{
+	
+	transform: scale(1.2);
+    transition-duration: 0.5s;
+	box-shadow: 10px 10px 5px grey;
+}
+`;

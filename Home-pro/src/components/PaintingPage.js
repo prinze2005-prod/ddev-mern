@@ -24,6 +24,7 @@ const PaintingPage = ({ user, handleLogout }) => {
             contractors in Calgary, contact one of the trustworthy companies
             listed with HomePro.
           </p>
+          <br></br>
           <DefaultButton style={{ color: "black", background: "#ffb347" }}>
             <NavLink
               to="/BookPainter"

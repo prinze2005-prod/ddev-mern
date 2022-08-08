@@ -9,9 +9,11 @@ import icon4 from "../assets/admin3.png";
 import icon5 from "../assets/admin4.png";
 import icon6 from "../assets/admin5.png";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 function AdminLandingCard() {
   return (
+    <CardContainer>
     <div className="container">
       <br />
 
@@ -248,7 +250,15 @@ function AdminLandingCard() {
         </Row>
       </center>
     </div>
+    </CardContainer>
   );
 }
+const CardContainer = styled.div`
+.card:hover{
+	transform: scale(1.2);
+    transition-duration: 0.5s;
+	box-shadow: 10px 10px 5px grey;
+}
+`;
 
 export default AdminLandingCard;

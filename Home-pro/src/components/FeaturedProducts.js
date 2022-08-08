@@ -173,6 +173,14 @@ const Wrapper = styled.section`
 			grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 		}
 	}
+	.card:hover{
+	
+		transform: scale(1.2);
+		transition-duration: 0.5s;
+		box-shadow: 10px 10px 5px grey;
+	}
 `;
+
+
 
 export default FeaturedProducts;

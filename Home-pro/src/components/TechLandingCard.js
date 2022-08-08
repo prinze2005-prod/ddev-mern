@@ -9,9 +9,11 @@ import icon4 from "../assets/techicon4.png";
 import icon5 from "../assets/techicon5.png";
 import icon6 from "../assets/techicon6.png";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 function TechLandingCard() {
   return (
+    <CardContainer>
     <div className="container">
       <br />
 
@@ -250,7 +252,14 @@ function TechLandingCard() {
         </Row>
       </center>
     </div>
+    </CardContainer>
   );
 }
-
+const CardContainer = styled.div`
+.card:hover{
+	transform: scale(1.2);
+    transition-duration: 0.5s;
+	box-shadow: 10px 10px 5px grey;
+}
+`;
 export default TechLandingCard;

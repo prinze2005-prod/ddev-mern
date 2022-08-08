@@ -24,6 +24,7 @@ const Handyman = () => {
             properly, with quality workmanship and will deliver an exceptional
             customer experience.
           </p>
+          <br></br>
           <DefaultButton style={{ color: "black", background: "#ffb347" }}>
             <NavLink
               to="/BookHandyman"

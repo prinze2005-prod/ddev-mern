@@ -90,14 +90,14 @@ function AdminJob() {
 
   return (
     <main>
-      <Container>
+      <Container >
         <br></br>
         <center>
           <h2>List of Unassigned Jobs</h2>
         </center>
 
         <br></br>
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
               <th>Job ID</th>
@@ -148,7 +148,7 @@ function AdminJob() {
         </center>
 
         <br></br>
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
               <th>Job ID</th>

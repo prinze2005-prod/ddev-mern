@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
 const { REACT_APP_API_ENDPOINT } = process.env;
 function ReviewInquires() {
@@ -54,8 +55,22 @@ function ReviewInquires() {
       .then((data) => setInquiryData(data));
   }, []);
 
-  const handleRead = async (event, param) => {
-    
+  const handleDelete = async (event, param) => {
+    console.log(param);
+    await fetch(REACT_APP_API_ENDPOINT +"/api/admin/removeinquiry", {
+      method: "POST",
+      credentials: "include", //TWO THINGS: Cookies and this header <============
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jobID: param,
+        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+      }),
+    });
+    history.push("/admin");
+    history.push("/reviewinquiries");
   };
 
   return (
@@ -79,9 +94,17 @@ function ReviewInquires() {
           <tbody>
             {inquiryData.map((obj) => (
               <tr>
-                <td>{obj.email}> </td>
+                <td><a href="mailto:{obj.email}">{obj.email}</a> </td>
                 <td>{obj.job_id}</td>
                 <td>{obj.description}</td>
+                <td>{" "}
+                  <Button
+                    variant="warning"
+                    style={{ color: "black" }}
+                    onClick={(event) => handleDelete(event, obj.inquiry_id)}
+                  >
+                    Mark as read
+                  </Button>{" "}</td>
               </tr>
             ))}
           </tbody>

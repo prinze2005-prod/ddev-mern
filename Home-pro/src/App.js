@@ -61,41 +61,38 @@ function App() {
        var cookies = document.cookie.split(";");
        for (var i = 0; i < cookies.length; i++) {
          var cook = cookies[i].split("=");
-         if (cook[0].includes("HP_type")) {
-          HP_type = cook[1];
-          
-        }
          if (cook[0].includes("HP_refreshToken")) {
          HP_refreshToken = cook[1];
          }
          if (cook[0].includes("HP_accessToken")) {
            HP_accessToken = cook[1];
          }
+         if (cook[0].includes("HP_type")) {
+           HP_type = cook[1];
+         }
        }
-    //  fetch(REACT_APP_API_ENDPOINT +"/api/tech/techGetTechInfo", {
-    //    method: "POST",
-    //    credentials: "include", //TWO THINGS: Cookies and this header <============
-    //    headers: {
-    //      "Content-Type": "application/json",
-    //    },
-    //    body: JSON.stringify({
-    //      refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-    //      accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-    //    }),
-    //  })
-      //  .then((response) => response.json())
-      console.log(HP_type);
+     fetch(REACT_APP_API_ENDPOINT +"/api/customer/getLoggedInInfo", {
+       method: "POST",
+       credentials: "include", //TWO THINGS: Cookies and this header <============
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({
+         refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+         accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+       }),
+     })
+       .then((response) => response.json())
       if(HP_type === "Customer"){
+       
          setIsAuth("Client");
-       }
-       if(HP_type === "Technician"){
-         setIsAuth("Technician");
-         console.log(isAuth);
-        }
-        if(HP_type === "Admin"){
+       }else if(HP_type === "Tech"){
+        
+         setIsAuth("Tech");
+        } else if(HP_type === "Admin"){
+         
          setIsAuth("Admin");
         };
-        console.log(isAuth);
    }catch (err) {
      console.log(err);
    }}, []);
@@ -145,10 +142,9 @@ function App() {
             <Route exact path="/signup">
               <SignupPage />
             </Route>
-             <Route exact path="/tech">
+            <Route exact path="/tech">
               <TechLandingPage />
-            </Route> 
-            // <ProtectedRoute path="/tech" component={TechLandingPage} isAuth={isAuth}/> 
+            </Route>
             <Route exact path="/PaintingPage">
               <PaintingPage />
             </Route>

@@ -28,6 +28,7 @@ router.patch('/adminupdatetechaccount',technicianController.adminUpdateTechAccou
 router.patch('/adminupdatecustomer',customerController.adminUpdateProfile);
 router.patch('/adminassignjob',jobController.adminAssignJob);
 router.post('/getjobbyid', jobController.getJobById);
+router.post('/removeinquiry', inquiryController.removeInquiry);
 
 
 module.exports = router;

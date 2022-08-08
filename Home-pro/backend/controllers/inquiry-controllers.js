@@ -37,5 +37,16 @@ const createInquiry = async (req,res,next) => {
   }
 };
 
+const removeInquiry = async (req,res,next) => {
+  try{
+    const inquiry = await Inquiry.findOne({});
+    inquiry.remove();
+    res.json({message: 'success'});
+  }catch(err){
+    res.json({message: 'Unable to perform'});
+  }
+}
+
+exports.removeInquiry = removeInquiry;
 exports.createInquiry = createInquiry;
 exports.getInquirys = getInquirys;

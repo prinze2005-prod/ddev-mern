@@ -53,6 +53,7 @@ const getUnassignedJobs = async(req,res,next) => {
 
 const getJobById = async(req,res,next) => {
   const job = await Job.findOne({job_id : req.body.jobID});
+  console.log(job);
   res.json(job);
 }
 
@@ -152,7 +153,7 @@ const techCompleteJob = async(req, res, next) =>{
 
 const techUnassignJob = async(req, res, next) =>{
   try{
-    const job = await Job.findOne(req.body.jobID)
+    const job = await Job.findOne({job_id : req.body.jobID})
     job.tech_email="unassigned";
     job.status = "unassigned";
     await job.save();
@@ -165,11 +166,17 @@ const techUnassignJob = async(req, res, next) =>{
 
 const adminAssignJob = async(req,res,next) => {
   try{
-    const job = await Job.findOne(req.body.jobID)
+    console.log("I was ran!")
+    console.log(req.body.email);
+    console.log(req.body.start_time);
+    console.log(req.body.jobID);
+    const job = await Job.findOne({job_id : req.body.jobID})
+    console.log(job);
     job.tech_email=req.body.email;
-    job.start_time=req.start_tiime;
+    job.start_time=req.body.start_time;
     job.status = "assigned";
     await job.save();
+    console.log("I was ran!")
     res.json({"message":"success"});
   }catch(err){
     res.json({"message":"error has occured"});

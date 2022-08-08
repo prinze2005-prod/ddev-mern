@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 import { Link, useHistory} from "react-router-dom";
 const { REACT_APP_API_ENDPOINT } = process.env;
 
@@ -76,6 +77,17 @@ function AdminJob() {
       .then((data) => setJobData(data))
   }, []);
 
+  const handleSelect = async (event, param) => {
+    console.log(param);
+    console.log(param);
+    console.log(param);
+    console.log(param);
+    console.log(param);
+    document.cookie = "jobID="+param;
+    console.log(document.cookie);
+    history.push("/adminjobedit");
+    };
+
   return (
     <main>
       <Container>
@@ -116,13 +128,13 @@ function AdminJob() {
                 <td>{obj.service_id} </td>
                 <td>
                   {" "}
-                  <Link
-                    to="/adminjobedit"
-                    className="btn"
-                    style={{ backgroundColor: "#ffb347" }}
+                  <Button
+                    variant="warning"
+                    style={{ color: "black" }}
+                    onClick={(event) => handleSelect(event, obj.job_id)}
                   >
-                    Edit job
-                  </Link>{" "}
+                    Edit
+                  </Button>{" "}
                 </td>
               </tr>
             ))}
@@ -167,13 +179,13 @@ function AdminJob() {
                 <td>{obj.service_id} </td>
                 <td>
                   {" "}
-                  <Link
-                    to="/adminjobedit"
-                    className="btn"
-                    style={{ backgroundColor: "#ffb347" }}
+                  <Button
+                    variant="warning"
+                    style={{ color: "black" }}
+                    onClick={(event) => handleSelect(event, obj.job_id)}
                   >
-                    Edit job
-                  </Link>{" "}
+                    Edit
+                  </Button>{" "}
                 </td>
               </tr>
             ))}

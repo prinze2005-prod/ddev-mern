@@ -15,36 +15,7 @@ function AdminLandingCard() {
   return (
     <CardContainer>
     <div className="container">
-      <br />
-
-      <Row>
-        <center>
-          <Card
-            href=""
-            style={{
-              borderRadius: 20 + "px",
-              width: "50%",
-              height: "100%",
-              padding: "20px",
-              backgroundColor: "#ffb347",
-            }}
-          >
-            <Card.Body>
-              <Card.Title>
-                <center>
-                  <h3>2022 AT A GLANCE</h3>
-                  <h5>
-                    completed tasks: 24 <br />
-                    revenue: $ 14,021
-                  </h5>
-                </center>
-              </Card.Title>
-            </Card.Body>
-          </Card>
-        </center>
-      </Row>
-
-      <br />
+   
       <br />
       <center>
         <Row xs={1} md={3} className="g-4">

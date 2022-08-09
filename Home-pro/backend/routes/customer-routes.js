@@ -70,7 +70,7 @@ router.use(async (req, res, next) => {
                     console.log(existingAccount);
                     console.log(existingRefreshToken);
 
-                    if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization){
+                    if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization && existingAccount.authorization === "Customer"){
                         try{
                             console.log("WE MATCH!! WE MATCH!!")
 

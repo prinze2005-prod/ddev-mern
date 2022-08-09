@@ -13,6 +13,7 @@ router.post('/login',
     [validator.check('email').not().isEmpty(),
     validator.check('password').not().isEmpty()],
     accountController.login);
+    
 router.post('/signup', 
     [validator.check('email').not().isEmpty(), 
     validator.check('password').not().isEmpty(),

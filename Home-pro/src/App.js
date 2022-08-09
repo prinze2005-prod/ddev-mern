@@ -187,7 +187,10 @@ function App() {
             <Route exact path="/ContactUs">
               <ContactUs />
             </Route>
-            <ProtectedRoute path="/Profile" component={Profile} isAuth={isAuth}/>    
+            <Route exact path="/Profile">
+              <Profile />
+            </Route>
+            {/* <ProtectedRoute path="/Profile" component={Profile} isAuth={isAuth}/>     */}
             <Route exact path="/techPerformance">
               <TechPerformance />
             </Route>

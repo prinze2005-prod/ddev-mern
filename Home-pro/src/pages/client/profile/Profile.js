@@ -367,4 +367,4 @@ const Profile = ({ user, handleLogout }) => {
   );
 };
 
-export default withRouter(Profile);
+export default Profile;

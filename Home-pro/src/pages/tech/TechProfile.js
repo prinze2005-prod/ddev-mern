@@ -191,7 +191,7 @@ const TechProfile = ({ user }) => {
           <div>
             <h5>You Information</h5>
             Name: {profileData[0]} <br></br>
-            Password: {profileData[1]} <br></br>
+            Password: ******** <br></br>
             Phone Number: {profileData[2]} <br></br>
             Street: {profileData[3]} <br></br>
             Postal Code: {profileData[4]}

@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for contacting admin
-*/import React from "react";
+ */
+
+import React from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -23,12 +25,11 @@ function ContactAdmin({ user, handleLogout }) {
   const inquiryInputRef = useRef();
 
   async function submitHandler(event) {
-   
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
     const enteredInquiry = inquiryInputRef.current.value;
-    if(enteredEmail != null || enteredInquiry != null){
+    if (enteredEmail != null || enteredInquiry != null) {
       setAlertShow(true);
     }
     //  if(enteredServiceNumber === null){
@@ -42,7 +43,7 @@ function ContactAdmin({ user, handleLogout }) {
     console.log(inquiryData);
     try {
       const response = await fetch(
-        REACT_APP_API_ENDPOINT +"/api/general/createinquiry",
+        REACT_APP_API_ENDPOINT + "/api/general/createinquiry",
         {
           method: "POST",
           headers: {
@@ -86,7 +87,6 @@ function ContactAdmin({ user, handleLogout }) {
                 />
                 <label htmlFor="floatingInputCustom">Email address</label>
               </Form.Floating>
-              
               <FloatingLabel
                 controlId="floatingTextarea2"
                 label="Inquiry"

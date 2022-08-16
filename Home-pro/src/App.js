@@ -35,14 +35,14 @@ import AdminProfile from "./pages/admin/AdminProfile";
 import AdminJobEdit from "./pages/admin/JobManager/AdminJobEdit";
 import AdminTechEdit from "./pages/admin/TechManager/AdminTechEdit";
 import AdminAddTech from "./pages/admin/TechManager/AdminAddTech";
-import TestPage from "./pages/TestPage";
+
 import AdminAddClient from "./pages/admin/ClientManager/AdminAddClient";
-import AdminClientEdit from "./pages/admin/ClientManager/AdminClientEdit";
+
 import ReviewInquires from "./pages/admin/ReviewInquires";
 import AdminJob from "./pages/admin/JobManager/AdminJob";
 import PastTransaction from "./pages/admin/PastTransaction";
 import ManageTechPage from "./pages/admin/TechManager/ManageTechPage";
-import ManageClient from "./pages/admin/ClientManager/ManageClient";
+
 import NewNav from "./components/NewNav";
 import PastTransactionDetail from "./pages/admin/PastTransactionDetail";
 import ProtectedRoute from "./ProtectedRoute";
@@ -56,47 +56,43 @@ function App() {
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(null);
 
-   useEffect(() => {
-     try {
-       var cookies = document.cookie.split(";");
-       for (var i = 0; i < cookies.length; i++) {
-         var cook = cookies[i].split("=");
-         if (cook[0].includes("HP_refreshToken")) {
-         HP_refreshToken = cook[1];
-         }
-         if (cook[0].includes("HP_accessToken")) {
-           HP_accessToken = cook[1];
-         }
-         if (cook[0].includes("HP_type")) {
-           HP_type = cook[1];
-         }
-       }
-     fetch(REACT_APP_API_ENDPOINT +"/api/customer/getLoggedInInfo", {
-       method: "POST",
-       credentials: "include", //TWO THINGS: Cookies and this header <============
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({
-         refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-         accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-       }),
-     })
-       .then((response) => response.json())
-      if(HP_type === "Customer"){
-       
-         setIsAuth("Client");
-       }else if(HP_type === "Tech"){
-        
-         setIsAuth("Tech");
-        } else if(HP_type === "Admin"){
-         
-         setIsAuth("Admin");
-        };
-   }catch (err) {
-     console.log(err);
-   }}, []);
-  
+  useEffect(() => {
+    try {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cook = cookies[i].split("=");
+        if (cook[0].includes("HP_refreshToken")) {
+          HP_refreshToken = cook[1];
+        }
+        if (cook[0].includes("HP_accessToken")) {
+          HP_accessToken = cook[1];
+        }
+        if (cook[0].includes("HP_type")) {
+          HP_type = cook[1];
+        }
+      }
+      fetch(REACT_APP_API_ENDPOINT + "/api/customer/getLoggedInInfo", {
+        method: "POST",
+        credentials: "include", //TWO THINGS: Cookies and this header <============
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+          accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        }),
+      }).then((response) => response.json());
+      if (HP_type === "Customer") {
+        setIsAuth("Client");
+      } else if (HP_type === "Tech") {
+        setIsAuth("Tech");
+      } else if (HP_type === "Admin") {
+        setIsAuth("Admin");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   React.useEffect(() => {
     // localStorage.getItem('user')
@@ -227,9 +223,7 @@ function App() {
             <Route exact path="/adminClientAdd">
               <AdminAddClient />
             </Route>
-            <Route exact path="/adminClientEdit">
-              <AdminClientEdit />
-            </Route>
+
             <Route exact path="/reviewInquiries">
               <ReviewInquires />
             </Route>
@@ -242,17 +236,12 @@ function App() {
             <Route exact path="/manageTech">
               <ManageTechPage />
             </Route>
-            <Route exact path="/ManageClient">
-              <ManageClient />
-            </Route>
+
             <Route exact path="/pastTransaction">
               <PastTransaction />
             </Route>
             <Route exact path="/pastTransactionDetail">
-              <PastTransactionDetail/>
-            </Route>
-            <Route exact path="/TestPage">
-              <TestPage></TestPage>
+              <PastTransactionDetail />
             </Route>
 
             <Route exact path="*">

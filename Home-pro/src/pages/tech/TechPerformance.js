@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for displaying technicians performance data and payment info
-*/import React, { useState, useEffect } from "react";
+ */
+
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -1,11 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import ListOfServices from "../../../components/ListOfServices";
+import { ButtonGroup, ListGroup } from "react-bootstrap";
 const { REACT_APP_API_ENDPOINT } = process.env;
 
+// author: Gao Liu, Saksham Ohri, Scott Normore
+// this page shows all exsiting jobs in the system to AdminJob. There are two ListOfServices, one is collection of unassigned jobs and each one has an edit button, the other one is collection of assigned jobs
 function AdminJob() {
   let history = useHistory();
 
@@ -37,12 +41,12 @@ function AdminJob() {
     },
   ]);
 
-  function checkUnassigned(job){
-    return job.status==='unassigned';
+  function checkUnassigned(job) {
+    return job.status === "unassigned";
   }
 
-  function checkAssigned(job){
-    return job.status==='assigned';
+  function checkAssigned(job) {
+    return job.status === "assigned";
   }
   let unassignedData = jobData.filter(checkUnassigned);
   let assignedData = jobData.filter(checkAssigned);
@@ -62,7 +66,7 @@ function AdminJob() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/admin/getjobs", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/admin/getjobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -74,7 +78,7 @@ function AdminJob() {
       }),
     })
       .then((response) => response.json())
-      .then((data) => setJobData(data))
+      .then((data) => setJobData(data));
   }, []);
 
   const handleSelect = async (event, param) => {
@@ -83,14 +87,14 @@ function AdminJob() {
     console.log(param);
     console.log(param);
     console.log(param);
-    document.cookie = "jobID="+param;
+    document.cookie = "jobID=" + param;
     console.log(document.cookie);
     history.push("/adminjobedit");
-    };
+  };
 
   return (
     <main>
-      <Container >
+      <Container>
         <br></br>
         <center>
           <h2>List of Unassigned Jobs</h2>

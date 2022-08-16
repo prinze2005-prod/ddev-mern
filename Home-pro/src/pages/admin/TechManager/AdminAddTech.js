@@ -7,6 +7,9 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
 
+// author: Gao Liu, Saksham Ohri, Scott Normore, Eze Adiele
+// This page is used to add a technician's information
+
 const AdminAddTech = ({ user }) => {
   let history = useHistory();
 

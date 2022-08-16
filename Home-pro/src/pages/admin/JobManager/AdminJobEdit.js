@@ -8,6 +8,9 @@ import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
 const { REACT_APP_API_ENDPOINT } = process.env;
 
+// author: Gao Liu, Saksham Ohri, Scott Normore
+// This page is used to modify an exsiting job, change assigned technician email, date and time for service
+
 const AdminJobEdit = ({ user }) => {
   let history = useHistory();
 
@@ -22,9 +25,8 @@ const AdminJobEdit = ({ user }) => {
     "SAIT ",
     "T1T 1T1",
     "2022-07-2910:33",
-    "pizza time!"
+    "pizza time!",
   ]);
-
 
   let HP_refreshToken;
   let HP_accessToken;
@@ -39,8 +41,8 @@ const AdminJobEdit = ({ user }) => {
       if (cook[0].includes("HP_accessToken")) {
         HP_accessToken = cook[1];
       }
-      if(cook[0].includes("jobID")){
-        jobId= cook[1];
+      if (cook[0].includes("jobID")) {
+        jobId = cook[1];
       }
     }
   } catch (err) {
@@ -48,7 +50,7 @@ const AdminJobEdit = ({ user }) => {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/admin/getjobbyid", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/admin/getjobbyid", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -72,7 +74,7 @@ const AdminJobEdit = ({ user }) => {
           data.address.street,
           data.address.postalCode,
           data.start_time,
-          data.description
+          data.description,
         ])
       );
   }, []);
@@ -99,7 +101,7 @@ const AdminJobEdit = ({ user }) => {
       jobData[6],
       jobData[7],
       enteredDate + enteredTime,
-      jobData[9]
+      jobData[9],
     ]);
 
     setModalShow(true);
@@ -129,7 +131,6 @@ const AdminJobEdit = ({ user }) => {
   //   }
   // };
 
-
   const handleEmailChange = (events) => {
     let text = events.target.value;
     setJobData([
@@ -142,9 +143,8 @@ const AdminJobEdit = ({ user }) => {
       jobData[6],
       jobData[7],
       jobData[8],
-      jobData[9]
+      jobData[9],
     ]);
-
   };
   const handleDateChange = (events) => {
     let text = events.target.value;
@@ -157,8 +157,8 @@ const AdminJobEdit = ({ user }) => {
       jobData[5],
       jobData[6],
       jobData[7],
-      text+jobData[8].slice(10),
-      jobData[9]
+      text + jobData[8].slice(10),
+      jobData[9],
     ]);
   };
   const handleTimeChange = (events) => {
@@ -172,25 +172,28 @@ const AdminJobEdit = ({ user }) => {
       jobData[5],
       jobData[6],
       jobData[7],
-      jobData[8].slice(0, 10)+text,
-      jobData[9]
+      jobData[8].slice(0, 10) + text,
+      jobData[9],
     ]);
   };
   async function handlerSubmit() {
-    const response = await fetch(REACT_APP_API_ENDPOINT +"/api/admin/adminassignjob", {
-      method: "PATCH",
-      credentials: "include", //TWO THINGS: Cookies and this header <============
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        jobID: jobData[0],
-        email: jobData[1],
-        start_time: jobData[8],
-        refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-        accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
-      }), 
-    });
+    const response = await fetch(
+      REACT_APP_API_ENDPOINT + "/api/admin/adminassignjob",
+      {
+        method: "PATCH",
+        credentials: "include", //TWO THINGS: Cookies and this header <============
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          jobID: jobData[0],
+          email: jobData[1],
+          start_time: jobData[8],
+          refreshToken: HP_refreshToken, // <==================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+          accessToken: HP_accessToken, // <====================== IN ALL REQUESTS THAT ARE CUSTOMER, TECH, and EMAIL!
+        }),
+      }
+    );
     const responseData = response.json();
     console.log(responseData);
     history.push("/adminjob");

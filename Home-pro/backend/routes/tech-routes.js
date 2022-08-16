@@ -17,14 +17,14 @@ const Account = require('../models/account');
 
 const router = express.Router();
 
-//to add app.use function to verify authorization
 
-//to add validation
-
+/* 
+* Middle ware function to verify if user is technician
+* Modify cookies of function to fit deployment
+*/
 router.use(async (req, res, next) => {
     try{
         if ('OPTIONS' === req.method) {
-            //respond with 200
             res.sendStatus(200);
         }
         else {
@@ -67,16 +67,10 @@ router.use(async (req, res, next) => {
                         return;
                     }
 
-                    console.log("DATABASE STUFF");
-                    console.log(existingAccount);
-                    console.log(existingRefreshToken);
-
                     if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization && existingAccount.authorization === "Technician"){
                         try{
-                            console.log("WE MATCH!! WE MATCH!!")
 
                             await existingRefreshToken.remove();
-
                             const newRToken = await new Token({
                                 userId: existingAccount._id,
                                 token: crypto.randomBytes(32).toString("hex"),
@@ -84,12 +78,7 @@ router.use(async (req, res, next) => {
 
                             const encryptedNewRToken = jwt.sign(newRToken.toObject(), process.env.REFRESH_TOKEN_SECRET);
 
-                            console.log(encryptedNewRToken);
-
                             res.cookie("HP_refreshToken", encryptedNewRToken);
-
-                            console.log("We did it!");
-
                             res.locals.email = existingAccount.email;
                             
                             next();

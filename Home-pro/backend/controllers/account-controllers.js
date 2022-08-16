@@ -11,11 +11,21 @@ const Customer = require('../models/customer');
 const Token = require('../models/refreshToken');
 const Technician = require('../models/technician');
 
+/*
+* Used to retreive all account objects from database 
+*/
 const getAccounts = async (req, res, next) => {
   const accounts = await Account.find().exec();
   res.json(accounts);
 }
 
+/*
+* The login Functionality
+* Takes in credentials. Using the email, finds relevant data on database.
+* If found, uses bcrypt's compare to check passwords.
+* If sucessfull, creates appropiate cookies and sends them to user
+* Else, returns an error message
+*/
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   console.log(email + " " + password);
@@ -28,14 +38,6 @@ const login = async (req, res, next) => {
       'Logging in failed, please try again later.',500);
     return next(error);
   }
-  //testing purposes
-  //console.log(existingUser);
-  //console.log(!existingUser);
-  
-  // implement bcrypt compare here
-  //
-  //
-  //
   let result;
   try{
     if(!(!existingUser)){
@@ -46,35 +48,21 @@ const login = async (req, res, next) => {
     return;
   }
   
-  //console.log(result);
   if (!existingUser || !result) {
     res.json({message: 'Invalid Credentials'});
     return;
   }
 
-  //create session token and refresh token here
-  //
-  //
-  //
-
-  //Access Token
-  //
-  //
-  //
-  //
-  //
+  //creates access token using email and authorization
   const UserData = {
     "email" : existingUser.email,
     "auid" : existingUser.authorization
   }
   const encryptedAccessToken = jwt.sign(UserData, process.env.ACCESS_TOKEN_SECRET)
 
-  //Refresh Token
-  //
-  //
-  //
-  //
-  //
+  //Creates Refresh Token using user's mongodb id and a randomly generated uuid
+  //if unable to generate token, returns errot
+  //in addition, will replace any exisisting refresh token on the database
   let existingToken;
   try {
     existingToken = await Token.findOne({ userId: existingUser._id })
@@ -100,30 +88,13 @@ const login = async (req, res, next) => {
     }).save();
   }
   
-
-/*
-  const refreshToken = await new Token({
-    userId: existingUser._id,
-    token: crypto.randomBytes(32).toString("hex"),
-  }).save();
-*/
-
-
-
   const encryptedRefreshToken = jwt.sign(refreshToken.toObject(), process.env.REFRESH_TOKEN_SECRET)
 
-
-  const unencryptedRefreshToken = jwt.verify(encryptedRefreshToken, process.env.REFRESH_TOKEN_SECRET);
-  const unencryptedAccessToken = jwt.verify(encryptedAccessToken, process.env.ACCESS_TOKEN_SECRET);
-  console.log(unencryptedRefreshToken);
-  console.log(encryptedRefreshToken);
-  console.log(unencryptedAccessToken);
-  console.log(encryptedAccessToken);
-
-  //response
+  //stores tokens in cookies. Modify cookies to meet deployment needs
   res.cookie("HP_refreshToken", encryptedRefreshToken);
   res.cookie("HP_accessToken", encryptedAccessToken);
   let role;
+  //stores less sensitive information in unencrypted cookies to be used by client side code. Modify cookies to meet deployment needs
   if(existingUser.authorization === "Customer"){
     const existingCustomer = await Customer.findOne({cust_email: existingUser.email})
     res.cookie("HP_userEmail", existingCustomer.cust_email)
@@ -145,11 +116,14 @@ const login = async (req, res, next) => {
     role="Admin";
   }
 
-  // more else if for other account types
+  //respond with sucess message
   res.json({message : role});
 
 };
 
+/*
+* Code executed when signing up
+*/
 const signUp = async (req,res,next) => {
   const errors = validationResult(req);
   if(!errors.isEmpty()){
@@ -168,16 +142,13 @@ const signUp = async (req,res,next) => {
     return;
   }
   try{
-    //implement bcrypt hashed passowrd here
-    //
-    //
-    //
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const newAccount= new Account({
       email: req.body.email,
       password: hashedPassword,
       authorization: "Customer"
+      //,active: false
     })
     const newCustomer= new Customer({
       cust_email: req.body.email,
@@ -200,11 +171,9 @@ const signUp = async (req,res,next) => {
       console.log(errorC);
       throw 'failed validation';
     }
-    console.log("I was ran!");
+    //code to send email to activate here
     await newAccount.save();
-    console.log("I was ran too!");
     await newCustomer.save();
-    console.log("I was ran three");
     res.json({"message": 'success'});
   }catch(err){
     res.json({"message": err});
@@ -213,6 +182,11 @@ const signUp = async (req,res,next) => {
   return;
 };
 
+
+/*
+* Function used by customers to modify their own account
+* Uses email retreived by middleware in the customer routes
+*/
 const updateCustomerAccount = async (req,res,next) => {
   let existingAccount;
   let existingCustomer;
@@ -267,11 +241,8 @@ const updateCustomerAccount = async (req,res,next) => {
         console.log(error2);
         res.json({message: "Error in validation"});
       }
-      console.log("I run!");
       await existingCustomer.save();
-      console.log("I was ran!");
       await existingAccount.save();
-      console.log("I was ran too");
       res.json({message: "Success!"});
     }
   }catch(err){

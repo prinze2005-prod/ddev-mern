@@ -1,3 +1,5 @@
+//some netlifty testing
+
 // domain/.netlify/functions/hello
 const items = [
   { id: 1, name: 'john' },

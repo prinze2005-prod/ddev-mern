@@ -1,3 +1,8 @@
+/**
+ * @author Scott Normore
+ * @description A route area for testing purposes. Useful for development
+*/
+
 const express = require('express');
 const { check } = require('express-validator');
 
@@ -9,9 +14,6 @@ const inquiryController = require('../controllers/inquiry-controllers');
 
 const router = express.Router();
 
-//routes purely for testing.
-
-//router.post('/test1',jobController.customerGetReceipts);
-//router.post('/test2',jobController.techGetReceipts);
+//feel free to put some test routes here
 
 module.exports = router;

@@ -1,3 +1,8 @@
+/**
+ * @author Madu Madhavan, Scott Normore
+ * @description A model for the customer database object. Used by mongoose
+ * to fetch, validate, and save data to the database.
+*/
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;

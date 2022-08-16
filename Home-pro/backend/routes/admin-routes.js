@@ -1,3 +1,9 @@
+/**
+ * @author Scott Normore
+ * @description A route area for admin functionalites. All of these
+ * routes reuqired that the logged in user is an admin.
+*/
+
 const express = require('express');
 const { check } = require('express-validator');
 const jwt = require('jsonwebtoken');
@@ -16,14 +22,13 @@ const Account = require('../models/account');
 
 const router = express.Router();
 
-//to add app.use function to verify authorization
-
-//to add validation
-
+/* 
+* Middle ware function to verify if user is admin
+* Modify cookies of function to fit deployment
+*/
 router.use(async (req, res, next) => {
     try{
         if ('OPTIONS' === req.method) {
-            //respond with 200
             res.sendStatus(200);
         }
         else {
@@ -50,8 +55,6 @@ router.use(async (req, res, next) => {
                         }
                     });
 
-                    //WIP
-
                     let existingRefreshToken;
                     let existingAccount;
                     
@@ -66,13 +69,8 @@ router.use(async (req, res, next) => {
                         return;
                     }
 
-                    console.log("DATABASE STUFF");
-                    console.log(existingAccount);
-                    console.log(existingRefreshToken);
-
                     if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization && existingAccount.authorization === "Admin"){
                         try{
-                            console.log("WE MATCH!! WE MATCH!!")
 
                             await existingRefreshToken.remove();
 
@@ -82,13 +80,7 @@ router.use(async (req, res, next) => {
                             }).save()
 
                             const encryptedNewRToken = jwt.sign(newRToken.toObject(), process.env.REFRESH_TOKEN_SECRET);
-
-                            console.log(encryptedNewRToken);
-
                             res.cookie("HP_refreshToken", encryptedNewRToken);
-
-                            console.log("We did it!");
-
                             res.locals.email = existingAccount.email;
                             
                             next();
@@ -101,7 +93,6 @@ router.use(async (req, res, next) => {
                         res.json({"Message": "Unauthorized"});
                         return;
                     }
-                    //end of WIP
                 }
                 else{
                     res.json({"Message": "Unauthorized"});
@@ -117,6 +108,8 @@ router.use(async (req, res, next) => {
         return;
     }
 });
+
+//admin routes
 
 router.post('/getaccs', accountController.getAccounts);
 router.post('/getinquirys', inquiryController.getInquirys)

@@ -1,3 +1,9 @@
+/**
+ * @author Scott Normore
+ * @description A controller for jobs. Handles most database interactions
+ * that are interacting with the job object in our database
+*/
+
 const serviceContoller = require('./service-controllers');
 
 const { validationResult } = require('express-validator');
@@ -11,46 +17,50 @@ const technician = require('../models/technician');
 
 //job get functions
 
+//gets all jobs
 const getJobs = async (req, res, next) => {
   const jobs = await Job.find().exec();
   res.json(jobs);
 }
 
+//gets target customer jobs
 const getJobsByCust= async(req,res,next) => {
   const jobs = await Job.find({cust_email:req.body.email}).exec()
   res.json(jobs);
 }
 
+//get target tech's jobs
 const getJobsByTech = async(req,res,next) => {
   const jobs = await Job.find({tech_email:req.body.email}).exec()
   res.json(jobs);
 }
 
+//get jobs for logged in customer.
 const customerGetJobs = async(req,res,next) => {
   const jobs = await Job.find({cust_email:res.locals.email}).exec()
   res.json(jobs);
 }
-
+//get jobs for logged in tech
 const techGetJobs = async(req,res,next) => {
   const jobs = await Job.find({tech_email:res.locals.email}).exec()
   res.json(jobs);
 }
-
+//gets in progress jobs for signed in tech
 const techGetInProgressJobs = async(req, res, next) => {
   const jobs = await Job.find({tech_email:res.locals.email, status:"assigned"})
   res.json(jobs);
 }
-
+//get completed jobs for signed in tech
 const techGetCompletedJobs = async(req, res, next) => {
   const jobs = await Job.find({tech_email:res.locals.email, status:"completed"})
   res.json(jobs);
 }
-
+//get unnassigned jobs
 const getUnassignedJobs = async(req,res,next) => {
   const jobs = await Job.find({status:"unassigned"}).exec()
   res.json(jobs);
 }
-
+//gets job by job id
 const getJobById = async(req,res,next) => {
   const job = await Job.findOne({job_id : req.body.jobID});
   console.log(job);
@@ -59,6 +69,7 @@ const getJobById = async(req,res,next) => {
 
 //job create functions
 
+//generates a new job
 const createJob = async (req,res,next) => {
   console.log(req.body);
   console.log(req.body.email);
@@ -86,9 +97,7 @@ const createJob = async (req,res,next) => {
   if(error !== undefined){
     throw 'failed validation';
   }
-  console.log("I was ran!");
   const result = await newJob.save();
-  console.log("I was ran too!");
   res.json({message: 'success'});
   }catch(err){
     res.json({message: 'Unable to save to database'});
@@ -97,6 +106,7 @@ const createJob = async (req,res,next) => {
 
 //job set functions
 
+//for techs to assign themselves to a job
 const techAssignJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne({job_id : req.body.jobID})
@@ -109,10 +119,14 @@ const techAssignJob = async(req, res, next) =>{
   }
 }
 
+//for tech to complete a job
 const techCompleteJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne({job_id : req.body.jobID})
     job.status = "completed";
+
+    //code for cost calculation. Merge with stripe code to implement payment
+
     /*
     const service = await serviceContoller.getServiceById(job.service_id)
 
@@ -143,6 +157,7 @@ const techCompleteJob = async(req, res, next) =>{
     })
     */
     //await newReceipt.save();
+
     await job.save();
 
     res.json({"message":"success"});
@@ -151,6 +166,7 @@ const techCompleteJob = async(req, res, next) =>{
   }
 }
 
+//for tech to abandon a job
 const techUnassignJob = async(req, res, next) =>{
   try{
     const job = await Job.findOne({job_id : req.body.jobID})
@@ -163,7 +179,7 @@ const techUnassignJob = async(req, res, next) =>{
   }
 }
 
-
+//for admin to assign tech to a job
 const adminAssignJob = async(req,res,next) => {
   try{
     console.log("I was ran!")
@@ -185,11 +201,10 @@ const adminAssignJob = async(req,res,next) => {
 
 //receipt get functions
 
-
+//gets past receipts for a logged in customer
 const customerGetReceipts = async (req, res, next) =>{
   try{
     const jobs = await Job.find({cust_email:res.locals.email})
-    //const jobs = await Job.find({cust_email:req.body.email})
     const receipts =[];
     for(let job of jobs){
       if(job.status === "completed"){
@@ -204,10 +219,10 @@ const customerGetReceipts = async (req, res, next) =>{
   } 
 }
 
+//gets past receipts for a logged in technician
 const techGetReceipts = async (req, res, next) =>{
   try{
     const jobs = await Job.find({tech_email:res.locals.email})
-    //const jobs = await Job.find({tech_email:req.body.email})
     const receipts =[];
     for(let job of jobs){
       if(job.status === "completed"){
@@ -222,6 +237,7 @@ const techGetReceipts = async (req, res, next) =>{
   } 
 }
 
+//get all past transactions in database
 const getReceipts = async (req, res, next) => {
   const receipts = await Receipt.find().exec();
   res.json(receipts);

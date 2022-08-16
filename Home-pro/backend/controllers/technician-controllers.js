@@ -1,3 +1,9 @@
+/**
+ * @author Scott Normore
+ * @description A controller for technicians. Handles most database interactions
+ * that are interacting with the technician object in our database
+*/
+
 const { validationResult } = require('express-validator');
 
 const HttpError = require('../models/http-error');
@@ -7,6 +13,7 @@ const Customer = require('../models/customer');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
+//used for technician to update their own account
 const updateTechAccount = async (req,res,next) => {
     let existingAccount;
     let existingTech;
@@ -44,18 +51,15 @@ const updateTechAccount = async (req,res,next) => {
         console.log(error2);
         throw 'failed validation';
       }
-      console.log("I run!");
       await existingTech.save();
-      console.log("I was ran!");
       await existingAccount.save();
-      console.log("I was ran too");
       res.json({message: "Success!"});
     }catch(err){
       res.json({message: "Error has occured"});
     }
   };
 
-
+//used for an admin to retreive tech info based on email
   const adminGetTechInfo = async (req,res,next) => {
     try{
       const existingTech = await Technician.findOne({tech_email: req.body.email});
@@ -68,8 +72,9 @@ const updateTechAccount = async (req,res,next) => {
       res.json("error");
       return;
     }
-  }  
+  }
 
+//used for tech to retreive more sensitive information based on their account
   const techGetTechInfo = async (req,res,next) => {
     try{
       const existingTech = await Technician.findOne({tech_email: res.locals.email});
@@ -84,6 +89,7 @@ const updateTechAccount = async (req,res,next) => {
     }
   }  
 
+  //used by an admin to update a tech account
   const adminUpdateTechAccount = async (req,res,next) => {
     let existingAccount;
     let existingTech;
@@ -122,18 +128,16 @@ const updateTechAccount = async (req,res,next) => {
       if(error2 !== undefined){
         console.log(error2);
         throw 'failed validation';
-      }
-      console.log("I run!");
+      };
       await existingTech.save();
-      console.log("I was ran!");
       await existingAccount.save();
-      console.log("I was ran too");
       res.json({message: "Success!"});
     }catch(err){
       res.json({message: "Error has occured"});
     }
   };
 
+//used by an admin to create a technicain account
 
 const addTechAccount = async (req,res,next) => {
   try{
@@ -149,10 +153,6 @@ const addTechAccount = async (req,res,next) => {
       return;
     }
     try{
-      //implement bcrypt hashed passowrd here
-      //
-      //
-      //
       console.log(req.body.password);
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
@@ -196,21 +196,20 @@ const addTechAccount = async (req,res,next) => {
   }
 }
 
-
+//used to retreive all technicans
 const getTechnicians = async (req,res,next) =>{
     const technicians = await Technician.find().exec();
     res.json(technicians);
 }
 
-
-//un-used
+//used add a single progession
 const addProfession = async(req,res,next) =>{
   const technician = await Technician.findOne({tech_email:req.body.email}).exec();
   technician.services.push(req.body.serviceNumber);
   await technician.save();
   res.json("updated");
 }
-
+//used to remove a single profession
 const removeProfession = async(req,res,next) =>{
   const technician = await Technician.findOne({tech_email:req.body.email}).exec();
   const index = technician.services.indexOf(req.body.serviceNumber);
@@ -222,10 +221,7 @@ const removeProfession = async(req,res,next) =>{
   await technician.save();
   res.json({"message":"updated"});
 }
-
-
-
-//to be tested
+//used to create a technican and their account
 const createTech = async (req,res,next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -244,10 +240,6 @@ const createTech = async (req,res,next) => {
       return;
     }
     try{
-      //implement bcrypt hashed passowrd here
-      //
-      //
-      //
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
       const newAccount= new Account({
@@ -275,11 +267,8 @@ const createTech = async (req,res,next) => {
         console.log(errorC);
         throw 'failed validation';
       }
-      console.log("I was ran!");
       await newAccount.save();
-      console.log("I was ran too!");
       await newTech.save();
-      console.log("I was ran three");
       res.json({message: 'success'});
     }catch(err){
       res.json({message: err});

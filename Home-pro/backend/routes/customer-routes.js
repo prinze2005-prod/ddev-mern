@@ -1,3 +1,9 @@
+/**
+ * @author Scott Normore
+ * @description A route area for customer functionalites. All of these
+ * routes reuqired that the logged in user is a customer.
+*/
+
 const express = require('express');
 const { check } = require('express-validator');
 const jwt = require('jsonwebtoken');
@@ -16,14 +22,14 @@ const Account = require('../models/account');
 
 const router = express.Router();
 
-//to add app.use function to verify authorization
 
-//to add validation
-
+/* 
+* Middle ware function to verify if user is customer
+* Modify cookies of function to fit deployment
+*/
 router.use(async (req, res, next) => {
     try{
         if ('OPTIONS' === req.method) {
-            //respond with 200
             res.sendStatus(200);
         }
         else {
@@ -50,8 +56,6 @@ router.use(async (req, res, next) => {
                         }
                     });
 
-                    //WIP
-
                     let existingRefreshToken;
                     let existingAccount;
                     
@@ -66,13 +70,8 @@ router.use(async (req, res, next) => {
                         return;
                     }
 
-                    console.log("DATABASE STUFF");
-                    console.log(existingAccount);
-                    console.log(existingRefreshToken);
-
                     if(rToken.token === existingRefreshToken.token && aToken.email === existingAccount.email && aToken.auid === existingAccount.authorization && existingAccount.authorization === "Customer"){
                         try{
-                            console.log("WE MATCH!! WE MATCH!!")
 
                             await existingRefreshToken.remove();
 
@@ -87,8 +86,6 @@ router.use(async (req, res, next) => {
 
                             res.cookie("HP_refreshToken", encryptedNewRToken);
 
-                            console.log("We did it!");
-
                             res.locals.email = existingAccount.email;
                             
                             next();
@@ -101,7 +98,6 @@ router.use(async (req, res, next) => {
                         res.json({"Message": "Unauthorized"});
                         return;
                     }
-                    //end of WIP
                 }
                 else{
                     res.json({"Message": "Unauthorized"});
@@ -119,11 +115,7 @@ router.use(async (req, res, next) => {
 });
 
 
-
-router.post('/test', async (req, res, next) => {
-    console.log("I was Ran!")
-    res.json({"message":"Hello "+res.locals.email+"!"})
-})
+//customer routes
 
 router.post('/getLoggedInInfo',customerController.getLoggedInInfo);
 router.post('/getreceipts',jobController.customerGetReceipts);

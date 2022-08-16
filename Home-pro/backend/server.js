@@ -1,13 +1,15 @@
+/**
+ * @author Scott Normore
+ * @description The driver file/routing file for the back end application
+ * for this project. To run the backend, use "node server.js", or use npm start to
+ * run the complete application.
+*/
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser")
-/*
-const multer = require("multer");
-const fs = require("fs");
-*/
-
 
 require('dotenv').config();
 
@@ -23,8 +25,8 @@ const HttpError = require('./models/http-error');
 const app = express();
 
 app.use(bodyParser.json());
-//app.use(cookieParser());
 
+//used to set the header of outgoing requests
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader('Access-Control-Allow-Origin', process.env.FRONT_END_DOMAIN || 'http://localhost:3000');
@@ -32,11 +34,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   next();
 });
-/*
-app.options('/', (req, res) => {
-  res.sendStatus(200);
-});
-*/
+
+//backend routing is segregated into these five different routes
 
 app.use('/api/general', generalRoutes);
 app.use('/api/customer', customerRoutes);
@@ -44,14 +43,20 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/tech', techRoutes);
 app.use('/api/test',testRoutes);
 
+/*
+* remove the lined code and use the commented resource after the lined code 
+* if deployment requires that the backend and front end use the same server
+* (combined application)
+*/
+//------------------------START-----------------------------------------
+
+//if no route was found, throw an error
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);
   throw error;
 });
+//error handling, sends error messages back
 
-
-
-//error handling
 app.use((error, req, res, next) => {
   if (res.headerSent) {
     return next(error);
@@ -60,12 +65,18 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 
+//------------------------END-------------------------------------------
 
-const listEndpoints = require("express-list-endpoints"); // npm i express-list-endpoints
+//more on combining the applications here: https://school.geekwall.in/p/HkAjoRxXf
+
+//some useful for develpoment code
+
+//used to look at the endpoints of the application
+//const listEndpoints = require("express-list-endpoints"); // npm i express-list-endpoints
 //console.log(listEndpoints(app));
-console.log(process.env.DOMAIN_URL);
-console.log("eyy");
 
+
+//connects to database using mongo atlas api key. Is compatable with any mongodb database
 mongoose
   .connect('mongodb+srv://Scott:tiger@cluster0.oeenx.mongodb.net/HomePro?retryWrites=true&w=majority')
   .then(() => {

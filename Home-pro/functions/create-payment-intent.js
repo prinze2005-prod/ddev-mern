@@ -1,3 +1,5 @@
+//Some Stripe API Tests
+
 // domain/.netlify/functions/create-payment-intent
 require('dotenv').config()
 

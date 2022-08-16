@@ -1,3 +1,9 @@
+/**
+ * @author Scott Normore
+ * @description A route area for admin functionalites. All of these
+ * routes reuqire no login state
+*/
+
 const express = require('express');
 const validator = require('express-validator');
 
@@ -8,6 +14,7 @@ const accountController = require('../controllers/account-controllers');
 const inquiryController = require('../controllers/inquiry-controllers');
 
 const router = express.Router();
+//general routes/ no account required routes
 
 router.post('/login',
     [validator.check('email').not().isEmpty(),
@@ -24,8 +31,6 @@ router.post('/signup',
     validator.check('postalCode').not().isEmpty(),
     validator.check('number').not().isEmpty()],
     accountController.signUp);
-
-//to add validation through email
 
 router.post('/createinquiry', inquiryController.createInquiry);
 router.post('/createjob',jobController.createJob);

@@ -1,14 +1,20 @@
+/**
+ * @author Scott Normore
+ * @description A controller for inquiry. Handles most database interactions
+ * that are interacting with the inquiry object in our database
+*/
+
 const { validationResult } = require('express-validator');
 
 const HttpError = require('../models/http-error');
 
 const Inquiry = require('../models/inquiry');
-
+//fetches all inquries
 const getInquirys = async (req, res, next) => {
   const inquiries = await Inquiry.find().exec();
   res.json(inquiries);
 }
-
+//generates an inquiry.
 const createInquiry = async (req,res,next) => {
   console.log(req.body);
   try{
@@ -37,6 +43,7 @@ const createInquiry = async (req,res,next) => {
   }
 };
 
+//delets an inquiry
 const removeInquiry = async (req,res,next) => {
   try{
     const inquiry = await Inquiry.findOne({});

@@ -1,4 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is profile page, it contains a form by which a user can update his/her information
+*/import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

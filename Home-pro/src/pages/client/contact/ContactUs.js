@@ -1,3 +1,7 @@
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for sending an inquiry to admin, it contains a form
+*/
 import React from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";

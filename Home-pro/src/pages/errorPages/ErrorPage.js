@@ -1,4 +1,7 @@
-import React from 'react';
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is the error page
+*/import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 const ErrorPage = () => {

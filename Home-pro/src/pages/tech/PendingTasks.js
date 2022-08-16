@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for listing all the pending tasks of a technician
+*/import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";

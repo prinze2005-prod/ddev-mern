@@ -1,4 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for updating technicians information
+*/import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

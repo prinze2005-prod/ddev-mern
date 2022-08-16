@@ -1,6 +1,9 @@
-Capstone Project: Home Pro <br>
-Authors: Eze Adiele | Gao Liu | Madhu Madhavan | Scott Normore | Saksham Ohri | Madhu Madhavan | Liam MacDiarmid <br>
-
+<h1>Capstone Project: Home Pro </h1>
+<h3>Authors: Eze Adiele | Gao Liu | Madhu Madhavan | Scott Normore | Saksham Ohri | Madhu Madhavan | Liam MacDiarmid </h3>
+<hr>
+<h2>Introduction</h2>
+This web app allows clients book appointments with service technicians, and that an admin can manage these technicians. Broadly, the scope of the project is to develop a web-based platform that connects individuals with service providers (“technicians”) who can fulfill their needs. This application is being made for “AK Computer solutions Inc”. They requested that this system should be able to operate on mobile devices and should be able to meet their business needs. These needs include being able to pay technicians, track transactions, and provide financial and performance data. <br>
+<h2>Set up the application</h2>
 To run Home pro app successfully, do the following steps:<br>
 <br>
 --Step 1: Change into the application's main directory<br>

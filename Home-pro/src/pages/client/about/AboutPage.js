@@ -1,3 +1,7 @@
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is about us page of the Home Pro with a short information and an image
+*/
 import React from "react";
 import styled from "styled-components";
 import { PageHero } from "../../../components";

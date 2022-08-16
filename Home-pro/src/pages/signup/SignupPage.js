@@ -1,4 +1,7 @@
-import React from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for creating an account in the application
+*/import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   MDBCard,

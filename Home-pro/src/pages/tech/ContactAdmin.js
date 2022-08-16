@@ -1,4 +1,7 @@
-import React from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for contacting admin
+*/import React from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

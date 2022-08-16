@@ -1,4 +1,7 @@
-import React from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for listing all the services
+*/import React from "react";
 import Container from "react-bootstrap/Container";
 
 import ServicesCard from "../../../components/ServicesCard";

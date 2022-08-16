@@ -1,3 +1,7 @@
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for booking a heating and cooling service, it contains a form
+*/
 import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";

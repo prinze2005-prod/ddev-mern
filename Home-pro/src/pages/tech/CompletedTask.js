@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+/**
+ * @author Saksham Ohri, Gao Liu, Eze Adiele
+ * @description This page is for listing all the completed tasks of a technician
+*/import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 

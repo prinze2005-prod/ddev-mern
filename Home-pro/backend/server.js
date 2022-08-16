@@ -75,10 +75,9 @@ app.use((error, req, res, next) => {
 //const listEndpoints = require("express-list-endpoints"); // npm i express-list-endpoints
 //console.log(listEndpoints(app));
 
-
-//connects to database using mongo atlas api key. Is compatable with any mongodb database
+//connects to database using mongo atlas api key. Is compatable with any mongodb database api key
 mongoose
-  .connect('mongodb+srv://Scott:tiger@cluster0.oeenx.mongodb.net/HomePro?retryWrites=true&w=majority')
+  .connect(process.env.DATABASE_API_KEY)
   .then(() => {
     app.listen(process.env.PORT || 5000);
   })

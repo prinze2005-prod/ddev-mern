@@ -28,8 +28,20 @@ npm install --force<br>
 <br>REACT_APP_API_ENDPOINT=http://localhost:5000
 <br>DATABASE_API_KEY=<'local mongo db url'>
 <br>
-<br>--Step 5: Run the application<br>
+<br>--Step 5: Add the following docuement in a collection named "Accounts"
+<br>
+<br>email
+:
+"DesiredAdminAccount@someemail.com"<br>
+password:"$2b$10$CCGSKPlFbVyN4jRw.cK9puDmcoIRjKSLy2Hz/kRjF1ib.7W3TKfgu"
+authorization:"Admin"
+<br>
+<br> This will create an admin account with the pasword: "Password@1234"
+<br>
+<br>--Step 6: Run the application<br>
 <br>
 npm start <br> 
+<br>
+<br> Feel free to contact us if you need assistance in running the project
 
  

@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for displaying technicians landing page
-*/import React from "react";
+ */
+
+import React from "react";
 import Container from "react-bootstrap/Container";
 import TechLandingCard from "../../components/TechLandingCard";
 

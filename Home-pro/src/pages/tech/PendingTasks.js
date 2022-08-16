@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for listing all the pending tasks of a technician
-*/import React, { useState, useEffect } from "react";
+ */
+
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
@@ -49,7 +51,7 @@ export default function PendingTask() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getunjobs", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/tech/getunjobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -66,7 +68,7 @@ export default function PendingTask() {
 
   const handleAccept = async (event, param) => {
     console.log(param);
-    await fetch(REACT_APP_API_ENDPOINT +"/api/tech/assignjob", {
+    await fetch(REACT_APP_API_ENDPOINT + "/api/tech/assignjob", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

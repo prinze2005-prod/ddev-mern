@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for listing all the completed tasks of a technician
-*/import React, { useState, useEffect } from "react";
+ */
+
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -46,7 +48,7 @@ const CompletedTask = () => {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getCompletedJobs", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/tech/getCompletedJobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {

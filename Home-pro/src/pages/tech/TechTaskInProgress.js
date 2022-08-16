@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for listing all the tasks in progress of a technician
-*/import React, { useState, useRef, useEffect } from "react";
+ */
+
+import React, { useState, useRef, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
@@ -13,7 +15,7 @@ function TechTaskInProgress() {
   let HP_refreshToken;
   let HP_accessToken;
 
-  let history = new useHistory()
+  let history = new useHistory();
 
   const [jobData, setJobData] = useState([
     {
@@ -48,7 +50,7 @@ function TechTaskInProgress() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getInProgressJobs", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/tech/getInProgressJobs", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -65,7 +67,7 @@ function TechTaskInProgress() {
 
   const handleComplete = async (event, param) => {
     console.log(param);
-    await fetch(REACT_APP_API_ENDPOINT +"/api/tech/completejob", {
+    await fetch(REACT_APP_API_ENDPOINT + "/api/tech/completejob", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -116,7 +118,7 @@ function TechTaskInProgress() {
                   <Button
                     variant="warning"
                     style={{ color: "black" }}
-                     onClick={(event) => handleComplete(event, obj.job_id)}
+                    onClick={(event) => handleComplete(event, obj.job_id)}
                   >
                     Complete
                   </Button>

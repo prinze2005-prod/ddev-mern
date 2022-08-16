@@ -1,15 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Container, Table } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Container, Table } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { Button, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+
+// author: Gao Liu, Saksham Ohri, Scott Normore, Eze Adiele
+// this page shows details about selected transaction
+
 const PastTransactionDetail = () => {
-	return (
-<main>
+  return (
+    <main>
       <Container>
         <br></br>
         <center>
@@ -20,18 +24,11 @@ const PastTransactionDetail = () => {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Job ID">
-                <Form.Control
-                  type="text"
-                  placeholder="Job ID"
-                  required
-                />
+                <Form.Control type="text" placeholder="Job ID" required />
               </FloatingLabel>
             </Col>
             <Col md>
-              <FloatingLabel
-                controlId="floatingInputGrid"
-                label="Service Name"
-              >
+              <FloatingLabel controlId="floatingInputGrid" label="Service Name">
                 <Form.Control
                   type="email"
                   placeholder="Service Name"
@@ -44,15 +41,14 @@ const PastTransactionDetail = () => {
           <Row className="g-2">
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Duration">
-                <Form.Control
-                  type="text"
-                  placeholder="Duration"
-                  required
-                />
+                <Form.Control type="text" placeholder="Duration" required />
               </FloatingLabel>
             </Col>
             <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="First Two Hour Charge">
+              <FloatingLabel
+                controlId="floatingInputGrid"
+                label="First Two Hour Charge"
+              >
                 <Form.Control
                   type="text"
                   placeholder="First Two Hour Charge"
@@ -64,24 +60,24 @@ const PastTransactionDetail = () => {
           <br></br>
           <Row className="g-2">
             <Col md>
-              <FloatingLabel controlId="floatingInputGrid" label="Additional Per Hour">
+              <FloatingLabel
+                controlId="floatingInputGrid"
+                label="Additional Per Hour"
+              >
                 <Form.Control
                   type="text"
                   placeholder="Additional Per Hour"
-				  required
+                  required
                 />
               </FloatingLabel>
             </Col>
             <Col md>
               <FloatingLabel controlId="floatingInputGrid" label="Total Charge">
-                <Form.Control
-                  type="text"
-                  placeholder="Total Charge"
-                />
+                <Form.Control type="text" placeholder="Total Charge" />
               </FloatingLabel>
             </Col>
           </Row>
-         
+
           <br></br>
           <center>
             <Row>
@@ -106,7 +102,6 @@ const PastTransactionDetail = () => {
               </Col>
             </Row>
           </center>
-         
         </Form>
       </Container>
     </main>

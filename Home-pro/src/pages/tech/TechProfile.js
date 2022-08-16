@@ -1,7 +1,9 @@
 /**
  * @author Saksham Ohri, Gao Liu, Eze Adiele
  * @description This page is for updating technicians information
-*/import React, { useState, useRef, useEffect } from "react";
+ */
+
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -41,7 +43,7 @@ const TechProfile = ({ user }) => {
     console.log(err);
   }
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/tech/getTechProfile", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/tech/getTechProfile", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -106,7 +108,7 @@ const TechProfile = ({ user }) => {
         }
       }
       const response = await fetch(
-        REACT_APP_API_ENDPOINT +"/api/tech/editprofile",
+        REACT_APP_API_ENDPOINT + "/api/tech/editprofile",
         {
           method: "PATCH",
           credentials: "include", //TWO THINGS: Cookies and this header <============

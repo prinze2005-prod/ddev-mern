@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
 const { REACT_APP_API_ENDPOINT } = process.env;
+
+// author: Gao Liu, Saksham Ohri, Scott Normore, Eze Adiele
+// This page shows a list of registered technicians in the system, each one has an edit button. There is a add new technician button on the top
 
 export default function ManageTechPage() {
   let history = useHistory();
@@ -18,15 +19,15 @@ export default function ManageTechPage() {
       tech_email: "tech@gmail.com",
       name: "tech",
       address: { street: "11 Sait way NW", postalCode: "A1A 1A1" },
-	  services: [1],
-	  phoneNumber: 4031112222
+      services: [1],
+      phoneNumber: 4031112222,
     },
     {
-		tech_email: "tech@gmail.com",
-		name: "tech",
-		address: { street: "11 Sait way NW", postalCode: "A1A 1A1" },
-		services: [1],
-		phoneNumber: 4031112222
+      tech_email: "tech@gmail.com",
+      name: "tech",
+      address: { street: "11 Sait way NW", postalCode: "A1A 1A1" },
+      services: [1],
+      phoneNumber: 4031112222,
     },
   ]);
 
@@ -46,7 +47,7 @@ export default function ManageTechPage() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/admin/gettechnicians", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/admin/gettechnicians", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -63,33 +64,31 @@ export default function ManageTechPage() {
 
   return (
     <main>
-		
       <Container style={{ minHeight: "500px" }}>
         <br></br>
         <center>
           <h2>List Of Technicians</h2>
         </center>
-		<br></br>
-		<center>
-		<Link
+        <br></br>
+        <center>
+          <Link
             to="/adminTechAdd"
             className="btn"
             style={{ backgroundColor: "#ffb347" }}
           >
-           + Tech
+            + Tech
           </Link>
-		</center>
+        </center>
         <br></br>
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              
               <th>Technician Email</th>
               <th>Name</th>
               <th>Street</th>
               <th>Postal Code</th>
               <th>Eligible for Services</th>
-			  <th>Phone Number</th>
+              <th>Phone Number</th>
             </tr>
           </thead>
           <tbody>
@@ -99,9 +98,8 @@ export default function ManageTechPage() {
                 <td>{obj.name} </td>
                 <td>{obj.address.street} </td>
                 <td>{obj.address.postalCode} </td>
-				<td>{obj.services}</td>
-				<td>{obj.phoneNumber}</td>
-               
+                <td>{obj.services}</td>
+                <td>{obj.phoneNumber}</td>
               </tr>
             ))}
           </tbody>
@@ -115,7 +113,6 @@ export default function ManageTechPage() {
             back to Tech page
           </Link>
           <br></br>
-
         </center>
       </Container>
     </main>

@@ -5,9 +5,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
-
 import { Link, useHistory } from "react-router-dom";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+
+// author: Gao Liu, Saksham Ohri, Scott Normore, Eze Adiele
+// this page is to review and modify admin's profile
 
 const AdminProfile = ({ user }) => {
   let history = useHistory();

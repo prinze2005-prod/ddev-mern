@@ -1,11 +1,14 @@
 import React, { useState, useRef } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, ListGroup } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { Link, useHistory } from "react-router-dom";
+
+// author: Gao Liu, Saksham Ohri, Scott Normore
+// description: this page is used to let admin to add a new client account in the system
 
 const AdminAddClient = ({ user }) => {
   let history = useHistory();
@@ -47,6 +50,8 @@ const AdminAddClient = ({ user }) => {
     return;
   }
 
+  // this handler is to save input data from admin to database
+
   const handlerSubmit = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/general/signup", {
@@ -70,6 +75,8 @@ const AdminAddClient = ({ user }) => {
       console.log(err);
     }
   };
+
+  // this modal is to show collected information via input fields and user can choose to continue or cancel the adding
 
   function MyVerticallyCenteredModal(props) {
     return (
@@ -127,6 +134,8 @@ const AdminAddClient = ({ user }) => {
       </Modal>
     );
   }
+
+  // this function is to show password requirement for admin when he clicks the password input
 
   function Hint() {
     return (

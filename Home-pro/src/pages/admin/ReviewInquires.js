@@ -5,6 +5,10 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
 const { REACT_APP_API_ENDPOINT } = process.env;
+
+// author: Gao Liu, Saksham Ohri, Scott Normore, Eze Adiele
+// this page shows all unread inquiries came from technicians and clients, admin can email to sender by clicking their email address, and mark the inquiry as read via button. Once marked as read, the inquiry could be removed from the list.
+
 function ReviewInquires() {
   let history = useHistory();
 
@@ -40,7 +44,7 @@ function ReviewInquires() {
   }
 
   useEffect(() => {
-    fetch(REACT_APP_API_ENDPOINT +"/api/admin/getinquirys", {
+    fetch(REACT_APP_API_ENDPOINT + "/api/admin/getinquirys", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -57,7 +61,7 @@ function ReviewInquires() {
 
   const handleDelete = async (event, param) => {
     console.log(param);
-    await fetch(REACT_APP_API_ENDPOINT +"/api/admin/removeinquiry", {
+    await fetch(REACT_APP_API_ENDPOINT + "/api/admin/removeinquiry", {
       method: "POST",
       credentials: "include", //TWO THINGS: Cookies and this header <============
       headers: {
@@ -94,17 +98,21 @@ function ReviewInquires() {
           <tbody>
             {inquiryData.map((obj) => (
               <tr>
-                <td><a href="mailto:{obj.email}">{obj.email}</a> </td>
+                <td>
+                  <a href="mailto:{obj.email}">{obj.email}</a>{" "}
+                </td>
                 <td>{obj.job_id}</td>
                 <td>{obj.description}</td>
-                <td>{" "}
+                <td>
+                  {" "}
                   <Button
                     variant="warning"
                     style={{ color: "black" }}
                     onClick={(event) => handleDelete(event, obj.inquiry_id)}
                   >
                     Mark as read
-                  </Button>{" "}</td>
+                  </Button>{" "}
+                </td>
               </tr>
             ))}
           </tbody>
